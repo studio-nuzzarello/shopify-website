@@ -1,0 +1,249 @@
+{% style %}
+  .article__nav--wrapper {
+    background-color: #000;
+  }
+  .article__nav--headline {
+    color: rgb(245, 245, 247);
+    height: 25px;
+    font-size: 21px;
+    line-height: normal;
+    font-weight: 600;
+    letter-spacing: 0.231px;
+  }
+  .article__nav {
+    position: relative;
+    color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    height: 52px;
+  }
+  @media (max-width: 989px) {
+    .article__nav {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  .article__nav--border {
+    border-bottom: 1px solid #424245;
+  }
+  .article--wrapper {
+    background-color: #000;
+  }
+  .article {
+    color: #000;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    padding-top: 40px;
+  }
+  @media (max-width: 989px) {
+    .article {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  .article__text {
+    color: rgb(245, 245, 247);
+    max-width: 740px;
+    padding-bottom: 10rem;
+  }
+  .article__title {
+    font-size: 32px;
+    line-height: 1.125;
+    font-weight: 700;
+    letter-spacing: -0.144px;
+    font-weight: 700;
+    color: inherit;
+    padding-bottom: 32px;
+  }
+  .article__media {
+  width: 100%;
+  margin: 32px 0;
+  aspect-ratio: 16 / 9; 
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.custom-placeholder {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+  .article__note {
+    padding: 16px;
+    border-radius: 15px;
+    background-color: #323232;
+    margin-top: 5px;
+    margin-bottom: 40px;
+    font-size: 17px;
+    line-height: 26.0005px;
+    font-weight: 600;
+    letter-spacing: -0.374px;
+  }
+  .article__update {
+    color: #9a9a9e;
+  }
+  .article__abstract {
+    padding-top: 6px;
+  }
+  .article__abstract p {
+    color: #f5f5f7;
+  }
+  .article__content * {
+    color: #f5f5f7;
+  }
+  .article__content p {
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -0.374px;
+    line-height: 25px;
+    margin-top: 13.6px;
+  }
+  .article__content h2 {
+    padding-inline-end: 23px;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.0045em;
+  }
+  .article__content h3 {
+    padding-inline-end: 23px;
+    font-size: 20px;
+    line-height: 1.25;
+    font-weight: 650;
+    letter-spacing: -0.003em;
+  }
+  .article__content ul {
+    list-style: disc;
+    text-align: start;
+    list-style-position: outside;
+    list-style-type: disc;
+    margin-left: 2rem;
+    padding-bottom: 1.3rem;
+    padding-top: 1.3rem;
+  }
+  .article__content ol {
+    list-style: decimal;
+    text-align: start;
+    list-style-position: outside;
+    list-style-type: disc;
+    margin-left: 2rem;
+    padding-bottom: 1.3rem;
+    padding-top: 1.3rem;
+  }
+{% endstyle %}
+
+<div class="article__nav--wrapper">
+  <div class="article__nav">
+    <div class="article__nav--headline">{{ blog.title }}</div>
+    <div>
+      <a
+        href="mailto:info@stormtent.de"
+        aria-label="E-Mail an info@stormtent.de senden"
+        class="button button--primary content-card__button"
+        style="
+          max-height: 26px;
+          font-size: 14px;
+          padding: 1.3rem 2.6rem;
+          min-height: 0;
+          background-color: rgb(0, 118, 223);
+        "
+      >
+        <div class="button__content">
+          <span class="button__label" data-label="Experten fragen"> Experten fragen </span>
+          <div class="button__icons">
+            <span class="button__icon">
+              <svg
+                aria-hidden="true"
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+              </svg>
+            </span>
+            <span class="button__icon button__icon--2">
+              <svg
+                aria-hidden="true"
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+              </svg>
+            </span>
+          </div>
+        </div>
+        <span
+          class="animated-button-circle"
+          style="transform-origin: 13.119795% 126.875%; background-color: rgb(0, 118, 223);"
+        ></span>
+      </a>
+    </div>
+  </div>
+  <div class="article__nav--border"></div>
+</div>
+
+<div class="article--wrapper">
+  <div class="article">
+    <div class="article__text">
+      <div class="article__note">
+        <div class="article__update">Letztes Update: {{ article.updated_at | date: format: 'abbreviated_date' }}</div>
+        {% if article.excerpt %}
+          <div class="article__abstract">{{ article.excerpt }}</div>
+        {% endif %}
+      </div>
+      <h1 class="article__title">{{ article.title }}</h1>
+      {% if article.image %}
+        <div class="article__media">
+          {{ article.image 
+            | image_url: width: 1480
+            | image_tag: class: 'custom-placeholder', loading: 'eager', fetchpriority: 'high', alt: article.image.alt 
+          }}
+        </div>
+        {% endif %}
+      <div class="article__content">{{ article.content }}</div>
+    </div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+  {{ article | structured_data }}
+</script>
+
+<style>
+  .global__header {
+    background-color: #161617 !important;
+  }
+  html,
+  body {
+    background-color: #161617 !important;
+  }
+  .custom-header-section .mobile-menu[open] .mobile-menu__backdrop {
+    background-color: #161617 !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Article",
+  "tag": "section",
+  "class": "article-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Article"
+    }
+  ]
+}
+{% endschema %}

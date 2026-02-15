@@ -1,0 +1,182 @@
+{% style %}
+  .page__nav--wrapper {
+    background-color: #fff;
+  }
+  .page__nav--headline {
+    color: #1d1d1f;
+    height: 25px;
+    font-size: 21px;
+    line-height: normal;
+    font-weight: 600;
+    letter-spacing: 0.231px;
+    height: auto;
+    margin: 0;
+
+    flex: 1;
+    min-width: 0;
+  }
+  @media screen and (max-width: 990px) {
+    .page__nav--headline {
+      font-size: 14px;
+    }
+  }
+  .page__nav {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    min-height: 52px;
+    height: auto;
+  }
+  @media (max-width: 989px) {
+    .page__nav {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  .page__nav--border {
+    border-bottom: 1px solid #d2d2d7;
+  }
+  .page--wrapper {
+    background-color: #fff;
+  }
+  .page__custom {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  @media (max-width: 989px) {
+    .page__custom {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  .page__content * {
+    color: #1d1d1f;
+  }
+  .page__content p {
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -0.374px;
+    line-height: 25px;
+    margin-top: 13.6px;
+  }
+  .page__content h2 {
+    padding-inline-end: 23px;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.0045em;
+  }
+  .page__content h3 {
+    padding-inline-end: 23px;
+    font-size: 20px;
+    line-height: 1.25;
+    font-weight: 650;
+    letter-spacing: -0.003em;
+  }
+  .page__content ul {
+    list-style: disc;
+    text-align: start;
+    list-style-position: outside;
+    list-style-type: disc;
+    margin-left: 2rem;
+    padding-bottom: 1.3rem;
+    padding-top: 1.3rem;
+  }
+  .page__content ol {
+    list-style: decimal;
+    text-align: start;
+    list-style-position: outside;
+    list-style-type: disc;
+    margin-left: 2rem;
+    padding-bottom: 1.3rem;
+    padding-top: 1.3rem;
+  }
+{% endstyle %}
+
+<div class="page__nav--wrapper">
+  <div class="page__nav">
+    <h1 class="page__nav--headline">{{ page.title }}</h1>
+    {% if page.metafields.custom.link_label %}
+      <div>
+        <a
+          href="{% if page.metafields.custom.link_product %}{{ page.metafields.custom.link_product.value.url }}{% elsif page.metafields.custom.link_url %}{{ page.metafields.custom.link_url.value }}{% endif %}"
+          aria-label="{{ page.metafields.custom.link_label }}"
+          class="button button--primary content-card__button"
+          style="
+            max-height: 26px;
+            font-size: 14px;
+            padding: 1.3rem 2.6rem;
+            min-height: 0;
+            background-color: rgb(0, 118, 223);
+          "
+        >
+          <div class="button__content">
+            <span class="button__label" data-label="{{ page.metafields.custom.link_label }}">
+              {{- page.metafields.custom.link_label -}}
+            </span>
+            <div class="button__icons">
+              <span class="button__icon">
+                <svg
+                  aria-hidden="true"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                </svg>
+              </span>
+              <span class="button__icon button__icon--2">
+                <svg
+                  aria-hidden="true"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <span
+            class="animated-button-circle"
+            style="transform-origin: 13.119795% 126.875%; background-color: rgb(0, 118, 223);"
+          ></span>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+  <div class="page__nav--border"></div>
+</div>
+
+<div class="page--wrapper">
+  <div class="page__custom">
+    <div class="page__content">{{ page.content }}</div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Page",
+  "tag": "section",
+  "class": "custom-page-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Custom Page"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,100 @@
+<div class="shipping-info" aria-label="Versandinformationen">
+  {% assign start_time = 'now' | date: '%s%3N' %}
+  <svg
+    aria-hidden="true"
+    style="margin-right: 6px; min-width: 14px; min-height: 14px; position: relative; top: 3px;"
+    xmlns="http://www.w3.org/2000/svg"
+    width="14"
+    height="14"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#707070"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    xmlns:v="https://vecta.io/nano"
+  >
+    <path d="M16.5 9.4l-9-5.19"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/>
+  </svg>
+  {% if product.selected_or_first_available_variant.available %}
+    {% if product.selected_or_first_available_variant.available.metafields.custom.shipping_time %}
+      {% assign shipping_time = product.selected_or_first_available_variant.available.metafields.custom.shipping_time %}
+    {% else %}
+      {% assign shipping_time = 4 %}
+    {% endif %}
+
+    {% assign today = 'now' | date: '%w' %}
+    {% assign order_weekday_int = today | plus: 0 %}
+    {% if order_weekday_int == 0 %}
+      {% assign shipping_time = shipping_time | plus: 1 %}
+    {% elsif order_weekday_int == 6 %}
+      {% assign shipping_time = shipping_time | plus: 2 %}
+    {% endif %}
+
+    {% assign today = 'now' | date: '%s' %}
+    {% assign shipping_time_seconds = shipping_time | times: 86400 %}
+    {% assign theoretical_delivery_date = today | plus: shipping_time_seconds %}
+
+    {% assign delivery_weekday = theoretical_delivery_date | date: '%w' %}
+    {% assign delivery_weekday_int = delivery_weekday | plus: 0 %}
+    {% if delivery_weekday_int == 6 %}
+      {% assign shipping_time = shipping_time | plus: 2 %}
+    {% elsif delivery_weekday_int == 0 %}
+      {% assign shipping_time = shipping_time | plus: 1 %}
+    {% endif %}
+
+    {% assign shipping_time_seconds = shipping_time | times: 86400 %}
+    {% assign true_shipping_time = today | plus: shipping_time_seconds %}
+    {% assign true_shipping_time_formatted = true_shipping_time | date: '%Y-%m-%d' %}
+
+    {% assign formatted_date = true_shipping_time_formatted | date: '%A %d %B' %}
+    {% assign translated_date = formatted_date
+      | replace: 'Monday', 'Mo.'
+      | replace: 'Tuesday', 'Di.'
+      | replace: 'Wednesday', 'Mi.'
+      | replace: 'Thursday', 'Do.'
+      | replace: 'Friday', 'Fr.'
+      | replace: 'Saturday', 'Sa.'
+      | replace: 'Sunday', 'So.'
+    %}
+    {% assign translated_date = translated_date
+      | replace: 'January', 'Januar'
+      | replace: 'February', 'Februar'
+      | replace: 'March', 'März'
+      | replace: 'April', 'April'
+      | replace: 'May', 'Mai'
+      | replace: 'June', 'Juni'
+      | replace: 'July', 'Juli'
+      | replace: 'August', 'August'
+      | replace: 'September', 'September'
+      | replace: 'October', 'Oktober'
+      | replace: 'November', 'November'
+      | replace: 'December', 'Dezember'
+    %}
+
+    {% assign product_variant = product.selected_or_first_available_variant %}
+    <div class="shipping-estimate">
+      {% if product_variant.inventory_quantity >= 6 %}
+        <div class="shipping-estimate--label" style="color:#1D1D1F; font-weight: 400;">Heute bestellen</div>
+        <div class="shipping-date">{{ translated_date }} — Kostenfreie Lieferung</div>
+        <div class="shipping-estimate--stock" style="color:#007900">Auf Lager</div>
+      {% elsif product_variant.inventory_quantity > 0 and product_variant.inventory_quantity < 6 %}
+        <div class="shipping-estimate--label" style="color:#1D1D1F; font-weight: 400;">Heute bestellen</div>
+        <div class="shipping-date">{{ translated_date }} — Kostenfreie Lieferung</div>
+        <div class="shipping-estimate--stock" style="color:#E67E22">
+          Knapper Bestand ({{ product_variant.inventory_quantity }} Stk.)
+        </div>
+      {% elsif product_variant.inventory_quantity == 0 or product_variant.inventory_quantity < 0 %}
+        <div class="shipping-estimate--label" style="color:#1D1D1F; font-weight: 400;">Heute vorbestellen</div>
+        <div class="shipping-date">Lieferung nach Wareneingang</div>
+        <div class="shipping-estimate--stock" style="color:#ff8800">Vorbestellbar</div>
+      {% endif %}
+    </div>
+  {% else %}
+    <div class="shipping-estimate">
+      <div class="shipping-estimate--label">Ausverkauft</div>
+      <div class="shipping-date">Der Artikel ist derzeit nicht lieferbar</div>
+      <div class="shipping-estimate--stock" style="color:#FF0000">Nicht auf Lager</div>
+    </div>
+  {% endif %}
+</div>

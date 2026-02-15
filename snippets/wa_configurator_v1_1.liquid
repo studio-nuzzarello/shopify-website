@@ -1,0 +1,1051 @@
+<style>
+  input[type='checkbox'] {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-decoration: none;
+  }
+  input[type='radio'] {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-decoration: none;
+  }
+</style>
+
+<style>
+  .section-label {
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 13px;
+    padding-right: 3.2rem;
+  }
+  .label-subtext {
+    color: #6e6e73;
+  }
+  @media (max-width: 620px) {
+    .colornav {
+      padding-top: 2.6rem;
+    }
+  }
+  .colornav__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px 13px;*/
+  }
+  .colornav__item {
+    flex: 0 1 auto;
+    align-self: flex-start;
+  }
+
+  #colornav {
+    scroll-margin-top: 90px;
+  }
+  @media (max-width: 620px) {
+    #colornav {
+      scroll-margin-top: 500px;
+    }
+  }
+  .colornav__item-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .colornav__item-border {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+  }
+  .colornav__item-whitespace {
+    width: 32px;
+    height: 32px;
+    border: 2px solid transparent;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  .colornav__item-swatch {
+    width: 28px;
+    height: 28px;
+  }
+  .colornav__item-names {
+    padding-top: 0.6rem;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+</style>
+
+{% if product.metafields.custom.configurator_products %}
+  <div id="colornav" class="colornav">
+    <h2 class="section-label colornav__label">
+      Farben. <span class="label-subtext">Wählen Sie Ihre bevorzugte Farbe.</span>
+    </h2>
+    <ul class="colornav__items">
+      {% for variant in product.metafields.custom.configurator_products.value %}
+        <li class="colornav__item">
+          <a class="colornav__item-link" href="{{ variant.url }}#colornav">
+            <div
+              class="colornav__item-border"
+              style=" border: 2px solid {% if variant.id == product.id %}#FF4014{% else %}#e6e6e6{% endif %};"
+            >
+              <div class="colornav__item-whitespace">
+                <div
+                  class="colornav__item-swatch"
+                  style="background: {{ variant.metafields.custom.color_hex }};"
+                ></div>
+              </div>
+            </div>
+            <div class="colornav__item-names">
+              {{ variant.metafields.custom.color }}
+              <br>
+              {{ variant.metafields.custom.color_pms }}
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+{{ 'wa_configurator_v1_1.js' | asset_url | script_tag }}
+
+{% assign fix_costs = all_products['fixe-druckkosten'] %}
+
+{%- assign fix_cost_config = '{' -%}
+{%- for variant in fix_costs.variants -%}
+  {%- assign qty_key = variant.title | split: '-' | last | remove: 'Preisklasse' | remove: 'preisklasse' | strip -%}
+  {%- if forloop.index0 != 0 -%}
+    {%- assign fix_cost_config = fix_cost_config | append: ',' -%}
+  {%- endif -%}
+  {%- assign fix_cost_config = fix_cost_config
+    | append: '"'
+    | append: qty_key
+    | append: '":{"id":'
+    | append: variant.id
+    | append: ',"price":'
+    | append: variant.price
+    | append: '}'
+  -%}
+{%- endfor -%}
+{%- assign fix_cost_config = fix_cost_config | append: '}' -%}
+
+<script type="application/json" id="configurator-product-setup">
+  {{ fix_cost_config }}
+</script>
+
+{%- assign product_config = '{' -%}
+{% if product.has_only_default_variant %}
+  {%- assign qty_key = 1 -%}
+  {%- assign product_config = product_config
+    | append: '"'
+    | append: qty_key
+    | append: '":{"id":'
+    | append: product.first_available_variant.id
+    | append: ',"price":'
+    | append: product.price
+    | append: '}'
+  -%}
+{% else %}
+  {%- for variant in product.variants -%}
+    {%- assign qty_key = variant.title | split: '-' | last | remove: 'Staffelpreis' | remove: 'staffelpreis' | strip -%}
+    {%- if forloop.index0 != 0 -%}
+      {%- assign product_config = product_config | append: ',' -%}
+    {%- endif -%}
+    {%- assign product_config = product_config
+      | append: '"'
+      | append: qty_key
+      | append: '":{"id":'
+      | append: variant.id
+      | append: ',"price":'
+      | append: variant.price
+      | append: '}'
+    -%}
+  {%- endfor -%}
+{% endif %}
+{%- assign product_config = product_config | append: '}' -%}
+
+<script type="application/json" id="configurator-product-data">
+  {{ product_config }}
+</script>
+
+<style>
+  .customization {
+    padding-top: 2.6rem;
+  }
+  .customization__section {
+    display: flex;
+    gap: 6px;
+  }
+  .customization__section.hidden {
+    display: none;
+  }
+  .customization__progressbar {
+    height: auto;
+    justify-self: start;
+  }
+  .customization__progressbar-elements {
+    justify-items: center;
+    height: 100%;
+    text-align: -webkit-center;
+  }
+  .customization__progressbar-circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #e5e5ea;
+  }
+  .customization__progressbar-rectangle {
+    width: 2px;
+    height: calc(100% - 1.6rem);
+    margin-top: 2px;
+    background-color: #e5e5ea;
+    background-image: linear-gradient(to bottom, #007900 0%, #007900 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 0%;
+    background-position: top;
+    transition: background-size 0.9s ease;
+    will-change: background-size, transform;
+  }
+  .customization__progressbar-circle.active {
+    background-color: #007900 !important;
+  }
+  .customization__progressbar-rectangle.active {
+    background-size: 100% 100% !important;
+  }
+  .customization__progressbar-circle.active-blue {
+    background-color: #364da8 !important;
+  }
+  .customization__progressbar-rectangle.active-blue {
+    background-size: 100% 100% !important;
+    background-image: linear-gradient(to bottom, #364da8 0%, #364da8 100%);
+  }
+  .customization__interaction-label {
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+    color: #6e6e73;
+  }
+  .customization__interaction-buttons {
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 6px 3px;
+    margin-left: 6px;
+  }
+  .customization__button:checked + .customization__button-label {
+    background-color: #d3ecd9;
+    color: #006118;
+    border-color: #c4deca;
+  }
+  .customization__button-label {
+    cursor: pointer;
+    transition: all 0.1s cubic-bezier(0, 0, 0.5, 1);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-decoration: none;
+    border: 1.5px solid #d1d1d4;
+    height: 3.6rem;
+    padding: 0.6rem 1.8rem;
+    border-radius: 50px;
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 450;
+    letter-spacing: -0.022em;
+  }
+  .customization__button-label:hover {
+    -webkit-transform: scale(1.01);
+    transform: scale(1.01);
+  }
+</style>
+
+<div class="customization">
+  <h2 class="section-label customization__label">
+    Konfiguration. <span class="label-subtext">Gestalten Sie Ihren Artikel nach Ihren Wünschen.</span>
+  </h2>
+
+  <div class="customization__section" data-section="print-area">
+    <div class="customization__progressbar">
+      <div class="customization__progressbar-elements">
+        <div class="customization__progressbar-circle" data-section="print-area"></div>
+        <div class="customization__progressbar-rectangle" data-section="print-area"></div>
+      </div>
+    </div>
+    <div class="customization__interaction">
+      <div class="customization__interaction-label">Druckfläche(n)</div>
+      <div class="customization__interaction-buttons">
+        {% assign unformatted_print_areas = product.metafields.custom.available_print_areas %}
+        {% assign formatted_print_areas = unformatted_print_areas | remove: '[' | remove: ']' | remove: '"' %}
+        {% assign available_print_areas = formatted_print_areas | split: ',' %}
+        {% for print_area in available_print_areas %}
+          <input
+            type="checkbox"
+            id="{{ print_area | handleize }}"
+            class="customization__button"
+            name="print-area-choices"
+            data-section="print-area"
+            value="{{ print_area | handleize }}"
+          >
+          <label for="{{ print_area | handleize }}" class="customization__button-label">
+            {{ print_area }}
+          </label>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .block-wrapper {
+      display: block;
+    }
+    .customization__option {
+      display: flex; /* default hidden */
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 1.3rem;
+    }
+    .customization__option.hidden {
+      display: none;
+    }
+    .customization__option-label {
+      font-size: 14px;
+      letter-spacing: -0.05em;
+      line-height: 1.1;
+      font-weight: bold;
+      padding-bottom: 1.3rem;
+      margin-bottom: 1.3rem;
+      border-bottom: 1px solid #d2d2d7;
+    }
+    .customization__choices {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 6px 3px;
+      margin-bottom: 0.6rem;
+    }
+    .customization__choice {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .variants-wrapper {
+      display: block;
+      margin-bottom: 1.3rem;
+    }
+    .variants-wrapper.hidden {
+      display: none;
+    }
+    .customization__variants-label {
+      max-width: 69px;
+      font-size: 14px;
+      letter-spacing: -0.05em;
+      line-height: 1.1;
+      font-weight: 600;
+      margin-bottom: 1.3rem;
+      margin-top: 1.3rem;
+      background: #016ce0;
+      color: #ffffff;
+      border-radius: 0.5rem;
+      padding: 0.125rem 0.5rem;
+    }
+    .customization__variants {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 6px 3px;
+      margin-bottom: 1.3rem;
+    }
+    .customization__button[data-section='variant']:checked + .customization__button-label {
+      background-color: #dbdcf2;
+      color: #2925af;
+      border-color: rgb(207, 208, 229);
+    }
+  </style>
+
+  <div class="customization__section hidden" data-section="print-method">
+    <div class="customization__progressbar">
+      <div class="customization__progressbar-elements">
+        <div class="customization__progressbar-circle" data-section="print-method"></div>
+        <div class="customization__progressbar-rectangle" data-section="print-method"></div>
+      </div>
+    </div>
+    <div class="customization__interaction">
+      <div class="customization__interaction-label">Druckverfahren</div>
+      <div class="customization__interaction-buttons">
+        <div class="block-wrapper">
+          {% for print_area in available_print_areas %}
+            <div class="customization__option hidden">
+              <div class="customization__option-label" data-handle="{{ print_area | handleize }}">
+                {{ print_area -}}
+              </div>
+              <div class="customization__choices">
+                {% for print in product.metafields.custom.available_prints.value %}
+                  {% if print.metafields.custom.customization_pair == print_area %}
+                    <div class="customization__choice">
+                      <input
+                        type="radio"
+                        id="{{ print_area | handleize }}-{{ print.metafields.custom.print_type | handleize }}"
+                        class="customization__button"
+                        data-section="print-method"
+                        name="{{ print_area | handleize }}"
+                        value="{{ print_area | handleize }}-{{ print.metafields.custom.print_type | handleize }}"
+                      >
+                      <label
+                        for="{{ print_area | handleize }}-{{ print.metafields.custom.print_type | handleize }}"
+                        class="customization__button-label"
+                      >
+                        {{ print.metafields.custom.print_type }}
+                      </label>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              {% for print in product.metafields.custom.available_prints.value %}
+                {% if print.metafields.custom.customization_pair == print_area %}
+                  {% if print.has_only_default_variant == false %}
+                    {% assign input_name = print_area
+                      | handleize
+                      | append: '-'
+                      | append: print.metafields.custom.print_type
+                      | handleize
+                    %}
+                    <div class="variants-wrapper hidden" data-pair="{{ input_name }}">
+                      <div class="customization__variants-label">Varianten</div>
+                      <div class="customization__variants">
+                        {% for option in print.options_by_name[print.options[0]].values %}
+                          {%- assign setup_config = '' -%}
+                          {% assign color_index = forloop.index %}
+                          {%- for variant in print.variants -%}
+                            {%- if variant.options[0] == option -%}
+                              {%- assign qty_key = variant.title
+                                | split: '-'
+                                | last
+                                | remove: 'Staffelpreis'
+                                | remove: 'staffelpreis'
+                                | strip
+                              -%}
+
+                              {%- unless setup_config == '' -%}
+                                {%- assign setup_config = setup_config | append: ',' -%}
+                              {%- endunless -%}
+
+                              {%- assign setup_config = setup_config | append: '"' | append: qty_key | append: '":{' -%}
+                              {%- assign setup_config = setup_config
+                                | append: '"id":'
+                                | append: variant.id
+                                | append: ','
+                              -%}
+                              {%- assign setup_config = setup_config
+                                | append: '"price":'
+                                | append: variant.price
+                                | append: ','
+                              -%}
+
+                              {%- assign setup_cost_base = print.metafields.custom.setup_cost.value | default: 2900 -%}
+                              {%- assign setup_cost_type = print.metafields.custom.setup_cost_per_color.value -%}
+
+                              {%- assign setup_cost = setup_cost_base -%}
+                              {% if setup_cost_type == 'Per Color' %}
+                                {%- assign setup_cost = setup_cost_base | times: color_index -%}
+                              {% endif %}
+                              {% if variant.metafields.custom.setup_cost.value %}
+                                {%- assign setup_cost = variant.metafields.custom.setup_cost.value -%}
+                              {% endif %}
+                              {%- assign setup_config = setup_config | append: '"setup":' | append: setup_cost -%}
+                              {%- assign setup_config = setup_config | append: '}' -%}
+                            {%- endif -%}
+                          {%- endfor -%}
+
+                          <script
+                            type="application/json"
+                            id="script-{{ print_area | handleize }}-{{ print.metafields.custom.print_type | handleize }}-{{ option | handleize }}"
+                          >
+                            { {{ setup_config }} }
+                          </script>
+
+                          <input
+                            type="radio"
+                            id="{{ print_area | handleize }}-{{ print.metafields.custom.print_type | handleize }}-{{ option | handleize }}"
+                            class="customization__button"
+                            data-section="variant"
+                            name="{{ input_name }}"
+                            value="{{ print_area | handleize }}-{{ print.metafields.custom.print_type | handleize }}-{{ option | handleize }}"
+                            data-script="script-{{ print_area | handleize }}-{{ print.metafields.custom.print_type | handleize }}-{{ option | handleize }}"
+                          >
+                          <label
+                            for="{{ print_area | handleize }}-{{ print.metafields.custom.print_type | handleize }}-{{ option | handleize }}"
+                            class="customization__button-label"
+                          >
+                            {{ option }}
+                          </label>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .customization__completed {
+      display: flex;
+      align-items: center;
+    }
+    .customization__completed.hidden {
+      display: none;
+    }
+  </style>
+
+  <div class="customization__completed hidden" data-section="print">
+    <div class="customization__progressbar-circle active"></div>
+    <div class="customization__interaction-label" style="margin-left: 6px;">
+      Der Artikel wurde erfolgreich konfiguriert
+    </div>
+    <svg
+      style="margin-left:3px; top:2px;"
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#007900"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="icon icon-tabler icons-tabler-outline icon-tabler-check"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <path d="M5 12l5 5l10 -10" />
+    </svg>
+  </div>
+
+  <style>
+    .customization__summary {
+      display: block;
+      background-color: #fafafc;
+      border-radius: 18px;
+      padding: 30px;
+      margin-top: 2.6rem;
+    }
+    .customization__summary.hidden {
+      display: none;
+    }
+    .customization__summary-productname {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 1.1;
+      padding-bottom: 1.3rem;
+    }
+    .customization__summary-printname {
+      display: block;
+      margin-bottom: 11px;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: -0.016em;
+      line-height: 1.4285914286;
+    }
+    .customization__summary-printname.hidden {
+      display: none;
+    }
+    .customization__summary-images {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 1.3rem;
+      margin-left: 30px;
+    }
+    .customization__summary-images.hidden {
+      display: none;
+    }
+    .customization__summary-image {
+      display: block;
+      width: 100px;
+      height: 100px;
+    }
+    .customization__summary-image.hidden {
+      display: none;
+    }
+  </style>
+
+  <div class="customization__summary hidden">
+    <div class="customization__summary-productname">{{ product.title }} - konfiguriert</div>
+    {% for print in product.metafields.custom.available_prints.value %}
+      <div
+        class="customization__summary-printname hidden"
+        data-summary-handle="{{ print.metafields.custom.customization_pair | handleize }}-{{ print.metafields.custom.print_type | handleize }}"
+      >
+        {{ print.title }}
+        {% if print.metafields.custom.color_space %}
+          <span
+            >-
+            {% if print.metafields.custom.color_space == 'CMYK' %}
+              <img
+                src="https://cdn.shopify.com/s/files/1/0615/9302/6783/files/cmyk.svg?v=1748002971"
+                width="17"
+                height="17"
+                style="
+                  display: inline; height: 17px;
+                  vertical-align: text-bottom;
+                "
+              >
+            {% endif %}
+            {% if print.metafields.custom.color_space == 'PMS' %}
+              <img
+                src="https://cdn.shopify.com/s/files/1/0615/9302/6783/files/pantone.png?v=1748002866"
+                width="14"
+                height="14"
+                style="
+                  display: inline; height: 14px;
+                  vertical-align: text-bottom;
+                "
+              >
+            {% endif %}
+            {{ print.metafields.custom.color_space }}-Farbraum</span
+          >
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+  <div class="customization__summary-images hidden">
+    {% for print in product.metafields.custom.available_prints.value %}
+      <div
+        class="customization__summary-image hidden"
+        data-summary-handle="{{ print.metafields.custom.customization_pair | handleize }}-{{ print.metafields.custom.print_type | handleize }}"
+      >
+        {% if print.featured_image %}
+          {{
+            print.featured_image
+            | image_url: height: 160
+            | image_tag: style: 'max-width: 80%; max-height: 80%; object-fit: contain;'
+          }}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <style>
+    .customization__button[data-section='upload-choices']:checked + .customization__button-label {
+      background-color: rgb(207 216 255);
+      color: #223067;
+      border-color: rgb(188 198 237);
+    }
+  </style>
+
+  <div class="customization__section hidden" data-section="upload-choices">
+    <div class="customization__progressbar">
+      <div class="customization__progressbar-elements">
+        <div class="customization__progressbar-circle" data-section="upload-choices"></div>
+        <div class="customization__progressbar-rectangle" data-section="upload-choices"></div>
+      </div>
+    </div>
+    <div class="customization__interaction">
+      <div class="customization__interaction-label">Druckdaten/Logo</div>
+      <div class="customization__interaction-buttons">
+        <input
+          type="radio"
+          id="upload-now"
+          class="customization__button"
+          data-section="upload-choices"
+          name="upload-choices"
+          value="upload-now"
+        >
+        <label for="upload-now" class="customization__button-label">Jetzt hochladen</label>
+        <input
+          type="radio"
+          id="upload-later"
+          class="customization__button"
+          data-section="upload-choices"
+          name="upload-choices"
+          value="upload-later"
+        >
+        <label for="upload-later" class="customization__button-label">Später hochladen</label>
+        <input
+          type="radio"
+          id="graphic-service"
+          class="customization__button"
+          data-section="upload-choices"
+          name="upload-choices"
+          value="graphic-service"
+        >
+        <label for="graphic-service" class="customization__button-label">Grafikservice nutzen</label>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .customization__add-upload {
+      display: flex;
+      align-items: center;
+      color: #ff4015;
+      padding-top: 1.3rem;
+      font-size: 12px;
+      transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
+    }
+    .customization__add-upload:hover {
+      -webkit-transform: scale(1.01);
+      transform: scale(1.01);
+      text-decoration: underline;
+    }
+    .upload-wrapper {
+      display: flex;
+    }
+    .upload-wrapper.hidden {
+      display: none;
+    }
+    .customization__file {
+      color: #1d1d1f;
+    }
+  </style>
+
+  <div class="customization__section hidden" data-section="file-upload">
+    <div class="customization__progressbar">
+      <div class="customization__progressbar-elements">
+        <div class="customization__progressbar-circle" data-section="file-upload"></div>
+        <div class="customization__progressbar-rectangle" data-section="file-upload"></div>
+      </div>
+    </div>
+    <div class="customization__interaction">
+      <div class="customization__interaction-label">Upload</div>
+      <div class="customization__interaction-buttons">
+        {% assign form_id = 'product-form-' | append: section.id %}
+        {% assign accepted_files = '.jpg,.jpeg,.png,.eps,.pdf,.tiff,.psd,.svg,image/jpeg,image/png,image/tiff,image/svg+xml,application/pdf' %}
+        {% assign letters = 'B,C,D,E' | split: ',' %}
+
+        <input
+          type="file"
+          form="{{ form_id }}"
+          name="properties[Druckdatei A]"
+          data-section="file-upload"
+          class="customization__file"
+          accept="{{ accepted_files }}"
+        >
+
+        <!-- Inputs B to E (toggleable, each with remove button) -->
+        {% for letter in letters %}
+          <div class="upload-wrapper hidden">
+            <input
+              type="file"
+              form="{{ form_id }}"
+              name="properties[Druckdatei {{ letter }}]"
+              data-section="file-upload"
+              class="customization__file"
+              accept="{{ accepted_files }}"
+            >
+            <button type="button" class="customization__remove-upload">Entfernen</button>
+          </div>
+        {% endfor %}
+        <button type="button" class="customization__add-upload">
+          Weitere Datei hochladen
+          <svg
+            aria-hidden="true"
+            style="margin-left: 2px; min-width: 12px; min-height: 12px; position: relative;"
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#Ff4015"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            xmlns:v="https://vecta.io/nano"
+          >
+            <circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .customization__button[data-section='validation-services']:checked + .customization__button-label {
+      background-color: rgb(207 216 255);
+      color: #223067;
+      border-color: rgb(188 198 237);
+    }
+  </style>
+
+  <div class="customization__section hidden" data-section="validation-services">
+    <div class="customization__progressbar">
+      <div class="customization__progressbar-elements">
+        <div class="customization__progressbar-circle" data-section="validation-services"></div>
+        <div class="customization__progressbar-rectangle" data-section="validation-services"></div>
+      </div>
+    </div>
+    <div class="customization__interaction">
+      <div class="customization__interaction-label">Druckdatencheck</div>
+      <div class="customization__interaction-buttons">
+        {% assign basic_druckdatencheck = all_products['druckdatencheck-standard'] %}
+        {% assign premium_druckdatencheck = all_products['druckdatencheck-plus'] %}
+        {% assign tax_rate = 0.19 %}
+        {% assign tax_factor = 1 | plus: tax_rate %}
+        {% assign premium_druckdatencheck_price_excl_tax = premium_druckdatencheck.price | divided_by: tax_factor %}
+        <input
+          type="radio"
+          id="basic-druckdatencheck"
+          class="customization__button"
+          name="validation-services"
+          data-section="validation-services"
+          value="basic-druckdatencheck"
+          data-id="{{ basic_druckdatencheck.variants.first.id }}"
+          data-price="{{ basic_druckdatencheck.variants.first.price }}"
+        >
+        <label for="basic-druckdatencheck" class="customization__button-label">
+          {{- basic_druckdatencheck.title }} (Inklusive)
+        </label>
+        <input
+          type="radio"
+          id="premium-druckdatencheck"
+          class="customization__button"
+          name="validation-services"
+          data-section="validation-services"
+          value="premium-druckdatencheck"
+          data-id="{{ premium_druckdatencheck.variants.first.id }}"
+          data-price="{{ premium_druckdatencheck.variants.first.price }}"
+        >
+        <label for="premium-druckdatencheck" class="customization__button-label">
+          {{- premium_druckdatencheck.title }} ({{ premium_druckdatencheck_price_excl_tax | money }}*)
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .customization__button[data-section='graphic-services']:checked + .customization__button-label {
+      background-color: rgb(207 216 255);
+      color: #223067;
+      border-color: rgb(188 198 237);
+    }
+  </style>
+  <div class="customization__section hidden" data-section="graphic-services">
+    <div class="customization__progressbar">
+      <div class="customization__progressbar-elements">
+        <div class="customization__progressbar-circle" data-section="graphic-services"></div>
+        <div class="customization__progressbar-rectangle" data-section="graphic-services"></div>
+      </div>
+    </div>
+    <div class="customization__section-interaction">
+      <div class="customization__interaction-label">Grafikservice</div>
+      <div class="customization__interaction-buttons">
+        {% assign grafikservice = all_products['all-in-grafikservice'] %}
+        {% assign tax_rate = 0.19 %}
+        {% assign tax_factor = 1 | plus: tax_rate %}
+        {% assign grafikservice_price_excl_tax = grafikservice.price | divided_by: tax_factor %}
+        <input
+          type="radio"
+          id="grafikservice"
+          class="customization__button"
+          name="graphic-services"
+          data-section="graphic-services"
+          value="grafikservice"
+          data-id="{{ grafikservice.variants.first.id }}"
+          data-price="{{ grafikservice.variants.first.price }}"
+        >
+        <label for="grafikservice" class="customization__button-label">
+          {{- grafikservice.title }} ({{ grafikservice_price_excl_tax | money }}*)</label
+        >
+      </div>
+    </div>
+  </div>
+  <div class="customization__completed hidden" data-section="file">
+    <div class="customization__progressbar-circle active-blue" style="background-color:#364da8"></div>
+    <div class="customization__interaction-label" style="margin-left: 6px;">
+      Ihre Auswahl wurde erfolgreich gespeichert
+    </div>
+    <svg
+      style="margin-left:3px; top:2px;"
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#007900"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="icon icon-tabler icons-tabler-outline icon-tabler-check"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <path d="M5 12l5 5l10 -10" />
+    </svg>
+  </div>
+</div>
+
+<style>
+  .qty-selector__label {
+    font-size: 17px;
+    line-height: 1.47;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    margin-bottom: 1.3rem;
+    margin-top: 2.6rem;
+  }
+  .qty-selector__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 2px;
+  }
+  .qty-selector__button:checked + label {
+    border-color: #ff4014;
+  }
+  .qty-selector__button-quantity:hover {
+    -webkit-transform: scale(1.01);
+    transform: scale(1.01);
+  }
+  .qty-selector__button-quantity {
+    cursor: pointer;
+    transition: all 0.1s cubic-bezier(0, 0, 0.5, 1);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-decoration: none;
+    border: 1.5px solid #d1d1d4;
+    height: 3.6rem;
+    padding: 0.6rem 1.8rem;
+    border-radius: 50px;
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 450;
+    letter-spacing: -0.022em;
+  }
+  .qty-selector__moq {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.016em;
+    line-height: 1.42859;
+    padding-top: 1.3rem;
+    text-align: right;
+  }
+  .pricing {
+    padding-top: 2.6rem;
+  }
+  .pricing__net-unit-wrapper {
+    display: flex;
+    margin-bottom: 0.625rem;
+    justify-content: space-between;
+  }
+  .pricing__net-total-wrapper {
+    display: flex;
+    justify-content: space-between;
+    font-size: 17px;
+    letter-spacing: -0.022em;
+    font-weight: 600;
+    line-height: 1.47;
+    margin-bottom: 0.625rem;
+  }
+  .pricing__net-discount-wrapper {
+    display: flex;
+    color: #007900;
+    justify-content: space-between;
+    margin-bottom: 0.625rem;
+    padding-top: 0.625rem;
+    border-top: 1px solid #d2d2d7;
+  }
+  .pricing__summary-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .pricing__summary {
+    max-width: 180px;
+    padding-top: 2.6rem;
+    font-size: 12px;
+    letter-spacing: -0.016em;
+    line-height: 1.47;
+    text-align: right;
+  }
+  .pricing__gross-total {
+    font-size: 14px;
+    letter-spacing: -0.016em;
+    line-height: 1.47;
+  }
+  .price {
+    all: unset;
+  }
+</style>
+
+<div class="qty-selector__label">Bestellmenge:</div>
+<div class="qty-selector__buttons">
+  {% if product.has_only_default_variant %}
+    {% assign qty_keys = '1,50,100,250,500' | split: ',' %}
+    {% for qty_key in qty_keys %}
+      <input
+        class="qty-selector__button"
+        id="qty-{{ qty_key }}"
+        name="qty-selector__button"
+        type="radio"
+        data-cart-quantity="{{ qty_key }}"
+      >
+      <label for="qty-{{ qty_key }}" class="qty-selector__button-quantity"> {{ qty_key }} Stk. </label>
+    {% endfor %}
+  {% else %}
+    {% for variant in product.variants %}
+      {% assign qty_key = variant.title | split: '-' | last | remove: 'Staffelpreis' | remove: 'staffelpreis' | strip %}
+      <input
+        class="qty-selector__button"
+        id="qty-{{ qty_key }}"
+        name="qty-selector__button"
+        type="radio"
+        data-cart-quantity="{{ qty_key }}"
+      >
+      <label for="qty-{{ qty_key }}" class="qty-selector__button-quantity"> {{ qty_key }} Stk. </label>
+    {% endfor %}
+  {% endif %}
+</div>
+
+{% if product.metafields.custom.moq_customization %}
+  <div
+    class="qty-selector__moq"
+    data-moq="{{ product.metafields.custom.moq_customization | default: 1 }}"
+  >
+    Personalisierbar ab {{ product.metafields.custom.moq_customization }} Stück
+  </div>
+{% endif %}
+{% assign max_price_without_tax = product.price_max | times: 0.84034 %}
+<div class="pricing">
+  <div class="pricing__net-unit-wrapper">
+    <div>Stückpreis:</div>
+    <div class="pricing__net-unit">{{ max_price_without_tax | money }}*</div>
+  </div>
+  <div class="pricing__net-total-wrapper">
+    <div>Zwischensumme:</div>
+    <div class="pricing__net-total">{{ max_price_without_tax | money }}*</div>
+  </div>
+  <div class="pricing__net-discount-wrapper">
+    <div>Sie sparen:</div>
+    <div
+      class="pricing__net-discount"
+    >
+      -
+    </div>
+  </div>
+</div>
+<div class="pricing__summary-wrapper">
+  <div class="pricing__summary">
+    (Brutto-Stückpreis:
+    <span class="price">{{ product.price_max | money }}</span>)
+    <div style="padding-bottom: 1.3rem;"></div>
+    <span class="pricing__gross-total">
+      {{ product.price_max | money }}
+    </span>
+    <br>
+    einschließlich MwSt. & Veredelungskosten zzgl. Versand
+  </div>
+</div>

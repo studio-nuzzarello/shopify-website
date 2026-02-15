@@ -1,0 +1,170 @@
+{% style %}
+  .blog__nav--wrapper {
+    background-color: #000;
+  }
+  .blog__nav--headline {
+    color: rgb(245, 245, 247);
+    height: 25px;
+    font-size: 21px;
+    line-height: normal;
+    font-weight: 600;
+    letter-spacing: 0.231px;
+  }
+  .blog__nav {
+    position: relative;
+    color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    height: 52px;
+  }
+  @media (max-width: 989px) {
+    .blog__nav {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  .blog__nav--border {
+    border-bottom: 1px solid #424245;
+  }
+  .blog--wrapper {
+    background-color: #000;
+  }
+  .blog {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .blog__article {
+    width: 100%;
+    max-width: 478px;
+    height: 432px;
+    background-color: #161617;
+    border-radius: 9px;
+  }
+  @media (max-width: 989px) {
+    .blog {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .blog__article {
+      display: block;
+      width: 100%;
+      max-width: 478px;
+      height: auto;
+    }
+  }
+  .blog__content {
+    padding-top: 27px;
+    padding-left: 42.5px;
+    padding-right: 42.5px;
+    padding-bottom: 34px;
+  }
+  .blog__title {
+    color: rgb(245, 245, 247);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.216px;
+    line-height: 28px;
+  }
+  .blog__abstract {
+    padding-top: 13px;
+  }
+  .blog__abstract * {
+    color: rgb(245, 245, 247);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.374px;
+    line-height: 25px;
+  }
+  .blog__media {
+  height: 242px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 9px 9px 0 0;
+}
+.blog__media img.custom-placeholder {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover; 
+  object-position: center;
+  border-radius: 0;
+}
+.blog__media svg.custom-placeholder,
+.blog__media .placeholder-svg.custom-placeholder {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+{% endstyle %}
+
+<div class="blog__nav--wrapper">
+  <div class="blog__nav">
+    <h1 class="blog__nav--headline">{{ blog.title }}</h1>
+  </div>
+  <div class="blog__nav--border"></div>
+</div>
+
+<div class="blog--wrapper">
+  <div class="blog">
+    {% for article in blog.articles %}
+      <a href="{{ article.url }}" aria-label="{{ article.title | escape }}" class="blog__article">
+        <div class="blog__media">
+          {% if article.image %}
+            {{ article.image 
+              | image_url: width: 956
+              | image_tag: class: 'custom-placeholder', loading: 'eager', fetchpriority: 'high', alt: article.image.alt 
+            }}
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg article-card-image motion-reduce custom-placeholder' }}
+          {% endif %}
+        </div>
+        <div class="blog__content">
+          <div class="blog__title">{{ article.title }}</div>
+          <div class="blog__abstract">{{ article.excerpt }}</div>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .global__header {
+    background-color: #161617 !important;
+  }
+  html,
+  body {
+    background-color: #161617 !important;
+  }
+  .custom-header-section .mobile-menu[open] .mobile-menu__backdrop {
+    background-color: #161617 !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Blog",
+  "tag": "section",
+  "class": "blog-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Blog"
+    }
+  ]
+}
+{% endschema %}

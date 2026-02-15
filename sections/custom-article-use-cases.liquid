@@ -1,0 +1,430 @@
+{% style %}
+  .usecase--wrapper {
+    background-color: #000;
+  }
+  .usecase {
+    color: #fff;
+    max-width: 1323px;
+    margin: 0 auto;
+  }
+  @media (max-width: 989px) {
+    .article {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  .article__text {
+    color: rgb(245, 245, 247);
+    max-width: 740px;
+    padding-bottom: 10rem;
+  }
+  .usecase__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 52px 0 22px;
+  }
+  .usecase__title {
+    color: inherit;
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -.003em;
+    line-height: 1.0834933333;
+    padding-bottom: 13px;
+  }
+  .usecase__intro p {
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    line-height: 1.4705882353;
+    color: #86868b;
+   }
+  .usecase__highlight {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    gap: 60px;
+  }
+  .usecase__cta {
+    background-color: rgb(0, 118, 223);
+    border-radius: 18px;
+    color: #fff;
+    display: flex;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    line-height: 1.3333733333;
+    margin: 6px 0;
+    padding: 8px 16px;
+    align-self: flex-start
+  }
+  .usecase__gallery {
+    flex: 0 0 935px;
+    margin-right: 0;
+    width: 935px;
+    max-height: 599px;
+    background-color: #161617 !important;
+    border-radius: 18px;
+  }
+  .usecase__setup {
+    flex: 1 1 auto;
+    min-width: 0; 
+  }
+  .usecase__setup--legend {
+    font-size: 24px;
+    line-height: 1.1666666667;
+    font-weight: 600;
+    letter-spacing: .009em;
+  }
+  .usecase__setup--pill {
+    border-color: #86868b;
+    align-items: flex-start;
+    border-radius: 12px;
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    font-size: 17px;
+    font-weight: 400;
+    height: auto;
+    justify-content: center;
+    letter-spacing: -.022em;
+    line-height: 1.2353641176;
+    min-height: 4.8823529412rem;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .usecase__setup--element {
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -.01em;
+    line-height: 1.3333733333;
+    padding-bottom: 1.3rem;
+    text-align: left;
+  }
+  .usecase__setup--support {
+    background: #161617;
+    border-radius: 12px;
+    display: flex;
+    margin: 14px 0px 6px;
+    position: relative;
+    text-align: start;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .usecase__setup--decision {
+    padding: 17px;
+  }
+  .usecase__setup--question {
+    font-size: 14px;
+    line-height: 1.2857742857;
+    font-weight: 600;
+    letter-spacing: -.016em;
+    padding-bottom: 1rem;
+  }
+  .article__media {
+  width: 100%;
+  margin: 32px 0;
+  aspect-ratio: 16 / 9; 
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.custom-placeholder {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+  .article__note {
+    padding: 16px;
+    border-radius: 15px;
+    background-color: #323232;
+    margin-top: 5px;
+    margin-bottom: 40px;
+    font-size: 17px;
+    line-height: 26.0005px;
+    font-weight: 600;
+    letter-spacing: -0.374px;
+  }
+  .article__update {
+    color: #9a9a9e;
+  }
+  .article__abstract {
+    padding-top: 6px;
+  }
+  .article__abstract p {
+    color: #f5f5f7;
+  }
+  .article__content {
+    max-width: 935px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .article__content * {
+    color: #f5f5f7;
+  }
+  .article__content p {
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -0.374px;
+    line-height: 25px;
+    margin-top: 13.6px;
+  }
+  .article__content h2 {
+    padding-inline-end: 23px;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.0045em;
+  }
+  .article__content h3 {
+    padding-inline-end: 23px;
+    font-size: 20px;
+    line-height: 1.25;
+    font-weight: 650;
+    letter-spacing: -0.003em;
+  }
+  .article__content ul {
+    list-style: disc;
+    text-align: start;
+    list-style-position: outside;
+    list-style-type: disc;
+    margin-left: 2rem;
+    padding-bottom: 1.3rem;
+    padding-top: 1.3rem;
+  }
+  .article__content ol {
+    list-style: decimal;
+    text-align: start;
+    list-style-position: outside;
+    list-style-type: disc;
+    margin-left: 2rem;
+    padding-bottom: 1.3rem;
+    padding-top: 1.3rem;
+  }
+  /* 1) Grundsätzlich: padding + box-sizing */
+.usecase {
+  box-sizing: border-box;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* optional: alles im Block sauber rechnen */
+.usecase, .usecase * {
+  box-sizing: border-box;
+}
+
+/* 2) Header darf umbrechen (CTA fliegt sonst raus) */
+.usecase__header {
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  align-items: flex-start;
+}
+
+.usecase__highlight {
+  gap: clamp(20px, 4vw, 60px);
+}
+
+.usecase__title--wrapper {
+  max-width: 884px;
+}
+
+.usecase__gallery {
+  flex: 1 1 935px;
+  width: 100%;
+  max-width: 935px;
+
+  aspect-ratio: 935 / 599;
+  height: auto;
+
+  background-color: #161617 !important;
+  border-radius: 18px;
+}
+
+.usecase__setup {
+  flex: 1 1 360px;
+  min-width: 280px;
+}
+
+.usecase__title {
+  font-size: clamp(28px, 4vw, 40px);
+}
+.usecase__setup--legend {
+  font-size: clamp(18px, 2.4vw, 24px);
+}
+
+@media (max-width: 989px) {
+  .usecase {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .usecase__header {
+    padding: 32px 0 18px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .usecase__cta {
+    margin: 0;
+  }
+
+  .usecase__highlight {
+    flex-direction: column;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    gap: 24px;
+  }
+
+  .usecase__gallery { max-width: 100%; max-height: 236px; }
+
+  .article__content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .usecase__setup--pill {
+    padding: 12px;
+  }
+  .usecase__setup--decision {
+    padding: 14px;
+  }
+}
+
+.usecase__gallery {
+  position: relative;
+}
+
+.usecase__gallery-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 18px;
+  object-fit: contain;
+  object-position: center;
+}
+
+{% endstyle %}
+
+<div class="usecase--wrapper">
+  <div class="usecase">
+    <div class="usecase__header">
+        <div class="usecase__title--wrapper">
+            <div class="usecase__title">
+                {{  article.title }}
+            </div>
+            <div class="usecase__intro">
+                {{  article.excerpt }}
+            </div>
+        </div>
+        <a class="usecase__cta" href="{{ article.metafields.custom.variant.value.url }}">
+          Jetzt konfigurieren
+        </a>   
+    </div>
+    <div class="usecase__highlight">
+        <div class="usecase__gallery">
+          {% if article.image %}
+            {{ article.image
+              | image_url: width: 2000
+              | image_tag:
+                class: 'usecase__gallery-image',
+                loading: 'eager',
+                fetchpriority: 'high',
+                alt: article.image.alt | default: article.title
+            }}
+          {% endif %}
+        </div>
+        <div class="usecase__setup">
+            <div class="usecase__setup--legend">
+                Setup. <span style="color: #86868b;">Unsere Empfehlung für den Einsatzbereich.</span>
+            </div>
+            <div class="usecase__setup--pill">
+              {% if article.metafields.custom.setups %}
+                <div class="usecase__setup--element">
+                  <span>Modul-Setup: </span><span style="color: #86868b;">{{ article.metafields.custom.setups }}</span>
+                </div>
+              {% endif  %}
+              <div class="usecase__setup--element">
+                <span>Größen: </span><span style="color: #86868b;">{{ article.metafields.custom.sizes }}</span>
+              </div>
+              <div class="usecase__setup--element">
+                <span>Stoff: </span><span style="color: #86868b;">{{ article.metafields.custom.fabric }}</span>
+              </div>
+              <div class="usecase__setup--element">
+                <span>Druck: </span><span style="color: #86868b;">{{ article.metafields.custom.print }}</span>
+              </div>
+              <div class="usecase__setup--element">
+                <span>Seitenwände: </span><span style="color: #86868b;">{{ article.metafields.custom.walls }}</span>
+              </div>
+              <div class="usecase__setup--element">
+                <span>Zubehör: </span><span style="color: #86868b;">{{ article.metafields.custom.gear }}</span>
+              </div>
+            </div>
+            <div class="usecase__setup--support">
+              <div class="usecase__setup--decision">
+                <div class="usecase__setup--question">Brauchen Sie Hilfe bei der Auswahl eines passenden {{ article.metafields.custom.question_keyword }}?</div>
+                <div class="usecase__setup--question" style="color: #86868b;">
+                  <a
+                    class="announcement-bar__mail"
+                    href="mailto:info@stormtent.de"
+                    aria-label="Beratung von Stormtent bekommen"
+                    style="color: #86868b;"
+                  >
+                    Expertenberatung erhalten
+                    <svg
+                      aria-hidden="true"
+                      style="margin-left: 2px; min-width: 14px; min-height: 14px; position: relative; top: 1px;"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#86868b"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      xmlns:v="https://vecta.io/nano"
+                    >
+                      <path d="M7 17L17 7"/><path d="M7 7h10v10"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="article__content">{{ article.content }}</div>
+  </div>
+</div>
+
+
+<style>
+  .global__header {
+    background-color: #161617 !important;
+  }
+  html,
+  body {
+    background-color: #161617 !important;
+  }
+  .custom-header-section .mobile-menu[open] .mobile-menu__backdrop {
+    background-color: #161617 !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Use Cases",
+  "tag": "section",
+  "class": "use-cases-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Use Cases"
+    }
+  ]
+}
+{% endschema %}

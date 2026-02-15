@@ -1,0 +1,687 @@
+{% stylesheet %}
+  .custom-footer-section {
+    background-color: #fff !important;
+  }
+  .cfooter__wrapper {
+    background-color: #f5f5f7;
+  }
+  .cfooter {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 5.6rem;
+    padding-bottom: 5.6rem;
+  }
+  @media (min-width: 990px) {
+    .cfooter {
+      padding-left: 8rem;
+      padding-right: 8rem;
+    }
+  }
+  .cfooter__legal--footnote {
+    font-size: 13px;
+    line-height: 18px;
+    color: #434346;
+    padding-bottom: 1.3rem;
+  }
+  .cfooter__nav {
+    margin-top: 1.3rem;
+    margin-bottom: 1.3rem;
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+    border-top: 1px solid #d2d2d7;
+  }
+  .cfooter__nav--breadcrumbs-icon {
+    height: 18px;
+    width: 18px;
+  }
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
+  .breadcrumb-home {
+    padding-right: 4px;
+  }
+  .breadcrumb-item {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.3333733333;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 3px 4px 3px 4px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .breadcrumb-item::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 11px;
+    margin-inline-end: 11px;
+    vertical-align: middle;
+    background-color: #0000007a;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 11'%3E%3Cpath d='M1 1l4 4.5L1 10' stroke='black' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+      no-repeat center;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 11'%3E%3Cpath d='M1 1l4 4.5L1 10' stroke='black' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+      no-repeat center;
+  }
+  .cfooter__nav--links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2.6rem;
+    padding-top: 2.6rem;
+  }
+  .cfooter__nav--title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3333733333;
+    margin-bottom: 0.8em;
+  }
+  .cfooter__nav--item {
+    color: #000000b8;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.3333733333;
+    margin-bottom: 0.8em;
+  }
+
+  .payment-methods {
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 600;
+    padding-top: 1.3rem;
+    padding-bottom: 2.6rem;
+    border-top: 1px solid #d2d2d7;
+    text-align: center;
+  }
+  @media screen and (min-width: 990px) {
+    .payment-methods {
+      border-bottom: 1px solid #d2d2d7;
+    }
+  }
+  .payment-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 1.3rem;
+  }
+  .klarna-icon {
+    width: 62px;
+    height: 26px;
+    margin: 6.5px;
+  }
+  .klarna-icon:hover {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+  .paypal-icon {
+    width: 97px;
+    height: 26px;
+    margin: 6.5px;
+  }
+  .paypal-icon:hover {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+  .mastercard-icon {
+    width: 39px;
+    height: 26px;
+    margin: 6.5px;
+  }
+  .mastercard-icon:hover {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+  .maestro-icon {
+    width: 95px;
+    height: 26px;
+    margin: 6.5px;
+  }
+  .maestro-icon:hover {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+  .visa-icon {
+    width: 40px;
+    height: 26px;
+    margin: 6.5px;
+  }
+  .visa-icon:hover {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+  .applepay-icon {
+    width: 41px;
+    height: 26px;
+    margin: 6.5px;
+  }
+  .applepay-icon:hover {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+  .googlepay-icon {
+    width: 51px;
+    height: 26px;
+    margin: 6.5px;
+  }
+  .googlepay-icon:hover {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+  .amex-icon {
+    width: 26px;
+    height: 26px;
+    margin: 6.5px;
+  }
+  .amex-icon:hover {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+  .bill-icon {
+    width: 14px;
+    height: 14px;
+    margin-left: 6px;
+  }
+  .bill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    margin: 6.5px;
+    border-radius: 16px;
+    min-height: 26px;
+  }
+  .bill:hover {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+  .prepayment-icon {
+    width: 14px;
+    height: 14px;
+    margin-left: 6px;
+  }
+  .prepayment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    margin: 6.5px;
+    border-radius: 16px;
+    min-height: 26px;
+  }
+  .prepayment:hover {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+  .payment-icons-text {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 19px;
+    padding-right: 6px;
+  }
+{% endstylesheet %}
+
+<div class="cfooter__wrapper">
+  <div class="cfooter">
+    <div class="cfooter__legal--footnotes">
+      <div class="cfooter__legal--footnote">* Endpreise verstehen sich inkl. 19% MwSt. zzgl. Versandkosten.</div>
+    </div>
+    <div class="cfooter__nav">
+      <div class="cfooter__nav--breadcrumbs">
+        <ul class="breadcrumbs">
+          {% if template.name == 'index' %}
+            <li aria-current="page" class="breadcrumb-home">
+              <div
+                class="michroma-regular"
+                style="font-size: 11px;"
+              >
+                Stormtent
+              </div>
+            </li>
+          {% else %}
+            <li class="breadcrumb-home">
+              <a
+                href="{{ routes.root_url }}"
+                class="michroma-regular"
+                style="font-size: 11px;"
+              >
+                Stormtent
+              </a>
+            </li>
+          {% endif %}
+
+          {% unless template.name == 'index' %}
+            {% if template.name == 'product' %}
+              {% if product.metafields.custom.main_category %}
+                <li class="breadcrumb-item">
+                  <a href="{{ product.metafields.custom.main_category.value.url }}">
+                    {{ product.metafields.custom.main_category.value.title }}
+                  </a>
+                </li>
+              {% endif %}
+
+              <li class="breadcrumb-item" aria-current="page">
+                {{ product.title }}
+              </li>
+
+            {% elsif template.name == 'collection' %}
+              {%- if current_tags and current_tags.size > 0 -%}
+                <li class="breadcrumb-item">
+                  <a href="{{ collection.url }}">
+                    {{ collection.title }}
+                  </a>
+                </li>
+                <li class="breadcrumb-item" aria-current="page">
+                  {{ current_tags }}
+                </li>
+              {% else %}
+                <li class="breadcrumb-item" aria-current="page">
+                  {{ collection.title }}
+                </li>
+              {% endif %}
+            
+            {% elsif template.name == 'article' %}
+              <li class="breadcrumb-item">
+                <a href="{{ blog.url }}">{{ blog.title }}</a>
+              </li>
+              <li class="breadcrumb-item" aria-current="page">
+                {{ article.title }}
+              </li> 
+
+            {% else %}
+              {%- comment -%} Alle anderen Seiten {%- endcomment -%}
+              <li class="breadcrumb-item" aria-current="page">
+                {% if request.page_type == 'policy' and policy %}
+                  {{ policy.title }}
+                {% elsif request.page_type == 'cart' %}
+                  Warenkorb
+                {% elsif request.page_type == 'search' %}
+                  Suche
+                {% elsif blog %}
+                  {{ blog.title }}
+                {% elsif page %}
+                  {{ page.title }}
+                {% else %}
+                  {{ page_title }}
+                {% endif %}
+              </li>
+            {% endif %}
+          {% endunless %}
+        </ul>
+      </div>
+      <nav class="cfooter__nav--links" aria-label="Footer Navigation">
+        <div class="cfooter__nav--group">
+          <p class="cfooter__nav--title">{{ linklists.tents.title }}</p>
+
+          <ul class="cfooter__nav--list">
+            {% for link in linklists.tents.links %}
+              <li class="cfooter__nav--item">
+                <a class="cfooter__nav--link" href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="cfooter__nav--group">
+          <p class="cfooter__nav--title">{{ linklists.faltpavillons.title }}</p>
+
+          <ul class="cfooter__nav--list">
+            {% for link in linklists.faltpavillons.links %}
+              <li class="cfooter__nav--item">
+                <a class="cfooter__nav--link" href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="cfooter__nav--group">
+          <p class="cfooter__nav--title">{{ linklists.order.title }}</p>
+
+          <ul class="cfooter__nav--list">
+            {% for link in linklists.order.links %}
+              <li class="cfooter__nav--item">
+                <a class="cfooter__nav--link" href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="cfooter__nav--group">
+          <p class="cfooter__nav--title">{{ linklists.stormtent.title }}</p>
+
+          <ul class="cfooter__nav--list">
+            {% for link in linklists.stormtent.links %}
+              <li class="cfooter__nav--item">
+                <a class="cfooter__nav--link" href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="cfooter__nav--group">
+          <p class="cfooter__nav--title">{{ linklists.legal.title }}</p>
+
+          <ul class="cfooter__nav--list">
+            {% for link in linklists.legal.links %}
+              <li class="cfooter__nav--item">
+                <a class="cfooter__nav--link" href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="cfooter__nav--group">
+          <p class="cfooter__nav--title">Kontaktmöglichkeiten</p>
+          <ul class="cfooter__nav--list">
+            <li class="cfooter__nav--item">
+                <span class="cfooter__nav--link">NextFuture GmbH</span>
+              </li>
+              <li class="cfooter__nav--item">
+                <a
+                  class="cfooter__nav--link"
+                  href="tel:+4922198658071"
+                  aria-label="Telefonnummer 0221-98658071 anrufen"
+                >
+                0221-98658071
+              </a>
+              </li>
+              <li class="cfooter__nav--item">
+                <a
+                  class="cfooter__nav--link"
+                  href="mailto:info@stormtent.de"
+                  aria-label="E-Mail an info@stormtent.de senden"
+                >
+                    info@stormtent.de
+                  </a>
+              </li>
+              <li class="cfooter__nav--item">
+                <span class="cfooter__nav--link">09:00 - 16:00 Uhr</span>
+              </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="payment-methods">
+  Schnell, sicher und privat bezahlen
+  <div class="payment-icons">
+    <img
+      class="klarna-icon"
+      title="Mit Klarna bezahlen"
+      loading="lazy"
+      decoding="async"
+      alt="Klarna Zahlungsanbieter-Logo"
+      width="62"
+      height="26"
+      src="https://cdn.shopify.com/s/files/1/1032/8191/8291/files/klarna-badge.webp?v=1768756954"
+    >
+    <img
+      class="paypal-icon"
+      title="Mit Paypal bezahlen"
+      loading="lazy"
+      decoding="async"
+      alt="Paypal Zahlungsanbieter-Logo"
+      width="97"
+      height="26"
+      src="https://cdn.shopify.com/s/files/1/1032/8191/8291/files/paypal-badge.svg?v=1768757033"
+    >
+    <img
+      class="mastercard-icon"
+      title="Mit Mastercard bezahlen"
+      loading="lazy"
+      decoding="async"
+      alt="Mastercard Zahlungsanbieter-Logo"
+      width="39"
+      height="26"
+      src="https://cdn.shopify.com/s/files/1/1032/8191/8291/files/mastercard-badge.svg?v=1768757075"
+    >
+    <img
+      class="maestro-icon"
+      title="Mit Maestro bezahlen"
+      loading="lazy"
+      decoding="async"
+      alt="Maestro Zahlungsanbieter-Logo"
+      width="39"
+      height="26"
+      src="https://cdn.shopify.com/s/files/1/1032/8191/8291/files/maestro-badge.svg?v=1768757113"
+    >
+    <img
+      class="visa-icon"
+      title="Mit Visa bezahlen"
+      loading="lazy"
+      decoding="async"
+      alt="Visa Zahlungsanbieter-Logo"
+      width="40"
+      height="26"
+      src="https://cdn.shopify.com/s/files/1/1032/8191/8291/files/visa-badge.svg?v=1768757154"
+    >
+    <img
+      class="applepay-icon"
+      title="Mit ApplePay bezahlen"
+      loading="lazy"
+      decoding="async"
+      alt="ApplePay Zahlungsanbieter-Logo"
+      width="41"
+      height="26"
+      src="https://cdn.shopify.com/s/files/1/1032/8191/8291/files/applepay-badge.svg?v=1768757207"
+    >
+    <img
+      class="googlepay-icon"
+      title="Mit GooglePay bezahlen"
+      loading="lazy"
+      decoding="async"
+      alt="GooglePay Zahlungsanbieter-Logo"
+      width="51"
+      height="26"
+      src="https://cdn.shopify.com/s/files/1/1032/8191/8291/files/googlepay-badge.svg?v=1768757242"
+    >
+    <img
+      class="amex-icon"
+      width="26"
+      height="26"
+      title="Mit American Express bezahlen"
+      decoding="async"
+      loading="lazy"
+      alt="American Express Zahlungsanbieter-Logo"
+      src="https://cdn.shopify.com/s/files/1/1032/8191/8291/files/amex-badge.webp?v=1768757292"
+    >
+    <div class="bill">
+      <img
+        class="bill-icon"
+        width="14"
+        height="14"
+        title="Per Rechnungskauf bezahlen"
+        decoding="async"
+        loading="lazy"
+        alt="Stormtent Rechnungskauf-Logo"
+        src="https://cdn.shopify.com/s/files/1/1032/8191/8291/files/invoice-badge.svg?v=1768757345"
+      >
+      <strong class="payment-icons-text"> Rechnung </strong>
+    </div>
+    <div class="prepayment">
+      <img
+        class="prepayment-icon"
+        width="14"
+        height="14"
+        title="Per Vorkasse bezahlen"
+        decoding="async"
+        loading="lazy"
+        alt="Stormtent Vorkasse-Logo"
+        src="https://cdn.shopify.com/s/files/1/1032/8191/8291/files/banktransfer-badge.svg?v=1768757407"
+      >
+      <strong class="payment-icons-text"> Vorkasse </strong>
+    </div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+  {%- assign list = '' -%}
+  {%- assign pos = 1 -%}
+
+  {%- capture home_item -%}
+  {
+    "@type": "ListItem",
+    "position": {{ pos }},
+    "name": "Home",
+    "item": {{ request.origin | append: '/' | json }}
+  }
+  {%- endcapture -%}
+  {%- assign list = list | append: home_item -%}
+  {%- assign pos = pos | plus: 1 -%}
+
+  {%- unless template.name == 'index' -%}
+
+    {%- if template.name == 'product' -%}
+
+      {%- if product.metafields.custom.main_category -%}
+        {%- capture cat_item -%},
+  {
+    "@type": "ListItem",
+    "position": {{ pos }},
+    "name": {{ product.metafields.custom.main_category.value.title | json }},
+    "item": {{ product.metafields.custom.main_category.value.url | prepend: request.origin | json }}
+  }
+        {%- endcapture -%}
+        {%- assign list = list | append: cat_item -%}
+        {%- assign pos = pos | plus: 1 -%}
+      {%- endif -%}
+
+      {%- capture current_item -%},
+  {
+    "@type": "ListItem",
+    "position": {{ pos }},
+    "name": {{ product.title | json }},
+    "item": {{ product.url | prepend: request.origin | json }}
+  }
+      {%- endcapture -%}
+      {%- assign list = list | append: current_item -%}
+
+    {%- elsif template.name == 'collection' -%}
+
+      {%- if current_tags and current_tags.size > 0 -%}
+        {%- capture base_collection_item -%},
+  {
+    "@type": "ListItem",
+    "position": {{ pos }},
+    "name": {{ collection.title | json }},
+    "item": {{ collection.url | prepend: request.origin | json }}
+  }
+        {%- endcapture -%}
+        {%- assign list = list | append: base_collection_item -%}
+        {%- assign pos = pos | plus: 1 -%}
+
+        {%- assign tag_label = current_tags | join: ", " -%}
+
+        {%- if current_tags.size == 1 -%}
+          {%- assign tag_handle = current_tags.first | handleize -%}
+          {%- assign tag_metadata = metaobjects.tag_metadata[tag_handle] -%}
+          {%- if tag_metadata != blank and tag_metadata.meta_title.value != blank -%}
+            {%- assign tag_label = tag_metadata.meta_title.value -%}
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- assign tag_url = request.origin | append: request.path -%}
+
+        {%- capture tag_item -%},
+  {
+    "@type": "ListItem",
+    "position": {{ pos }},
+    "name": {{ tag_label | json }},
+    "item": {{ tag_url | json }}
+  }
+        {%- endcapture -%}
+        {%- assign list = list | append: tag_item -%}
+
+      {%- else -%}
+        {%- capture current_item -%},
+  {
+    "@type": "ListItem",
+    "position": {{ pos }},
+    "name": {{ collection.title | json }},
+    "item": {{ collection.url | prepend: request.origin | json }}
+  }
+        {%- endcapture -%}
+        {%- assign list = list | append: current_item -%}
+      {%- endif -%}
+
+    {%- elsif template.name == 'article' or request.page_type == 'article' -%}
+
+      {%- comment -%} Blog-Übersicht als eigener Crumb {%- endcomment -%}
+      {%- capture blog_item -%},
+  {
+    "@type": "ListItem",
+    "position": {{ pos }},
+    "name": {{ blog.title | json }},
+    "item": {{ blog.url | prepend: request.origin | json }}
+  }
+      {%- endcapture -%}
+      {%- assign list = list | append: blog_item -%}
+      {%- assign pos = pos | plus: 1 -%}
+
+      {%- comment -%} Artikel {%- endcomment -%}
+      {%- capture article_item -%},
+  {
+    "@type": "ListItem",
+    "position": {{ pos }},
+    "name": {{ article.title | json }},
+    "item": {{ article.url | prepend: request.origin | json }}
+  }
+      {%- endcapture -%}
+      {%- assign list = list | append: article_item -%}
+
+    {%- else -%}
+
+      {%- assign other_name = page_title -%}
+      {%- if request.page_type == 'policy' and policy -%}
+        {%- assign other_name = policy.title -%}
+      {%- elsif request.page_type == 'cart' -%}
+        {%- assign other_name = "Warenkorb" -%}
+      {%- elsif request.page_type == 'search' -%}
+        {%- assign other_name = "Suche" -%}
+      {%- elsif blog -%}
+        {%- assign other_name = blog.title -%}
+      {%- elsif page -%}
+        {%- assign other_name = page.title -%}
+      {%- endif -%}
+
+      {%- capture other_item -%},
+  {
+    "@type": "ListItem",
+    "position": {{ pos }},
+    "name": {{ other_name | json }},
+    "item": {{ request.origin | append: request.path | json }}
+  }
+      {%- endcapture -%}
+      {%- assign list = list | append: other_item -%}
+
+    {%- endif -%}
+
+  {%- endunless -%}
+
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {{ list }}
+    ]
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Custom Footer",
+  "tag": "section",
+  "class": "custom-footer-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Custom Footer"
+    }
+  ]
+}
+{% endschema %}

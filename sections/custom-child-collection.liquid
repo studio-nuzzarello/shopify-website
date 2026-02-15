@@ -1,0 +1,740 @@
+<style>
+  /* default state: show first image */
+  .css-color-swatches-wrapper .pinwheel__image--wrapper .pinwheel__image { display: none; }
+  .css-color-swatches-wrapper .pinwheel__image--wrapper .pinwheel__image:first-of-type { display: block; }
+
+  /* when a swatch is checked, show the matching image */
+  {% for product in collection.products %}
+    .css-color-swatches-wrapper[data-product="{{ product.handle }}"]:has(.product-form__controls-group input[data-variant-id]:checked) .pinwheel__image--wrapper .pinwheel__image {
+      display: none;
+    }
+
+    {% for variant in product.variants %}
+      .css-color-swatches-wrapper[data-product="{{ product.handle }}"]:has(.product-form__controls-group input[data-variant-id="{{ variant.id }}"]:checked) .pinwheel__image--wrapper .pinwheel__image[data-variant-id="{{ variant.id }}"] {
+        display: block;
+      }
+    {% endfor %}
+  {% endfor %}
+
+  /* Clickable overlay setup */
+  .pinwheel__click-zone { position: relative; }
+  .pinwheel__link-layer { position: absolute; inset: 0; z-index: 2; }
+  .pinwheel__link-layer .pinwheel__link { position: absolute; inset: 0; display: none; }
+  .pinwheel__link-layer .pinwheel__link--default { display: block; }
+
+  /* Swatches must stay clickable above overlay */
+  .product-parameters--no-link { position: relative; z-index: 3; }
+
+  /* Switch overlay link to the checked variant */
+  {% for product in collection.products %}
+    .css-color-swatches-wrapper[data-product="{{ product.handle }}"]:has(.product-form__controls-group input[data-variant-id]:checked)
+      .pinwheel__link--default {
+      display: none;
+    }
+
+    {% for variant in product.variants %}
+      .css-color-swatches-wrapper[data-product="{{ product.handle }}"]:has(.product-form__controls-group input[data-variant-id="{{ variant.id }}"]:checked)
+        .pinwheel__link[data-variant-id="{{ variant.id }}"] {
+        display: block;
+      }
+    {% endfor %}
+  {% endfor %}
+</style>
+
+<style>
+  .product-form__controls-group label.color-swatch:after {
+    height: 17px;
+    width: 17px;
+  }
+  @media (max-width: 989px) {
+    .product-form__controls-group label.color-swatch:after {
+      width: 28px;
+      height: 28px;
+    }
+  }
+  .product-form__controls-group label.color-swatch {
+    width: 21px;
+    height: 21px;
+  }
+  @media (max-width: 989px) {
+    .product-form__controls-group label.color-swatch {
+      width: 32px;
+      height: 32px;
+    }
+  }
+  .product-form__controls-group {
+    justify-content: center;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+  }
+
+  .product-form__controls-group input:checked:not(.disabled) + label.color-swatch,
+  .product-form__controls-group input:checked.disabled.always-clickable + label.color-swatch,
+  .product-form__controls-group input + label.color-swatch:hover {
+    border-color: #0071e3;
+  }
+</style>
+
+{% style %}
+  @media (max-width: 989px) {
+    .mobile-block {
+      display: block !important;
+    }
+  }
+  .quicknav__intro {
+    padding-top: 21px;
+    font-size: 12px;
+  }
+  @media (max-width: 989px) {
+    .quicknav__intro {
+      padding-top: 30px;
+    }
+  }
+  .category__faq {
+    max-width: 1140px;
+    margin: 50px auto 0;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    text-align: start;
+    padding-top: 5.2rem;
+    padding-bottom: 5.2rem;
+  }
+  @media (max-width: 989px) {
+    .category__faq {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  .category__faq--title {
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.011em;
+    line-height: 1.1428571429;
+    text-align: center;
+    padding-bottom: 2.6rem;
+  }
+  @media (max-width: 989px) {
+    .category__faq--title {
+      text-align: start;
+    }
+  }
+  .category__faq--question {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  .category__faq--svg {
+    transition: transform 0.2s ease;
+    transform-origin: center;
+    flex-shrink: 0;
+    margin-left: 10px;
+  }
+  .category__faq--item[open] .category__faq--question .category__faq--svg {
+    transform: rotate(180deg);
+  }
+  .category__faq--answer {
+    padding-top: 30px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.016em;
+    line-height: 1.4285914286;
+  }
+  .category__faq--item {
+    border-top: 1px solid #d2d2d7;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    line-height: 1.2353641176;
+  }
+  .category__faq--item:last-child {
+    border-bottom: 1px solid #d2d2d7;
+  }
+  .category__title {
+    max-width: 1140px;
+    margin: 50px auto 0;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.011em;
+    line-height: 1.1428571429;
+    text-align: center;
+  }
+  @media (max-width: 989px) {
+    .category__title {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      text-align: start;
+      padding-top: 30px;
+    }
+  }
+  .category {
+    max-width: 1140px;
+    margin: 50px auto;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+  }
+  @media (max-width: 989px) {
+    .category {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  .pinwheel {
+    background-color: #f5f5f7;
+    border: 5px solid #fff;
+    border-radius: 20px;
+    list-style-type: none;
+    overflow: hidden;
+    height: 673px;
+  }
+  .pinwheel.hidden {
+    display: none;
+  }
+  .pinwheel__tile {
+    box-sizing: border-box;
+    max-width: 100%;
+    padding: 40px 40px 34px;
+    text-align: center;
+  }
+  @media (max-width: 989px) {
+    .pinwheel__tile {
+      padding: 40px 20px 34px;
+    }
+  }
+  .large-4 {
+    flex-basis: 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+  .large-8 {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+  .pinwheel__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px, max-content));
+    grid-auto-rows: auto;
+  }
+
+  @media (max-width: 989px) {
+    .category {
+      flex-direction: column;
+    }
+
+    /* alle Kacheln volle Breite */
+    .category > .pinwheel {
+      flex-basis: 100%;
+      max-width: 100%;
+      order: 2; /* default: unter dem großen */
+      height: auto; /* optional, sonst bleiben 673px hoch */
+    }
+
+    /* große Kachel ganz nach oben */
+    .category > .large-8 {
+      order: 1;
+    }
+
+    /* optional: erstes small nicht mehr special behandeln */
+    .category > .large-4:first-child {
+      order: 2;
+    }
+  }
+
+  @media (max-width: 559px) {
+    .pinwheel__grid {
+      display: flex !important; /* override grid */
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* Labels stay in the "top area" and wrap */
+    .pinwheel__label {
+      order: 0;
+      /* optional: make them 2 per row */
+      flex: 1 1 calc(33.33% - 10px);
+      text-align: center;
+    }
+
+    /* The active view always goes below the labels */
+    .pinwheel__view {
+      order: 10;
+      flex: 0 0 100%;
+      width: 100%;
+      display: none; /* keep your toggle behavior */
+    }
+
+    /* Your existing toggle still works */
+    .pinwheel__radio:checked + .pinwheel__label + .pinwheel__view {
+      display: block;
+    }
+  }
+  .pinwheel__headline {
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.011em;
+    line-height: 1.1428571429;
+    text-align: start;
+    padding-bottom: 3.5rem;
+  }
+  .pinwheel__description {
+    text-align: start;
+    font-size: 14px;
+    line-height: 1.2857742857;
+    font-weight: 400;
+    letter-spacing: -0.016em;
+  }
+  .pinwheel__bullets .metafield-rich_text_field ul li {
+    text-align: start;
+    list-style-position: outside;
+    margin-left: 2rem;
+    font-size: 14px;
+    line-height: 1.2857742857;
+    font-weight: 400;
+    letter-spacing: -0.016em;
+  }
+
+  /* Buttons in erster Zeile */
+  .pinwheel__label {
+    grid-row: 1;
+    color: rgba(29, 29, 31, 0.89);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.016em;
+    line-height: 1.428591;
+  }
+
+  /* Alle Views in derselben Grid-Zeile */
+  .pinwheel__view {
+    grid-column: 1 / -1; /* volle Breite */
+    grid-row: 2;
+    display: none;
+  }
+
+  .pinwheel__radio:checked + .pinwheel__label .pinwheel__label--span {
+    font-weight: 600;
+    font-size: 15px;
+    border-bottom: 1px solid #1d1d1f;
+    padding-bottom: 3px;
+    display: inline-block;
+    padding-left: 3px;
+    padding-right: 6px;
+  }
+
+  .pinwheel__radio:checked + .pinwheel__label + .pinwheel__view {
+    display: block;
+  }
+  .pinwheel__image--wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 26px;
+    margin-bottom: 31px;
+    max-height: 395px;
+  }
+  .pinwheel__image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 395px;
+  }
+  .pinwheel__title {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.016em;
+    line-height: 1.428591;
+    padding: 15px 15px 30px;
+    min-height: 54px;
+  }
+  .pinwheel__price--current {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.016em;
+    line-height: 1.428591;
+  }
+{% endstyle %}
+
+{%- assign quicknav_title = collection.title -%}
+{%- assign quicknav_intro = collection.description | strip_html -%}
+
+{%- if request.page_type == 'collection' and current_tags and current_tags.size > 0 -%}
+  {%- for tag in current_tags -%}
+    {%- assign tag_handle = tag | handleize -%}
+    {%- assign tag_metadata = metaobjects.tag_metadata[tag_handle] -%}
+
+    {%- if tag_metadata != blank -%}
+      {%- if tag_metadata.title.value != blank -%}
+        {%- assign quicknav_title = tag_metadata.title.value -%}
+      {%- endif -%}
+
+      {%- if tag_metadata.description.value != blank -%}
+        {%- assign quicknav_intro = tag_metadata.description.value -%}
+      {%- endif -%}
+
+      {%- if tag_metadata.title.value != blank or tag_metadata.description.value != blank -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+<div class="quicknav__container" style="background-color: #fff;">
+  <div class="quicknav mobile-block">
+    <h1 class="quicknav__category">{{ quicknav_title | escape }}</h1>
+    <p class="quicknav__intro">{{ quicknav_intro | strip_html | strip }}</p>
+  </div>
+  <div class="quicknav__border"></div>
+</div>
+
+{% assign slides = collection.metafields.custom.slides.value %}
+
+<h2 class="category__title">
+  <span class="michroma-regular">STORM</span> –
+  <span style="color:#6e6e73;">die Profi-Serie: extra stabil bei Wind & Wetter</span>
+</h2>
+<div class="category">
+  <fieldset class="pinwheel large-8">
+    <legend class="visually-hidden">Größe und Farbe auswählen</legend>
+    <div class="pinwheel__tile pinwheel__grid">
+      {% for product in collection.products %}
+        <input
+          class="pinwheel__radio visually-hidden"
+          type="radio"
+          name="pw"
+          id="pinwheel-{{ forloop.index0 }}"
+          {% if forloop.first %}
+            checked
+          {% endif %}
+        >
+
+        <label tabindex="0" class="pinwheel__label" for="pinwheel-{{ forloop.index0 }}">
+          <span class="pinwheel__label--span">{{ product.metafields.custom.size }}</span>
+        </label>
+
+        {%- comment -%}
+          OPTION 2: one overlay link that covers image+title+price,
+          while swatches stay clickable (above overlay).
+        {%- endcomment -%}
+
+        <div class="pinwheel__view">
+          <div class="css-color-swatches-wrapper" data-product="{{ product.handle }}">
+            <span class="visually-hidden">{{ product.title | escape }}</span>
+
+            <!-- clickable area (overlay link sits on top of this whole block) -->
+            <div class="pinwheel__click-zone">
+              <div class="pinwheel__image--wrapper">
+                {%- unless product.has_only_default_variant -%}
+                  {% for variant in product.variants %}
+                    {% if variant.featured_image %}
+                      {% capture alt %}
+                        {{ product.title }}
+                        {% if variant.option1 != blank and variant.option1 != 'Default Title' %} - {{ variant.option1 }}{% endif %}
+                        {% if variant.option2 != blank and variant.option2 != 'Default Title' %} - {{ variant.option2 }}{% endif %}
+                        {% if variant.option3 != blank and variant.option3 != 'Default Title' %} - {{ variant.option3 }}{% endif %}
+                      {% endcapture %}
+                      {% if forloop.first %}
+                        {{
+                          variant.featured_image
+                          | image_url: width: 1126
+                          | image_tag:
+                            class: 'pinwheel__image',
+                            preload: true,
+                            fetchpriority: 'high',
+                            loading: 'eager',
+                            alt: alt,
+                            data-variant-id: variant.id
+                        }}
+                      {% else %}
+                        {{
+                          variant.featured_image
+                          | image_url: width: 1126
+                          | image_tag:
+                            class: 'pinwheel__image',
+                            fetchpriority: 'low',
+                            loading: 'lazy',
+                            alt: alt,
+                            data-variant-id: variant.id
+                        }}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                {%- else -%}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endunless -%}
+              </div>
+
+              <!-- swatches ABOVE title, but NOT blocked by link -->
+              <div class="product-parameters product-parameters--no-link">
+                {%- unless product.has_only_default_variant -%}
+                  {%- for option in product.options_with_values -%}
+                    {%- liquid
+                      assign is_color_option = false
+                      assign color_trigger = 'Farbe' | strip | newline_to_br | split: '<br />'
+                      assign name_option = option.name | handle | strip
+                      for item in color_trigger
+                        assign item_temp = item | handle | strip
+                        if settings.enable_color_swatch and name_option == item_temp
+                          assign is_color_option = true
+                        endif
+                      endfor
+                    -%}
+                    {%- if is_color_option and option.values.size > 1 -%}
+                      <div class="product-form__controls js-color-swatches">
+                        <div class="product-form__controls-group">
+                          {% render 'product-variant-options',
+                            product: product,
+                            section_id: section.id,
+                            option: option,
+                            is_product_card: true,
+                            has_color_swatch: true
+                          %}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endunless -%}
+              </div>
+
+              <h3 class="pinwheel__title">
+                {{ product.title }}
+              </h3>
+
+              <div class="pinwheel__price">
+                <span class="pinwheel__price--current">
+                  {% if product.price_varies %}
+                    {{ product.price_min | money }} - {{ product.price_max | money }}
+                  {% else %}
+                    {{ product.price | money }}
+                  {% endif %}
+                </span>
+              </div>
+
+              <!-- overlay links (switch to selected variant url) -->
+              <div class="pinwheel__link-layer" aria-hidden="true">
+                {% for variant in product.variants %}
+                  {% capture variant_label %}
+                    {{ product.title }}
+                    {% if variant.option1 != blank and variant.option1 != 'Default Title' %} - {{ variant.option1 }}{% endif %}
+                    {% if variant.option2 != blank and variant.option2 != 'Default Title' %} - {{ variant.option2 }}{% endif %}
+                    {% if variant.option3 != blank and variant.option3 != 'Default Title' %} - {{ variant.option3 }}{% endif %}
+                  {% endcapture %}
+                  <a
+                    class="pinwheel__link"
+                    href="{{ variant.url }}"
+                    data-variant-id="{{ variant.id }}"
+                    tabindex="-1"
+                    aria-label="{{ variant_label | strip | escape }} ansehen"
+                    ><span class="visually-hidden">{{ variant_label | strip | escape }} ansehen</span></a
+                  >
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </fieldset>
+  {% if current_tags == blank %}
+    {% for slide in slides %}
+      <div class="pinwheel large-4">
+        <div class="pinwheel__tile">
+          {% if slide %}
+            {% if slide.headline.value %}
+              <h3 class="pinwheel__headline">
+                {{ slide.headline.value }}
+              </h3>
+            {% endif %}
+
+            {% if slide.image %}
+              <div class="pinwheel__image--wrapper">
+                {% if forloop.first %}
+                  <div class="pinwheel__image">
+                    {{
+                      slide.image
+                      | image_url: width: 474
+                      | image_tag: class: 'pinwheel__image', fetchpriority: 'high', loading: 'eager', alt: slide.alt
+                    }}
+                  </div>
+                {% else %}
+                  <div class="pinwheel__image">
+                    {{
+                      slide.image
+                      | image_url: width: 474
+                      | image_tag: class: 'pinwheel__image', fetchpriority: 'low', loading: 'lazy', alt: slide.alt
+                    }}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% if slide.description %}
+              <div class="pinwheel__description">
+                {{ slide.description | metafield_tag }}
+              </div>
+            {% endif %}
+
+            {% if slide.bullet_points %}
+              <div class="pinwheel__bullets">
+                {{ slide.bullet_points | metafield_tag }}
+              </div>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
+
+{%- assign schema_name = quicknav_title | strip -%}
+{%- assign schema_desc = quicknav_intro | strip_html | strip -%}
+
+{%- assign origin = request.origin | default: shop.url -%}
+{%- assign schema_url = origin | append: request.path -%}
+
+{%- assign schema_collectionpage_id = schema_url | append: '#collectionpage' -%}
+{%- assign schema_itemlist_id = schema_url | append: '#itemlist' -%}
+{%- assign schema_website_id = origin | append: '#website' -%}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": {{ schema_collectionpage_id | json }},
+        "url": {{ schema_url | json }},
+        "name": {{ schema_name | json }},
+        "description": {{ schema_desc | json }},
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": {{ schema_website_id | json }},
+          "url": {{ origin | json }},
+          "name": {{ shop.name | json }}
+        },
+        "mainEntity": {
+          "@id": {{ schema_itemlist_id | json }}
+        }
+      },
+      {
+        "@type": "ItemList",
+        "@id": {{ schema_itemlist_id | json }},
+        "name": {{ schema_name | json }},
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "numberOfItems": {{ collection.products_count | default: collection.products.size }},
+        "itemListElement": [
+          {%- for product in collection.products -%}
+            {%- assign v = product.selected_or_first_available_variant -%}
+            {
+              "@type": "ListItem",
+              "position": {{ forloop.index }},
+              "url": {{ origin | append: product.url | json }},
+              "item": {
+                "@type": "Product",
+                "@id": {{ origin | append: product.url | append: "#product" | json }},
+                "name": {{ product.title | json }},
+                "url": {{ origin | append: product.url | json }},
+                {%- if product.featured_image -%}
+                "image": [{{ product.featured_image | image_url: width: 1200 | prepend: "https:" | json }}],
+                {%- endif -%}
+                "brand": {
+                  "@type": "Brand",
+                  "name": {{ product.vendor | default: shop.name | json }}
+                }{% if v.sku != blank %},
+                "sku": {{ v.sku | json }}{% endif %},
+                "offers": {
+                  "@type": "Offer",
+                  "url": {{ origin | append: product.url | json }},
+                  "priceCurrency": {{ cart.currency.iso_code | default: shop.currency | json }},
+                  "availability": "https://schema.org/{% if v.available %}InStock{% else %}OutOfStock{% endif %}",
+                  "price": {{ v.price | divided_by: 100.0 | json }},
+                  "itemCondition": "https://schema.org/NewCondition"
+                }
+              }
+            }{%- unless forloop.last -%},{%- endunless -%}
+          {%- endfor -%}
+        ]
+      }
+    ]
+  }
+</script>
+
+{% if collection.metafields.custom.faq and current_tags == blank %}
+  {% assign faqs = collection.metafields.custom.faq.value %}
+
+  <section class="category__faq">
+    <h2 class="category__faq--title">FAQ zu {{ collection.title }}</h2>
+
+    {% for faq in faqs %}
+      <details
+        class="category__faq--item"
+        {% if forloop.first %}
+          open
+        {% endif %}
+      >
+        <summary class="category__faq--question">
+          {{ faq.question }}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#6e6e73"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="category__faq--svg"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 9l6 6l6 -6" />
+          </svg>
+        </summary>
+        <div class="category__faq--answer">
+          {% if faq.answer_rich %}
+            {{ faq.answer_rich | metafield_tag }}
+          {% else %}
+            {{ faq.answer | metafield_tag }}
+          {% endif %}
+        </div>
+      </details>
+    {% endfor %}
+  </section>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {% for faq in faqs %}
+          {
+            "@type": "Question",
+            "name": {{ faq.question | strip | json }},
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": {{ faq.answer | strip_html | strip | json }}
+            }
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    }
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Child Collection",
+  "tag": "section",
+  "class": "child-collection-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Child Collection"
+    }
+  ]
+}
+{% endschema %}

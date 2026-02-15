@@ -1,0 +1,150 @@
+<div class="slide">
+  <a href="/products/{{ product.handle }}" class="slide__link" aria-label="Zur Produktseite">&nbsp;</a>
+  <div class="slide__header">
+    <div class="slide__badge">
+      {% if product.metafields.custom.is_sustainable == true %}
+        <div class="slide__badge-sustainable">
+          <svg
+            aria-hidden="true"
+            style="margin-right: 4px; min-width: 14px; min-height: 14px;"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#009600"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            width="1em"
+            height="1em"
+            stroke-width="2"
+            xmlns:v="https://vecta.io/nano"
+          >
+            <path d="M12 10a6 6 0 0 0-6-6H3v2a6 6 0 0 0 6 6h3"/><path d="M12 14a6 6 0 0 1 6-6h3v1a6 6 0 0 1-6 6h-3"/><path d="M12 20V10"/>
+          </svg>
+          Nachhaltig
+        </div>
+      {% elsif product.metafields.custom.is_popular == true %}
+        <div class="slide__badge-bestseller">
+          <svg
+            aria-hidden="true"
+            style="margin-right: 4px;"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            width="1em"
+            height="1em"
+            stroke-width="2"
+          >
+            <path d="M7 12l5 5l10 -10"></path>
+            <path d="M2 12l5 5m5 -5l5 -5"></path>
+          </svg>
+          Bestseller
+        </div>
+      {% else %}
+        &nbsp;
+      {% endif %}
+    </div>
+    <h3 class="slide__title">
+      {{ product.title }}
+    </h3>
+  </div>
+
+  <div class="slide__image-wrapper">
+    {% if product.metafields.custom.slide_image %}
+      <img
+        class="slide__image"
+        src="{{ product.metafields.custom.slide_image_mobile | default: product.metafields.custom.slide_image }}"
+        srcset="{{ product.metafields.custom.slide_image_mobile | default: product.metafields.custom.slide_image  }} 320w, {{ product.metafields.custom.slide_image }} 600w"
+        sizes="(max-width: 620px) 320px, 600px"
+        alt="{{ product.title }} - Produktbild der {{ collection.title }} Kollektion"
+        width="600"
+        height="263"
+      >
+    {% else %}
+      {{
+        product
+        | image_url: width: 600
+        | image_tag:
+          width: 600,
+          sizes: '(max-width: 620px) 320px, 600px',
+          alt: product.title,
+          title: product.title,
+          class: 'slide__image'
+      }}
+    {% endif %}
+  </div>
+
+  <div class="slide__color-swatch">
+    {% assign colors = product.metafields.custom.product_family_colors
+      | remove: '['
+      | remove: ']'
+      | remove: '"'
+      | split: ','
+    %}
+    {% for color in colors %}
+      <svg
+        aria-hidden="true"
+        class="slide__color-swatch-item"
+        xmlns="http://www.w3.org/2000/svg"
+        width="12"
+        height="12"
+        viewBox="0 0 24 24"
+        fill="{{ color }}"
+        stroke="{{ color }}"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+      </svg>
+    {% endfor %}
+  </div>
+
+  <div class="slide__description-wrapper">
+    <div class="slide__description">
+      {{ product.description }}
+    </div>
+  </div>
+
+  <div class="slide__price-wrapper">
+    <div class="slide__price">
+      {% assign price_without_tax = product.price_min | times: 0.84034 %}
+      Ab {{ price_without_tax | money }} pro Stück exkl. MwSt.
+    </div>
+
+    <a href="/products/{{ product.handle }}" aria-label="Kaufen" class="button button--primary content-card__button">
+      <div class="button__content">
+        <span class="button__label" data-label="Kaufen">Kaufen</span>
+        <div class="button__icons">
+          <span class="button__icon">
+            <svg
+              aria-hidden="true"
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+            </svg>
+          </span>
+          <span class="button__icon button__icon--2">
+            <svg
+              aria-hidden="true"
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+      <span class="animated-button-circle" style="transform-origin: 13.119795% 126.875%;"></span>
+    </a>
+  </div>
+</div>

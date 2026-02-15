@@ -1,0 +1,247 @@
+{% style %}
+  .blog__nav--wrapper {
+    background-color: #000;
+  }
+  .blog__nav--headline {
+    color: rgb(245, 245, 247);
+    height: 25px;
+    font-size: 21px;
+    line-height: normal;
+    font-weight: 600;
+    letter-spacing: 0.231px;
+  }
+  .blog__nav {
+    position: relative;
+    color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    height: 52px;
+  }
+  @media (max-width: 989px) {
+    .blog__nav {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  .blog__nav--border {
+    border-bottom: 1px solid #424245;
+  }
+  .blog--wrapper {
+    background-color: #000;
+  }
+  .blog {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .blog__article {
+    width: 100%;
+    max-width: 478px;
+    height: 432px;
+    background-color: #161617;
+    border-radius: 9px;
+  }
+  @media (max-width: 989px) {
+    .blog {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .blog__article {
+      display: block;
+      width: 100%;
+      max-width: 478px;
+      height: auto;
+    }
+  }
+  .blog__content {
+    padding-top: 27px;
+    padding-left: 42.5px;
+    padding-right: 42.5px;
+    padding-bottom: 34px;
+  }
+  .blog__title {
+    color: rgb(245, 245, 247);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.216px;
+    line-height: 28px;
+  }
+  .blog__abstract {
+    padding-top: 13px;
+  }
+  .blog__abstract * {
+    color: rgb(245, 245, 247);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.374px;
+    line-height: 25px;
+  }
+  .blog__media {
+  height: 242px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 9px 9px 0 0;
+}
+.blog__media img.custom-placeholder {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover; 
+  object-position: center;
+  border-radius: 0;
+}
+.blog__media svg.custom-placeholder,
+.blog__media .placeholder-svg.custom-placeholder {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.pinwheel__image--wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 395px;
+  }
+  .pinwheel__image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 395px;
+  }
+  .pinwheel__title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.016em;
+    line-height: 1.428591;
+    padding: 30px 20px 30px;
+    min-height: 54px;
+    color: #fff;
+  }
+  .pinwheel {
+    background-color: #161617;
+    border-radius: 20px;
+    list-style-type: none;
+    overflow: hidden;
+    height: 395px;
+  }
+  @media (max-width: 989px) {
+    .pinwheel {
+      height: 310px;
+    }
+  }
+  .pinwheel.hidden {
+    display: none;
+  }
+  .pinwheel__tile {
+    box-sizing: border-box;
+    max-width: 100%;
+    text-align: center;
+  }
+  .flex-6 {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+  .blog__intro {
+    padding-left: 20px;
+  }
+  .blog__intro p {
+    color: #86868b;
+    font-size: 17px;
+    letter-spacing: 0.216px;
+    line-height: 28px;
+  }
+  @media (max-width: 989px) {
+  .blog {
+    grid-template-columns: 1fr;
+  }
+
+  .pinwheel.flex-6 {
+    max-width: 100%;
+    width: 100%;
+    flex-basis: 100%;
+  }
+  .pinwheel {
+    display: block;
+  }
+}
+
+{% endstyle %}
+
+<div class="blog__nav--wrapper">
+  <div class="blog__nav">
+    <h1 class="blog__nav--headline">{{ blog.title }}</h1>
+  </div>
+  <div class="blog__nav--border"></div>
+</div>
+
+<div class="blog--wrapper">
+  <div class="blog">
+    {% for article in blog.articles %}
+        <a
+          class="pinwheel flex-6"
+          href="{{ article.url }}"
+        >
+            <div class="pinwheel__title">
+                {{ article.metafields.custom.collection_title }}
+            </div>
+          <div class="pinwheel__tile">
+              {% if article.image %}
+                <div class="pinwheel__image--wrapper">
+                  <div class="pinwheel__image">
+                    {{
+                      article.image
+                      | image_url: width: 1110
+                      | image_tag: class: 'pinwheel__image', loading: 'lazy', fetchpriority: 'low'
+                    }}
+                  </div>
+                </div>
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg article-card-image motion-reduce custom-placeholder' }}
+              {% endif %}
+          </div>
+        </a>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .global__header {
+    background-color: #161617 !important;
+  }
+  html,
+  body {
+    background-color: #161617 !important;
+  }
+  .custom-header-section .mobile-menu[open] .mobile-menu__backdrop {
+    background-color: #161617 !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Blog Use Cases",
+  "tag": "section",
+  "class": "blog-use-cases-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Blog Use Cases"
+    }
+  ]
+}
+{% endschema %}

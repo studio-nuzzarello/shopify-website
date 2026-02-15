@@ -1,0 +1,73 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "custom_css": [
+        ".collection-hero__title {text-align: left !important;}"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "show_collection_description": true,
+        "heading_tag": "h1",
+        "show_collection_image": false,
+        "image_ratio": "adapt_content",
+        "overlay_opacity": 20,
+        "enable_collection_list": false,
+        "collection_list": [],
+        "add_all_products": false,
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "custom_css": [
+        ".collection-top {background-color: white !important; padding: 0 0 2rem; margin: 0 0 0rem; border-bottom: none;}",
+        ".container {background-color: white !important; padding-bottom: 4.4rem;}",
+        "h2 {color: #262d33;}",
+        ".facet-sort-select__current {color: #ff6128;}"
+      ],
+      "settings": {
+        "products_per_page": 12,
+        "columns": 4,
+        "columns_mobile": "1",
+        "image_ratio": "square",
+        "image_fit": "contain",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_desc": true,
+        "product_heading_tag": "h3",
+        "enable_filtering": false,
+        "filter_type": "vertical",
+        "enable_default_open": false,
+        "enable_sorting": true,
+        "image_filter_ratio": "3/4",
+        "image_filter_fit": "contain",
+        "image_filter_columns": 1,
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "custom_group_collection_8V6F7H": {
+      "type": "custom-group-collection",
+      "name": "Group Collection",
+      "settings": {}
+    }
+  },
+  "order": [
+    "custom_group_collection_8V6F7H",
+    "banner",
+    "product-grid"
+  ]
+}

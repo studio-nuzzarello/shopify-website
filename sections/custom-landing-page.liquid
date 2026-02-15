@@ -1,0 +1,1942 @@
+<div class="home-section">
+  <div class="home__unit home__unit--hero">
+    <div class="home__unit--copy">
+        <h1 class="home__title">
+          <span class="michroma-regular">{{ metaobjects.landing_page.main.title.value }}</span>
+        </h1>
+        <p class="home__title--intro">{{ metaobjects.landing_page.main.description.value }}</p>
+      <div class="cta-links">
+        <a
+          href="{{ routes.collections_url }}/{{ metaobjects.landing_page.main.collection.value.handle }}"
+          aria-label="{{ metaobjects.landing_page.main.button_a }}"
+          class="button button--primary content-card__button"
+        >
+          <div class="button__content">
+            <span class="button__label" data-label="{{ metaobjects.landing_page.main.button_a }}">
+              {{- metaobjects.landing_page.main.button_a -}}
+            </span>
+            <div class="button__icons">
+              <span class="button__icon">
+                <svg
+                  aria-hidden="true"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                </svg>
+              </span>
+              <span class="button__icon button__icon--2">
+                <svg
+                  aria-hidden="true"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <span class="animated-button-circle" style="transform-origin: 13.119795% 126.875%;"></span>
+        </a>
+        <a
+          href="/products/{{ metaobjects.landing_page.main.product.value.handle }}"
+          aria-label="{{ metaobjects.landing_page.main.button_b }}"
+          class="button button--primary content-card__button"
+          style="background-color: #f5f5f7; border: 1px solid rgb(255, 64, 20);"
+        >
+          <div class="button__content">
+            <span
+              class="button__label"
+              data-label="{{ metaobjects.landing_page.main.button_b }}"
+              style="color: rgb(255, 64, 20);"
+            >
+              {{ metaobjects.landing_page.main.button_b }}
+            </span>
+            <div class="button__icons">
+              <span class="button__icon">
+                <svg
+                  aria-hidden="true"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="color: rgb(255, 64, 20);"
+                >
+                  <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                </svg>
+              </span>
+              <span class="button__icon button__icon--2">
+                <svg
+                  aria-hidden="true"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="color: rgb(255, 64, 20);"
+                >
+                  <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <span
+            class="animated-button-circle"
+            style="transform-origin: 13.119795% 126.875%; background-color: #f5f5f7;"
+          ></span>
+        </a>
+      </div>
+    </div>
+    {% assign images = metaobjects.landing_page.main.images.value %}
+    {% assign count = images | size %}
+    {% assign step = 1.5 %}
+    {% assign total = count | times: step %}
+    <div class="home__content">
+      <div class="home__control--stack">
+        <div class="home__control--buttons">
+          <input class="home__control--radio" type="radio" name="control-panels" id="none">
+          <label class="home__control--button" for="none">
+            <svg class="home__control--icon" viewBox="0 0 36 36" width="36" height="36" aria-hidden="true">
+              <g transform="translate(18 18) scale(0.952381) translate(-10.5 -10.5)">
+                <path d="m12.12 10 4.07-4.06a1.5 1.5 0 1 0-2.11-2.12L10 7.88 5.94 3.81a1.5 1.5 0 1 0-2.12 2.12L7.88 10l-4.07 4.06a1.5 1.5 0 0 0 0 2.12 1.51 1.51 0 0 0 2.13 0L10 12.12l4.06 4.07a1.45 1.45 0 0 0 1.06.44 1.5 1.5 0 0 0 1.06-2.56Z"></path>
+              </g>
+            </svg>
+          </label>
+          <button class="home__control--button" type="button" aria-label="Scroll up" data-label="up">
+            <svg class="home__control--icon" id="chevronup" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+              <path d="m11 20c0-.3838.1465-.7676.4395-1.0605l5.5-5.5c.5854-.5859 1.5356-.5859 2.1211 0l5.5 5.5c.5859.5859.5859 1.5352 0 2.1211-.5854.5859-1.5356.5859-2.1211 0l-4.4395-4.4395-4.4395 4.4395c-.5854.5859-1.5356.5859-2.1211 0-.293-.293-.4395-.6768-.4395-1.0605z"></path>
+            </svg>
+          </button>
+          <button class="home__control--button" type="button" aria-label="Scroll down" data-label="down">
+            <svg class="home__control--icon" id="chevrondown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+              <path d="m25 16c0 .3838-.1465.7676-.4395 1.0605l-5.5 5.5c-.5854.5859-1.5356.5859-2.1211 0l-5.5-5.5c-.5859-.5859-.5859-1.5352 0-2.1211.5854-.5859 1.5356-.5859 2.1211 0l4.4395 4.4395 4.4395-4.4395c.5854-.5859 1.5356-.5859 2.1211 0 .293.293.4395.6768.4395 1.0605z"></path>
+            </svg>
+          </button>
+        </div>
+        <ul class="home__control--group">
+          {% for panel in metaobjects.landing_page.main.control_panels.value %}
+            <li class="home__control--item">
+              <div class="home__control--radio-container">
+                <input
+                  class="home__control--radio {% if forloop.first %}is-first{%  elsif forloop.last %}is-last{% endif %}"
+                  type="radio"
+                  name="control-panels"
+                  id="{{ panel.label | handleize }}"
+                >
+
+                <label class="home__control--label" for="{{ panel.label | handleize }}">
+                  <svg
+                    class="plus-icon"
+                    version="1.1"
+                    width="24px"
+                    height="24px"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle cx="12" cy="12" r="11.3" style="stroke: rgb(0, 113, 227); fill: rgb(0, 113, 227);"></circle>
+                    <g transform="translate(7 7)" style="stroke: none; fill: #fff; opacity: .8;">
+                    <path d="m9 4h-3v-3c0-0.553-0.447-1-1-1s-1 0.447-1 1v3h-3c-0.553 0-1 0.447-1 1s0.447 1 1 1h3v3c0 0.553 0.447 1 1 1s1-0.447 1-1v-3h3c0.553 0 1-0.447 1-1s-0.447-1-1-1"></path>
+                    </g>
+                  </svg>
+                  <span class="home__control--title">
+                    {{ panel.label }}
+                  </span>
+                </label>
+                <div class="home__control--panel">
+                  <span
+                    ><span class="panel-highlighted">{{ panel.highlighted }}</span> {{ panel.normal -}}
+                  </span>
+                </div>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div
+        class="unit__image css-image-animation is-animated"
+        data-unit-image
+        style="--total: {{ total }}s; --step: {{ step }}s;"
+      >
+        <!-- MAIN (your current slideshow) -->
+        <a
+          href="{{ routes.collections_url }}/{{ metaobjects.landing_page.main.collection.value.handle }}"
+          aria-label="{{ metaobjects.landing_page.main.button_a }}"
+        >
+          <div class="home__main-images" data-main-images>
+            {% for item in images %}
+              {% assign img = item.preview_image | default: item %}
+              <img
+                class="home__main-image"
+                src="{{ img | image_url: height: 744 }}"
+                alt="{{ img.alt | default: '' | escape }}"
+                width="803"
+                height="744"
+                style="animation-delay: {{ forloop.index0 | times: step }}s;"
+                {% if forloop.first %}
+                  fetchpriority="high"
+                  loading="eager"
+                {% else %}
+                  fetchpriority="low"
+                  loading="lazy"
+                {% endif %}
+              >
+            {% endfor %}
+          </div>
+        </a>
+
+        <!-- PANEL IMAGES (one per radio/panel) -->
+        <div class="home__panel-images" data-panel-images>
+          {% for panel in metaobjects.landing_page.main.control_panels.value %}
+            {% assign panel_id = panel.label | handleize %}
+            {% if panel.image %}
+              <img
+                class="home__panel-image"
+                data-panel-image="{{ panel_id }}"
+                src="{{ panel.image | image_url: height: 744 }}"
+                alt="{{ panel.image.alt | default: panel.label | escape }}"
+                width="803"
+                height="744"
+                fetchpriority="low"
+                loading="lazy"
+              >
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home__unit">
+    <div class="home__unit--inner">
+      <div class="home__unit--copy">
+        <h2 class="home__title">
+          <span class="michroma-regular" style="font-size: 30px;">
+            {{- metaobjects.landing_page.print.title.value -}}
+          </span>
+        </h2>
+        <p class="home__title--intro">{{ metaobjects.landing_page.print.description.value }}</p>
+        <div class="cta-links">
+          <a
+            href="{{ metaobjects.landing_page.print.page.value.url }}"
+            aria-label="{{ metaobjects.landing_page.print.button_a }}"
+            class="button button--primary content-card__button"
+          >
+            <div class="button__content">
+              <span class="button__label" data-label="{{ metaobjects.landing_page.print.button_a }}">
+                {{ metaobjects.landing_page.print.button_a }}
+              </span>
+              <div class="button__icons">
+                <span class="button__icon">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                  </svg>
+                </span>
+                <span class="button__icon button__icon--2">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <span class="animated-button-circle" style="transform-origin: 13.119795% 126.875%;"></span>
+          </a>
+          <a
+            href="{{ metaobjects.landing_page.print.variant.value.url }}"
+            aria-label="{{ metaobjects.landing_page.print.button_b }}"
+            class="button button--primary content-card__button"
+            style="background-color: #f5f5f7; border: 1px solid rgb(255, 64, 20);"
+          >
+            <div class="button__content">
+              <span
+                class="button__label"
+                data-label="{{ metaobjects.landing_page.print.button_b }}"
+                style="color: rgb(255, 64, 20);"
+              >
+                {{ metaobjects.landing_page.print.button_b }}
+              </span>
+              <div class="button__icons">
+                <span class="button__icon">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="color: rgb(255, 64, 20);"
+                  >
+                    <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                  </svg>
+                </span>
+                <span class="button__icon button__icon--2">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="color: rgb(255, 64, 20);"
+                  >
+                    <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <span
+              class="animated-button-circle"
+              style="transform-origin: 13.119795% 126.875%; background-color: #f5f5f7;"
+            ></span>
+          </a>
+        </div>
+      </div>
+      {% assign images = metaobjects.landing_page.print.images.value %}
+
+      <div class="unit__image css-image-animation">
+        {% for item in images %}
+          {% assign img = item.preview_image | default: item %}
+          <img
+            src="{{ img | image_url: height: 744 }}"
+            alt="{{ img.alt | default: '' | escape }}"
+            width="803"
+            height="744"
+            fetchpriority="low"
+            loading="lazy"
+          >
+        {% endfor %}
+      </div>
+      <a
+        class="home__unit--stretched-link"
+        href="{{ metaobjects.landing_page.print.page.value.url }}"
+        aria-label="{{ metaobjects.landing_page.print.button_a }}"
+      >
+        <span class="visually-hidden">{{ metaobjects.landing_page.print.button_a }}</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="home__unit">
+    <div class="home__unit--inner">
+      <div class="home__unit--copy">
+        <h2 class="home__title">
+          <span class="michroma-regular" style="font-size: 30px;">
+            {{- metaobjects.landing_page.seitenwaende.title.value -}}
+          </span>
+        </h2>
+        <p class="home__title--intro">{{ metaobjects.landing_page.seitenwaende.description.value }}</p>
+        <div class="cta-links">
+          <a
+            href="{{ routes.collections_url }}/{{ metaobjects.landing_page.seitenwaende.collection.value.handle }}"
+            aria-label="{{ metaobjects.landing_page.seitenwaende.button_a }}"
+            class="button button--primary content-card__button"
+          >
+            <div class="button__content">
+              <span class="button__label" data-label="{{ metaobjects.landing_page.seitenwaende.button_a }}">
+                {{- metaobjects.landing_page.seitenwaende.button_a -}}
+              </span>
+              <div class="button__icons">
+                <span class="button__icon">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                  </svg>
+                </span>
+                <span class="button__icon button__icon--2">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <span class="animated-button-circle" style="transform-origin: 13.119795% 126.875%;"></span>
+          </a>
+        </div>
+      </div>
+      {% assign images = metaobjects.landing_page.seitenwaende.images.value %}
+
+      <div class="unit__image css-image-animation">
+        {% for item in images %}
+          {% assign img = item.preview_image | default: item %}
+          <img
+            src="{{ img | image_url: height: 744 }}"
+            alt="{{ img.alt | default: '' | escape }}"
+            width="803"
+            height="744"
+            fetchpriority="high"
+            loading="lazy"
+          >
+        {% endfor %}
+      </div>
+      <a
+        class="home__unit--stretched-link"
+        href="{{ routes.collections_url }}/{{ metaobjects.landing_page.seitenwaende.collection.value.handle }}"
+        aria-label="{{ metaobjects.landing_page.seitenwaende.button_a }}"
+      >
+        <span class="visually-hidden">{{ metaobjects.landing_page.seitenwaende.button_a }}</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="home__unit">
+    <div class="home__unit--inner">
+      <div class="home__unit--copy">
+        <h2 class="home__title">
+          <span class="michroma-regular" style="font-size: 30px;">
+            {{- metaobjects.landing_page.zubehoer.title.value -}}
+          </span>
+        </h2>
+        <p class="home__title--intro">{{ metaobjects.landing_page.zubehoer.description.value }}</p>
+        <div class="cta-links">
+          <a
+            href="{{ routes.collections_url }}/{{ metaobjects.landing_page.zubehoer.collection.value.handle }}"
+            aria-label="{{ metaobjects.landing_page.zubehoer.button_a }}"
+            class="button button--primary content-card__button"
+          >
+            <div class="button__content">
+              <span class="button__label" data-label="{{ metaobjects.landing_page.zubehoer.button_a }}">
+                {{- metaobjects.landing_page.zubehoer.button_a -}}
+              </span>
+              <div class="button__icons">
+                <span class="button__icon">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                  </svg>
+                </span>
+                <span class="button__icon button__icon--2">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <span class="animated-button-circle" style="transform-origin: 13.119795% 126.875%;"></span>
+          </a>
+        </div>
+      </div>
+      {% assign images = metaobjects.landing_page.zubehoer.images.value %}
+
+      <div class="unit__image css-image-animation">
+        {% for item in images %}
+          {% assign img = item.preview_image | default: item %}
+          <img
+            src="{{ img | image_url: height: 744 }}"
+            alt="{{ img.alt | default: '' | escape }}"
+            width="{{ img.width }}"
+            height="{{ img.height }}"
+            fetchpriority="low"
+            loading="lazy"
+          >
+        {% endfor %}
+      </div>
+      <a
+        class="home__unit--stretched-link"
+        href="{{ routes.collections_url }}/{{ metaobjects.landing_page.zubehoer.collection.value.handle }}"
+        aria-label="{{ metaobjects.landing_page.zubehoer.button_a }}"
+      >
+        <span class="visually-hidden">{{ metaobjects.landing_page.zubehoer.button_a }}</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="home__unit">
+    <div class="home__unit--inner">
+      <div class="home__unit--copy">
+        <h2 class="home__title">
+          <span class="michroma-regular" style="font-size: 30px;">
+            {{ metaobjects.landing_page.manual.title.value }}
+          </span>
+        </h2>
+        <p class="home__title--intro">{{ metaobjects.landing_page.manual.description.value }}</p>
+        <div class="cta-links">
+          <a
+            href="{{ metaobjects.landing_page.manual.url.value }}"
+            aria-label="{{ metaobjects.landing_page.manual.button_a }}"
+            class="button button--primary content-card__button"
+          >
+            <div class="button__content">
+              <span class="button__label" data-label="{{ metaobjects.landing_page.manual.button_a }}">
+                {{ metaobjects.landing_page.manual.button_a }}
+              </span>
+              <div class="button__icons">
+                <span class="button__icon">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                  </svg>
+                </span>
+                <span class="button__icon button__icon--2">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <span class="animated-button-circle" style="transform-origin: 13.119795% 126.875%;"></span>
+          </a>
+        </div>
+      </div>
+      {% assign images = metaobjects.landing_page.manual.images.value %}
+
+      <div class="unit__image css-image-animation">
+        {% for item in images %}
+          {% assign img = item.preview_image | default: item %}
+          <img
+            src="{{ img | image_url: height: 744 }}"
+            alt="{{ img.alt | default: '' | escape }}"
+            width="{{ img.width }}"
+            height="{{ img.height }}"
+            fetchpriority="low"
+            loading="lazy"
+          >
+        {% endfor %}
+      </div>
+      <a
+        class="home__unit--stretched-link"
+        href="{{ metaobjects.landing_page.manual.url.value }}"
+        aria-label="{{ metaobjects.landing_page.manual.button_a }}"
+      >
+        <span class="visually-hidden">{{ metaobjects.landing_page.manual.button_a }}</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="home__unit">
+    <div class="home__unit--inner">
+      <div class="home__unit--copy">
+        <h2 class="home__title">
+          <span class="michroma-regular" style="font-size: 30px;">
+            {{ metaobjects.landing_page.use_cases.title.value }}
+          </span>
+        </h2>
+        <p class="home__title--intro">{{ metaobjects.landing_page.use_cases.description.value }}</p>
+        <div class="cta-links">
+          <a
+            href="{{ metaobjects.landing_page.use_cases.url.value }}"
+            aria-label="{{ metaobjects.landing_page.use_cases.button_a }}"
+            class="button button--primary content-card__button"
+          >
+            <div class="button__content">
+              <span class="button__label" data-label="{{ metaobjects.landing_page.use_cases.button_a }}">
+                {{ metaobjects.landing_page.use_cases.button_a }}
+              </span>
+              <div class="button__icons">
+                <span class="button__icon">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                  </svg>
+                </span>
+                <span class="button__icon button__icon--2">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <span class="animated-button-circle" style="transform-origin: 13.119795% 126.875%;"></span>
+          </a>
+        </div>
+      </div>
+      {% assign images = metaobjects.landing_page.use_cases.images.value %}
+
+      <div class="unit__image css-image-animation">
+        {% for item in images %}
+          {% assign img = item.preview_image | default: item %}
+          <img
+            src="{{ img | image_url: height: 744 }}"
+            alt="{{ img.alt | default: '' | escape }}"
+            width="{{ img.width }}"
+            height="{{ img.height }}"
+            fetchpriority="low"
+            loading="lazy"
+          >
+        {% endfor %}
+      </div>
+      <a
+        class="home__unit--stretched-link"
+        href="{{ metaobjects.landing_page.use_cases.url.value }}"
+        aria-label="{{ metaobjects.landing_page.use_cases.button_a }}"
+      >
+        <span class="visually-hidden">{{ metaobjects.landing_page.use_cases.button_a }}</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="home__unit">
+    <div class="home__unit--inner">
+      <div class="home__unit--copy">
+        <h2 class="home__title">
+          <span class="michroma-regular" style="font-size: 30px;">
+            {{ metaobjects.landing_page.offer.title.value }}
+          </span>
+        </h2>
+        <p class="home__title--intro">{{ metaobjects.landing_page.offer.description.value }}</p>
+        <div class="cta-links">
+          <a
+            href="{{ metaobjects.landing_page.offer.page.value.url }}"
+            aria-label="{{ metaobjects.landing_page.offer.button_a }}"
+            class="button button--primary content-card__button"
+          >
+            <div class="button__content">
+              <span class="button__label" data-label="{{ metaobjects.landing_page.offer.button_a }}">
+                {{ metaobjects.landing_page.offer.button_a }}
+              </span>
+              <div class="button__icons">
+                <span class="button__icon">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                  </svg>
+                </span>
+                <span class="button__icon button__icon--2">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <span class="animated-button-circle" style="transform-origin: 13.119795% 126.875%;"></span>
+          </a>
+        </div>
+      </div>
+      {% assign images = metaobjects.landing_page.offer.images.value %}
+
+      <div class="unit__image css-image-animation">
+        {% for item in images %}
+          {% assign img = item.preview_image | default: item %}
+          <img
+            src="{{ img | image_url: height: 744 }}"
+            alt="{{ img.alt | default: '' | escape }}"
+            width="{{ img.width }}"
+            height="{{ img.height }}"
+            fetchpriority="low"
+            loading="lazy"
+          >
+        {% endfor %}
+      </div>
+      <a
+        class="home__unit--stretched-link"
+        href="{{ metaobjects.landing_page.offer.page.value.url }}"
+        aria-label="{{ metaobjects.landing_page.offer.button_a }}"
+      >
+        <span class="visually-hidden">{{ metaobjects.landing_page.offer.button_a }}</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="home__unit">
+    <div class="home__unit--inner">
+      <div class="home__unit--copy">
+        <h2 class="home__title">
+          <span class="michroma-regular" style="font-size: 30px;">
+            {{ metaobjects.landing_page.contact.title.value }}
+          </span>
+        </h2>
+        <p class="home__title--intro">{{ metaobjects.landing_page.contact.description.value }}</p>
+        <div class="cta-links">
+          <a
+            href="{{ metaobjects.landing_page.contact.page.value.url }}"
+            aria-label="{{ metaobjects.landing_page.contact.button_a }}"
+            class="button button--primary content-card__button"
+          >
+            <div class="button__content">
+              <span class="button__label" data-label="{{ metaobjects.landing_page.contact.button_a }}">
+                {{ metaobjects.landing_page.contact.button_a }}
+              </span>
+              <div class="button__icons">
+                <span class="button__icon">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                  </svg>
+                </span>
+                <span class="button__icon button__icon--2">
+                  <svg
+                    aria-hidden="true"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1.5 10.5011L10.2421 1.75789M2.46394 1.05078H10.9492V9.53606" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"></path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <span class="animated-button-circle" style="transform-origin: 13.119795% 126.875%;"></span>
+          </a>
+        </div>
+      </div>
+      {% assign images = metaobjects.landing_page.contact.images.value %}
+
+      <div class="unit__image css-image-animation">
+        {% for item in images %}
+          {% assign img = item.preview_image | default: item %}
+          <img
+            src="{{ img | image_url: height: 744 }}"
+            alt="{{ img.alt | default: '' | escape }}"
+            width="{{ img.width }}"
+            height="{{ img.height }}"
+            fetchpriority="low"
+            loading="lazy"
+          >
+        {% endfor %}
+      </div>
+      <a
+        class="home__unit--stretched-link"
+        href="{{ metaobjects.landing_page.contact.page.value.url }}"
+        aria-label="{{ metaobjects.landing_page.contact.button_a }}"
+      >
+        <span class="visually-hidden">{{ metaobjects.landing_page.contact.button_a }}</span>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+{% style %}
+  .css-image-animation {
+    position: relative;
+    overflow: hidden;
+    height: 372px;
+    max-height: 372px;
+    width: 100%;
+    margin-top: 2.6rem;
+
+    /* center static (non-animated) single image nicely */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .css-image-animation img {
+    /* STATIC default */
+    position: static;
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    opacity: 1;
+    transform: none;
+    border-radius: 0 0 20px 20px;
+  }
+
+.css-image-animation.is-animated .home__main-image {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+
+  opacity: 0;
+  animation: heroCycleDyn var(--total, 12s) infinite;
+  will-change: opacity;
+}
+
+
+@keyframes heroCycleDyn {
+  0%   { opacity: 1; }
+  40%  { opacity: 1; }
+  55%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .css-image-animation.is-animated .home__main-image {
+    animation: none;
+    opacity: 0;
+  }
+  .css-image-animation.is-animated .home__main-image:first-child {
+    opacity: 1;
+  }
+}
+
+
+  .home-section {
+    max-width: 980px;
+    padding-top: 12px;
+    margin: auto;
+    text-align: start;
+    margin-bottom: 12px;
+    background-color: #fff;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px; /* adjust spacing between cards */
+  }
+
+  .home__unit--hero {
+    grid-column: 1 / -1; /* full width row */
+  }
+
+  .home__unit {
+    background: #f5f5f7;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 989px) {
+    .home-section {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      grid-template-columns: 1fr;
+    }
+    .home__unit--hero {
+      grid-column: auto; /* not strictly required, but fine */
+    }
+  }
+
+  .home__unit--copy {
+    padding-top: 47px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 5rem;
+  }
+  @media (max-width: 989px) {
+    .home__unit--copy {
+      padding-bottom: 0;
+    }
+  }
+  .home__title {
+    font-size: 40px;
+    line-height: 1.07143;
+    letter-spacing: -0.005em;
+    text-align: center;
+    color: #1d1d1f;
+  }
+  @media (max-width: 989px) {
+    .home__title {
+      font-size: 30px;
+    }
+  }
+  .home__title--intro {
+    text-align: center;
+    margin-top: 14px;
+    color: #1d1d1f;
+  }
+  .cta-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+    margin-top: 19px;
+  }
+  @media (max-width: 989px) {
+    .home__unit--hero .home__content {
+      touch-action: pan-y; /* allow vertical scroll, we handle horizontal */
+      overscroll-behavior-x: contain;
+    }
+  }
+
+  @media (max-width: 989px) {
+    .home__control--radio-container,
+    .home__unit--hero [data-unit-image] .home__main-images,
+    .home__unit--hero [data-unit-image] .home__panel-images {
+      transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  }
+  .home__content {
+    margin-top: 2.6rem;
+    margin-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+
+    display: grid;
+    grid-template-columns: minmax(0, 423px) minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+
+    grid-template-areas: 'list image';
+  }
+
+  .home__content .css-image-animation {
+    grid-area: image;
+    margin-top: 0;
+  }
+
+  @media (max-width: 989px) {
+    .home__content {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'image'
+        'list';
+      padding-right: 0;
+      margin-left: 0;
+    }
+  }
+  .home__control--item {
+    display: flex;
+    flex: 0 0 auto;
+    height: 56px;
+    align-items: center;
+    border-radius: 28px;
+    margin-bottom: 12px;
+  }
+  .home__control--radio-container {
+    display: flex;
+    border-radius: 28px;
+    background-color: #fff;
+    height: 100%;
+    align-items: center;
+  }
+  .home__control--radio-container:hover {
+    background-color: rgba(232, 232, 237, 0.72);
+  }
+  .home__control--radio-container:has(.home__control--radio:checked):hover {
+    background-color: #fff;
+  }
+
+  .home__control--radio {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .home__control--label {
+    display: flex;
+    padding-left: 14px;
+    padding-right: 28px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .home__control--panel {
+    display: none;
+    padding: 28px;
+    font-size: 15px;
+    line-height: 1.381002381;
+    font-weight: 600;
+    letter-spacing: 0.011em;
+    color: #86868b;
+  }
+
+  .home__control--title {
+    font-size: 17px;
+    line-height: 1.235364;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+  }
+
+  .home__control--radio:checked ~ .home__control--panel {
+    display: block;
+    animation: panelIn 180ms ease-out;
+  }
+
+  @keyframes panelIn {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .home__control--radio:checked + .home__control--label .plus-icon {
+    opacity: 0;
+    width: 0;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .home__control--radio:checked + .home__control--label .control-title {
+    opacity: 0;
+    width: 0;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .home__control--radio:checked + .home__control--label {
+    opacity: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .plus-icon {
+    margin-right: 14px;
+  }
+
+  .panel-highlighted {
+    color: #1d1d1f;
+  }
+
+  .home__control--group {
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    height: 428px;
+    overflow: visible;
+  }
+
+  .home__control--item:has(.home__control--radio:checked) {
+    height: auto;
+    overflow: visible;
+  }
+
+  .home__control--stack {
+    grid-area: list;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 18px;
+    align-items: start;
+    justify-content: center;
+  }
+
+  @media (max-width: 989px) {
+    .home__control--stack {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 989px) {
+    .home__control--group > .home__control--item:first-child {
+      margin-left: 2rem;
+    }
+  }
+
+  .home__control--buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 428px;
+    z-index: 2;
+    justify-content: center;
+  }
+
+  .home__control--button {
+    all: unset;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    color: #1d1d1f;
+  }
+
+  .home__control--icon {
+    width: 36px;
+    height: 36px;
+    fill: currentColor;
+    opacity: 0.95;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: background-color 160ms ease, transform 120ms ease;
+  }
+
+  @media (max-width: 989px) {
+    .home__control--icon {
+      width: 56px;
+      background-color: rgb(0, 113, 227);
+      fill: rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  .home__control--icon:hover {
+    background-color: rgba(232, 232, 237, 0.72);
+  }
+
+  @media (max-width: 989px) {
+    .home__control--icon:hover {
+      background-color: rgb(0, 113, 227);
+    }
+  }
+
+  @media (max-width: 989px) {
+    .home__control--button[data-label='up'] .home__control--icon {
+      border-radius: 0 0 28px 28px;
+    }
+  }
+
+  @media (max-width: 989px) {
+    .home__control--button[data-label='down'] .home__control--icon {
+      border-radius: 28px 28px 0 0;
+    }
+  }
+
+  .home__control--buttons {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 160ms ease, visibility 0s linear 160ms;
+  }
+
+  .home__control--stack:has(.home__control--group .home__control--radio:checked) .home__control--buttons {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 160ms ease;
+  }
+  .home__control--stack:has(.home__control--radio.is-first:checked) .home__control--button[data-label='up'] {
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  .home__control--stack:has(.home__control--radio.is-last:checked) .home__control--button[data-label='down'] {
+    opacity: 0.25;
+    pointer-events: none;
+  }
+
+  .home__panel-image {
+    display: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .unit__image[data-unit-image] .home__panel-images {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .css-image-animation.is-animated img.home__panel-image {
+    position: static;
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+
+    display: none;
+  }
+
+  .unit__image.is-panel-active img.home__panel-image.is-active {
+    display: block;
+  }
+
+  .unit__image.is-panel-active .home__main-images {
+    display: none;
+  }
+
+  @media (max-width: 989px) {
+    .home__control--stack {
+      gap: 12px;
+      justify-content: stretch;
+    }
+
+    .home__control--buttons {
+      flex-direction: row;
+      height: auto;
+      justify-content: center;
+    }
+
+    .home__control--group {
+      height: auto; /* no fixed height on mobile */
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 10px;
+      justify-content: flex-start; /* NOT flex-end */
+      padding-bottom: 6px; /* room for scrollbar */
+      margin: 0;
+    }
+
+    .home__control--item {
+      margin-bottom: 0;
+      height: 56px;
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+    }
+
+    /* keep the pill on one line and prevent label text wrapping */
+    .home__control--label {
+      white-space: nowrap;
+    }
+
+    /* Optional: hide scrollbar */
+    .home__control--group::-webkit-scrollbar {
+      height: 0;
+    }
+    .home__control--group {
+      scrollbar-width: none;
+    }
+
+    .home__control--item:has(.home__control--radio:checked) {
+      max-width: 100%;
+    }
+  }
+
+  .home__content > * {
+    min-width: 0;
+  }
+  .home__control--stack {
+    min-width: 0;
+  }
+  .unit__image {
+    min-width: 0;
+  }
+
+  @media (max-width: 989px) {
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked))
+      .home__control--group {
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: auto;
+      scroll-snap-type: none;
+      touch-action: pan-y;
+    }
+  }
+
+  @media (min-width: 990px) {
+    .home__control--radio:checked + .home__control--label .plus-icon {
+      opacity: 0;
+      width: 0;
+      margin: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .home__control--radio:checked + .home__control--label .home__control--title {
+      opacity: 0;
+      width: 0;
+      margin: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .home__control--radio:checked + .home__control--label {
+      opacity: 0;
+      width: 0;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+  }
+
+  @media (max-width: 989px) {
+    /* OPEN state = any panel checked except #none */
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked))
+      .home__control--group {
+      overflow-x: hidden; /* no horizontal scroll */
+      -webkit-overflow-scrolling: auto;
+      scroll-snap-type: none;
+      padding-bottom: 0;
+      touch-action: pan-y;
+    }
+
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked))
+      .home__control--item {
+      display: none;
+    }
+
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked))
+      .home__control--item:has(.home__control--radio:checked) {
+      display: flex;
+      width: 100%;
+      flex: 0 0 100%;
+      margin: 0;
+    }
+
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked))
+      .home__control--radio-container {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+  @media (max-width: 989px) {
+    /* OPEN state layout: [prev] [panel] [next], with a top row for the X */
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked)) {
+      display: grid;
+      grid-template-columns: 25px minmax(0, 1fr) 25px;
+      grid-template-rows: auto;
+      gap: 0;
+      min-height: 140px;
+      align-items: stretch;
+      position: relative;
+    }
+
+    /* panel goes in the middle, second row */
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked))
+      .home__control--group {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    /* buttons overlay the same grid area, but don't block the panel */
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked))
+      .home__control--buttons {
+      grid-column: 1 / -1;
+      grid-row: 1 / -1;
+
+      display: grid;
+      grid-template-columns: 25px minmax(0, 1fr) 25px;
+      grid-template-rows: 1fr;
+
+      z-index: 10;
+      pointer-events: none;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked))
+      .home__control--buttons
+      > * {
+      pointer-events: auto;
+      position: static;
+      transform: none;
+    }
+
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked))
+      .home__control--buttons
+      > label.home__control--button {
+      grid-column: 1;
+      grid-row: 1; /* <- same row as the UP button */
+      justify-self: start;
+      align-self: start; /* <- top inside that cell */
+    }
+
+    /* prev/next always on the bottom of the panel row */
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked))
+      .home__control--buttons
+      > button[data-label='up'] {
+      grid-column: 1;
+      grid-row: 1;
+      justify-self: start;
+      align-self: end;
+    }
+
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked))
+      .home__control--buttons
+      > button[data-label='down'] {
+      grid-column: 3;
+      grid-row: 1;
+      justify-self: end;
+      align-self: end;
+    }
+
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked))
+      button[data-label='up']
+      .home__control--icon {
+      transform: rotate(-90deg);
+    }
+
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked))
+      button[data-label='down']
+      .home__control--icon {
+      transform: rotate(-90deg);
+    }
+  }
+
+  @media (max-width: 989px) {
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked))
+      .home__control--buttons
+      > label.home__control--button,
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked))
+      .home__control--buttons
+      > button[data-label='up'] {
+      margin-left: -30px;
+    }
+
+    .home__control--stack:has(.home__control--group .home__control--radio:checked):not(:has(#none:checked))
+      .home__control--buttons
+      > button[data-label='down'] {
+      margin-right: -18px;
+    }
+  }
+
+  @media (max-width: 989px) {
+    label.home__control--button[for='none'] > .home__control--icon {
+      width: 36px;
+      height: 56px;
+      border-radius: 0 28px 28px 0;
+    }
+  }
+  .home__control--buttons,
+  .home__control--group {
+    min-width: 0;
+  }
+
+  @media (max-width: 989px) {
+    .home__control--stack {
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* constrain the horizontal scroller to the column */
+    .home__control--group {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    html,
+    body {
+      overflow-x: hidden;
+    }
+    @supports (overflow: clip) {
+      html,
+      body {
+        overflow-x: clip;
+      }
+    }
+  }
+  .home__unit--inner {
+    position: relative;
+  }
+
+  .home__unit--stretched-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .cta-links a {
+    position: relative;
+    z-index: 2;
+  }
+{% endstyle %}
+
+{% javascript %}
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.home__control--stack').forEach((stack) => {
+      const list = stack.querySelector('.home__control--group');
+      const btnUp = stack.querySelector('.home__control--button[data-label="up"]');
+      const btnDown = stack.querySelector('.home__control--button[data-label="down"]');
+      if (!list || !btnUp || !btnDown) return;
+
+      const radios = Array.from(list.querySelectorAll('input.home__control--radio[type="radio"]'));
+
+      const getCheckedIndex = () => radios.findIndex((r) => r.checked);
+
+      const setChecked = (idx) => {
+        if (idx < 0 || idx >= radios.length) return;
+        radios[idx].checked = true;
+        radios[idx].dispatchEvent(new Event('change', { bubbles: true }));
+      };
+
+      btnDown.addEventListener('click', () => {
+        const i = getCheckedIndex();
+        // if none selected yet -> select first
+        setChecked(i === -1 ? 0 : Math.min(i + 1, radios.length - 1));
+      });
+
+      btnUp.addEventListener('click', () => {
+        const i = getCheckedIndex();
+        // if none selected yet -> select last
+        setChecked(i === -1 ? radios.length - 1 : Math.max(i - 1, 0));
+      });
+    });
+  });
+  document.addEventListener('DOMContentLoaded', () => {
+    const unit = document.querySelector('[data-unit-image]');
+    const group = document.querySelector('.home__control--group');
+    if (!unit || !group) return;
+
+    const noneRadio = document.getElementById('none'); // your "reset" radio
+    const radios = Array.from(group.querySelectorAll('input.home__control--radio[type="radio"]'));
+    const panelImgs = Array.from(unit.querySelectorAll('.home__panel-image'));
+
+    function showMain() {
+      unit.classList.remove('is-panel-active');
+      panelImgs.forEach((img) => img.classList.remove('is-active'));
+    }
+
+    function showPanel(panelId) {
+      const img = unit.querySelector(`.home__panel-image[data-panel-image="${panelId}"]`);
+      if (!img) return showMain();
+
+      unit.classList.add('is-panel-active');
+      panelImgs.forEach((i) => i.classList.toggle('is-active', i === img));
+    }
+
+    // panel radios
+    radios.forEach((r) => {
+      r.addEventListener('change', () => {
+        if (!r.checked) return;
+        // prefer data-panel if you add it; fallback to id
+        const panelId = r.dataset.panel || r.id;
+        showPanel(panelId);
+      });
+    });
+
+    // none -> back to slideshow
+    if (noneRadio) {
+      noneRadio.addEventListener('change', () => {
+        if (noneRadio.checked) showMain();
+      });
+    }
+
+    // initial state
+    const checked = radios.find((r) => r.checked);
+    if (checked) showPanel(checked.dataset.panel || checked.id);
+    else showMain();
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const mq = window.matchMedia('(max-width: 989px)');
+
+    // tuning
+    const DOMINANCE = 1.1; // horizontal must dominate vertical
+    const LOCK_PX = 10; // px before we lock direction
+    const DRAG_MAX = 0.35; // max drag = 35% of panel width
+    const TRIGGER_PROGRESS = 0.55; // trigger when you dragged 55% of max
+
+    // image + panel sync
+    const IMAGE_RATIO = 1.0; // 1.0 = perfectly in sync with panel
+    const FADE_MAX_IMG = 0.18; // image fades up to 18% while dragging
+    const FADE_MAX_PANEL = 0.12; // panel fades up to 12% while dragging
+    const OUT_FADE_IMG = 0.25; // fade when completing swipe
+    const OUT_FADE_PANEL = 0.2;
+
+    const supportsPointer = 'PointerEvent' in window;
+
+    function attachDragSwipe(surface, opts) {
+      if (!surface) return;
+
+      let sx = 0,
+        sy = 0,
+        tracking = false;
+      let locked = null; // 'x' or 'y'
+      let activeEl = null;
+      let activeImgEls = [];
+
+      const clamp = (v, min, max) => Math.max(min, Math.min(v, max));
+
+      const getPoint = (e) => {
+        if (e.touches && e.touches.length) return e.touches[0];
+        if (e.changedTouches && e.changedTouches.length) return e.changedTouches[0];
+        return e;
+      };
+
+      const setPanel = (x, opacity) => {
+        if (!activeEl) return;
+        activeEl.style.transform = `translateX(${x}px)`;
+        activeEl.style.opacity = String(opacity);
+      };
+
+      const setImage = (x, opacity) => {
+        if (!activeImgEls.length) return;
+        activeImgEls.forEach((el) => {
+          el.style.transform = `translateX(${x}px)`;
+          el.style.opacity = String(opacity);
+        });
+      };
+
+      const clearAll = () => {
+        if (activeEl) {
+          activeEl.style.transition = '';
+          activeEl.style.transform = '';
+          activeEl.style.opacity = '';
+          activeEl.style.willChange = '';
+        }
+        activeImgEls.forEach((el) => {
+          el.style.transition = '';
+          el.style.transform = '';
+          el.style.opacity = '';
+          el.style.willChange = '';
+        });
+        activeEl = null;
+        activeImgEls = [];
+        locked = null;
+      };
+
+      const start = (e) => {
+        if (!opts.enabled()) return;
+
+        // ignore mouse/trackpad
+        if (supportsPointer && e.pointerType === 'mouse') return;
+
+        // ignore pinch
+        if (e.touches && e.touches.length > 1) return;
+
+        activeEl = opts.getActiveEl();
+        activeImgEls = opts.getImageEls();
+        if (!activeEl) return;
+
+        const p = getPoint(e);
+        sx = p.clientX;
+        sy = p.clientY;
+        tracking = true;
+        locked = null;
+
+        activeEl.style.willChange = 'transform, opacity';
+        activeEl.style.transition = 'none';
+
+        activeImgEls.forEach((el) => {
+          el.style.willChange = 'transform, opacity';
+          el.style.transition = 'none';
+        });
+
+        if (supportsPointer && surface.setPointerCapture && e.pointerId != null) {
+          try {
+            surface.setPointerCapture(e.pointerId);
+          } catch (_) {}
+        }
+      };
+
+      const move = (e) => {
+        if (!tracking || !activeEl) return;
+        if (!opts.enabled()) return;
+
+        const p = getPoint(e);
+        const dx = p.clientX - sx;
+        const dy = p.clientY - sy;
+
+        // direction lock
+        if (!locked) {
+          if (Math.abs(dx) < LOCK_PX && Math.abs(dy) < LOCK_PX) return;
+          locked = Math.abs(dx) >= Math.abs(dy) ? 'x' : 'y';
+        }
+
+        // if horizontal intent, stop page scroll (touch only)
+        if (locked === 'x' && e.cancelable) e.preventDefault();
+        if (locked !== 'x') return;
+
+        const w = activeEl.getBoundingClientRect().width || 1;
+        const max = w * DRAG_MAX;
+
+        const clampedDx = clamp(dx, -max, max);
+        const progress = Math.min(1, Math.abs(clampedDx) / max);
+
+        setPanel(clampedDx, 1 - progress * FADE_MAX_PANEL);
+        setImage(clampedDx * IMAGE_RATIO, 1 - progress * FADE_MAX_IMG);
+      };
+
+      const end = (e) => {
+        if (!tracking) return;
+        tracking = false;
+
+        if (!opts.enabled() || !activeEl) {
+          clearAll();
+          return;
+        }
+
+        // if vertical scroll gesture, abort
+        if (locked === 'y') {
+          clearAll();
+          return;
+        }
+
+        const p = getPoint(e);
+        const dx = p.clientX - sx;
+        const dy = p.clientY - sy;
+
+        const horizontalEnough = Math.abs(dx) > Math.abs(dy) * DOMINANCE;
+
+        const w = activeEl.getBoundingClientRect().width || 1;
+        const max = w * DRAG_MAX;
+        const clampedDx = clamp(dx, -max, max);
+        const progress = Math.min(1, Math.abs(clampedDx) / max);
+
+        const isSwipe = horizontalEnough && progress >= TRIGGER_PROGRESS;
+
+        const OUT = w + 40;
+
+        const snapBack = () => {
+          activeEl.style.transition = 'transform 180ms ease, opacity 180ms ease';
+          setPanel(0, 1);
+
+          activeImgEls.forEach((el) => {
+            el.style.transition = 'transform 180ms ease, opacity 180ms ease';
+          });
+          setImage(0, 1);
+
+          activeEl.addEventListener('transitionend', clearAll, { once: true });
+        };
+
+        if (!isSwipe) return snapBack();
+
+        const left = dx < 0;
+        if (left && !opts.canNext()) return snapBack();
+        if (!left && !opts.canPrev()) return snapBack();
+
+        // slide current out (panel + image)
+        activeEl.style.transition = 'transform 180ms ease, opacity 180ms ease';
+        setPanel(left ? -OUT : OUT, 1 - OUT_FADE_PANEL);
+
+        activeImgEls.forEach((el) => {
+          el.style.transition = 'transform 180ms ease, opacity 180ms ease';
+        });
+        setImage((left ? -OUT : OUT) * IMAGE_RATIO, 1 - OUT_FADE_IMG);
+
+        activeEl.addEventListener(
+          'transitionend',
+          () => {
+            // trigger your existing logic (buttons)
+            if (left) opts.goNext();
+            else opts.goPrev();
+
+            // animate incoming panel + image in
+            requestAnimationFrame(() => {
+              const incomingPanel = opts.getActiveEl();
+              const incomingImgs = opts.getImageEls();
+              const OUT2 = OUT;
+
+              if (incomingPanel) {
+                incomingPanel.style.willChange = 'transform, opacity';
+                incomingPanel.style.transition = 'none';
+                incomingPanel.style.transform = `translateX(${left ? OUT2 : -OUT2}px)`;
+                incomingPanel.style.opacity = String(1 - OUT_FADE_PANEL);
+              }
+
+              incomingImgs.forEach((el) => {
+                el.style.willChange = 'transform, opacity';
+                el.style.transition = 'none';
+                el.style.transform = `translateX(${(left ? OUT2 : -OUT2) * IMAGE_RATIO}px)`;
+                el.style.opacity = String(1 - OUT_FADE_IMG);
+              });
+
+              // force reflow
+              incomingPanel && incomingPanel.getBoundingClientRect();
+
+              if (incomingPanel) {
+                incomingPanel.style.transition = 'transform 200ms ease, opacity 200ms ease';
+                incomingPanel.style.transform = 'translateX(0px)';
+                incomingPanel.style.opacity = '1';
+              }
+
+              incomingImgs.forEach((el) => {
+                el.style.transition = 'transform 200ms ease, opacity 200ms ease';
+                el.style.transform = 'translateX(0px)';
+                el.style.opacity = '1';
+              });
+
+              const cleanup = () => {
+                if (incomingPanel) {
+                  incomingPanel.style.transition = '';
+                  incomingPanel.style.transform = '';
+                  incomingPanel.style.opacity = '';
+                  incomingPanel.style.willChange = '';
+                }
+                incomingImgs.forEach((el) => {
+                  el.style.transition = '';
+                  el.style.transform = '';
+                  el.style.opacity = '';
+                  el.style.willChange = '';
+                });
+              };
+
+              if (incomingPanel) incomingPanel.addEventListener('transitionend', cleanup, { once: true });
+              else setTimeout(cleanup, 220);
+            });
+
+            clearAll();
+          },
+          { once: true }
+        );
+      };
+
+      const cancel = () => {
+        tracking = false;
+        clearAll();
+      };
+
+      if (supportsPointer) {
+        surface.addEventListener('pointerdown', start, { passive: true });
+        surface.addEventListener('pointermove', move, { passive: true }); // pointer uses touch-action
+        surface.addEventListener('pointerup', end, { passive: true });
+        surface.addEventListener('pointercancel', cancel, { passive: true });
+      } else {
+        surface.addEventListener('touchstart', start, { passive: true });
+        surface.addEventListener('touchmove', move, { passive: false }); // preventDefault needs passive:false
+        surface.addEventListener('touchend', end, { passive: true });
+        surface.addEventListener('touchcancel', cancel, { passive: true });
+      }
+    }
+
+    document.querySelectorAll('.home__control--stack').forEach((stack) => {
+      const group = stack.querySelector('.home__control--group');
+      const btnUp = stack.querySelector('.home__control--button[data-label="up"]');
+      const btnDown = stack.querySelector('.home__control--button[data-label="down"]');
+      const noneRadio = stack.querySelector('#none');
+
+      if (!group || !btnUp || !btnDown) return;
+
+      const radios = Array.from(group.querySelectorAll('input.home__control--radio[type="radio"]'));
+      if (!radios.length) return;
+
+      const hero = stack.closest('.home__unit--hero');
+      const unit = hero ? hero.querySelector('[data-unit-image]') : null;
+
+      // one surface covers image + gap + panel
+      const surface = stack.closest('.home__content');
+
+      const getCheckedIndex = () => radios.findIndex((r) => r.checked);
+
+      const enabled = () => {
+        if (!mq.matches) return false;
+        if (noneRadio && noneRadio.checked) return false;
+        return getCheckedIndex() !== -1;
+      };
+
+      const getActiveEl = () => {
+        const checked = radios.find((r) => r.checked);
+        return checked ? checked.closest('.home__control--radio-container') : null;
+      };
+
+      const getImageEls = () => {
+        if (!unit) return [];
+        const panel = unit.querySelector('.home__panel-images');
+        return [panel].filter(Boolean);
+      };
+
+      const canNext = () => {
+        const i = getCheckedIndex();
+        return i !== -1 && i < radios.length - 1;
+      };
+
+      const canPrev = () => {
+        const i = getCheckedIndex();
+        return i > 0;
+      };
+
+      const goNext = () => btnDown.click();
+      const goPrev = () => btnUp.click();
+
+      // cleanup if user taps/changes
+      radios.forEach((r) =>
+        r.addEventListener('change', () => {
+          const el = getActiveEl();
+          if (el) {
+            el.style.transition = '';
+            el.style.transform = '';
+            el.style.opacity = '';
+            el.style.willChange = '';
+          }
+          getImageEls().forEach((im) => {
+            im.style.transition = '';
+            im.style.transform = '';
+            im.style.opacity = '';
+            im.style.willChange = '';
+          });
+        })
+      );
+
+      attachDragSwipe(surface, { enabled, getActiveEl, getImageEls, canNext, canPrev, goNext, goPrev });
+    });
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Landing Page",
+  "tag": "section",
+  "class": "landing-page-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Landing Page"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,384 @@
+{% style %}
+  .page__nav--wrapper {
+    background-color: #fff;
+  }
+  .page__nav--headline {
+    color: #1d1d1f;
+    height: 25px;
+    font-size: 21px;
+    line-height: normal;
+    font-weight: 600;
+    letter-spacing: 0.231px;
+    height: auto;
+    margin: 0;
+
+    flex: 1;
+    min-width: 0;
+  }
+  @media screen and (max-width: 990px) {
+    .page__nav--headline {
+      font-size: 14px;
+    }
+  }
+  .page__nav {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    min-height: 52px;
+    height: auto;
+  }
+  @media (max-width: 989px) {
+    .page__nav {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  .page__nav--border {
+    border-bottom: 1px solid #d2d2d7;
+  }
+  .page--wrapper {
+    background-color: #fff;
+  }
+  .page__custom {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  @media (max-width: 989px) {
+    .page__custom {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  .page__title {
+    max-width: 1140px;
+    margin: 50px auto;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.011em;
+    line-height: 1.1428571429;
+    text-align: center;
+  }
+  @media (max-width: 989px) {
+    .page__title {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      text-align: start;
+      padding-top: 30px;
+    }
+  }
+  .page__content ul {
+    list-style: disc;
+    text-align: start;
+    list-style-position: outside;
+    list-style-type: disc;
+    margin-left: 2rem;
+    padding-bottom: 1.3rem;
+    padding-top: 1.3rem;
+  }
+  .variant__group {
+    margin-top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    padding-bottom: 2.6rem;
+    padding-bottom: 5.2rem;
+  }
+  .pinwheel {
+    background-color: #f5f5f7;
+    border: 5px solid #fff;
+    border-radius: 20px;
+    list-style-type: none;
+    overflow: hidden;
+    height: 673px;
+  }
+  .pinwheel.hidden {
+    display: none;
+  }
+  .pinwheel__tile {
+    box-sizing: border-box;
+    max-width: 100%;
+    padding: 40px 40px 34px;
+    text-align: center;
+  }
+  @media (max-width: 989px) {
+    .pinwheel__tile {
+      padding: 40px 20px 34px;
+    }
+  }
+  .flex-4 {
+    flex-basis: 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+  .flex-6 {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+  .flex-8 {
+    flex-basis: 66.6666666667%;
+    max-width: 66.6666666667%;
+  }
+
+  @media (max-width: 989px) {
+    .variant__group {
+      flex-direction: column;
+    }
+
+    /* alle Kacheln volle Breite */
+    .variant__group > .pinwheel {
+      flex-basis: 100%;
+      max-width: 100%;
+      order: 2; /* default: unter dem großen */
+      height: auto; /* optional, sonst bleiben 673px hoch */
+    }
+  }
+
+  .pinwheel__headline {
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.011em;
+    line-height: 1.1428571429;
+    text-align: start;
+    padding-bottom: 1.3rem;
+  }
+  .pinwheel__description {
+    text-align: start;
+    font-size: 14px;
+    line-height: 1.2857742857;
+    font-weight: 400;
+    letter-spacing: -0.016em;
+  }
+  .pinwheel__bullets .metafield-rich_text_field ul li {
+    text-align: start;
+    list-style-position: outside;
+    margin-left: 2rem;
+    font-size: 14px;
+    line-height: 1.2857742857;
+    font-weight: 400;
+    letter-spacing: -0.016em;
+  }
+
+  .pinwheel__image--wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 26px;
+    margin-bottom: 31px;
+    max-height: 395px;
+  }
+  .pinwheel__image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 395px;
+  }
+  .pinwheel__title {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.016em;
+    line-height: 1.428591;
+    padding: 15px 15px 30px;
+    min-height: 54px;
+  }
+  .pinwheel__price--current {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.016em;
+    line-height: 1.428591;
+  }
+  .print__notice {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    font-size: 14px;
+    text-align: left;
+    padding-top: 5.2rem;
+    font-weight: 400;
+    letter-spacing: -0.374px;
+    line-height: 25px;
+    margin-bottom: 50px;
+  }
+  @media (max-width: 989px) {
+    .print__notice {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  .badge-wrapper {
+    display: flex;
+    justify-content: end;
+    padding: 20px;
+  }
+  .page__badge {
+    border-color: rgb(207, 208, 229);
+    max-width: 69px;
+    font-size: 15px;
+    line-height: 1.1;
+    font-weight: 600;
+    margin-bottom: 1.3rem;
+    margin-top: 1.3rem;
+    background: #016ce0;
+    color: #ffffff;
+    border-radius: 0.5rem;
+    padding: 0.125rem 0.5rem;
+  }
+  
+{% endstyle %}
+
+<div class="quicknav__container" style="background-color: #fff;">
+  <div class="quicknav mobile-block">
+    <h1 class="quicknav__category">{{ page.title | escape }}</h1>
+    <p class="quicknav__intro">{{ page.content | strip_html | strip }}</p>
+  </div>
+  <div class="quicknav__border"></div>
+</div>
+
+<h2 class="page__title">
+  <span>Bedruckung nach Maß: </span>
+  <span style="color:#6e6e73;">Teilbedruckung, Vollbedruckung & B1 im Sublimationsdruck</span>
+</h2>
+
+
+<div class="page--wrapper">
+  <div class="page__custom">
+    {% for pages in page.metafields.custom.print_pages.value %}
+      <div class="pinwheel__headline">{{ pages.label }}</div>
+      <div class="page__content">{{ pages.description | metafield_tag }}</div>
+    <div class="variant__group">
+      {% for variant in pages.variants.value %}
+      <div
+          class="pinwheel flex-6"
+        >
+          <a
+              href="{{ variant.url }}"
+              aria-label="{{ variant.title }}"
+              style="height: 100%;"
+            >
+          <div class="badge-wrapper">
+            <div class="page__badge">{{ variant.product.metafields.custom.size }}</div>
+          </div>
+          <div class="pinwheel__tile">
+            
+              {% if variant.featured_image %}
+                <div class="pinwheel__image--wrapper">
+                  <div class="pinwheel__image">
+                    {{
+                      variant.featured_image
+                      | image_url: width: 1110
+                      | image_tag: class: 'pinwheel__image', loading: 'lazy', fetchpriority: 'low'
+                    }}
+                  </div>
+                </div>
+              {% endif %}
+              <h4 class="pinwheel__title">
+                {{ variant.title }}
+              </h4>
+
+              <div class="pinwheel__price">
+                <span class="pinwheel__price--current">
+                    {{ variant.price | money }}
+                </span>
+              </div>
+            
+          </div>
+          </a>
+        </div>
+        {% endfor %}
+        </div>
+      {% endfor %}
+  </div>
+</div>
+
+<p class="print__notice">
+  <i>Hinweis</i>: Der Druck erfolgt immer auf weißem Material. Dadurch können Motive in Fotoqualität und in jeder Wunschfarbe umgesetzt werden – unabhängig von der gewählten Zeltfarbe.
+  Die dargestellten Farben dienen zur Veranschaulichung und zur Farbabstimmung innerhalb unseres Sortiments.
+  Damit bedruckte und unbedruckte Komponenten optisch zusammenpassen, erhalten Sie zusätzlich eine Druckdatei mit vorgefärbtem Zeltdach – passend zu unseren Farbtönen der unbedruckten Stoffe (je nach gewählter Zeltfarbe).
+  So können Sie z. B. ein bedrucktes Dach in exakt dem Schwarz anlegen, das auch unsere unbedruckten schwarzen Zelte haben, oder ein bedrucktes Zeltdach mit unbedruckten Seitenwänden kombinieren, ohne dass sichtbare Farbabweichungen entstehen. Das erleichtet Ihrem Grafiker und uns den Austausch und spart Zeit auf beiden Seiten.
+  Sie erhalten immer auch eine Standard-Druckvorlage bei der Sie die Farben frei bestimmen können.
+</p>
+
+{% if page.metafields.custom.faqs %}
+  {% assign faqs = page.metafields.custom.faqs.value %}
+
+  <section class="category__faq">
+    <h2 class="category__faq--title">FAQ zu Bedruckungen</h2>
+
+    {% for faq in faqs %}
+      <details
+        class="category__faq--item"
+        {% if forloop.first %}
+          open
+        {% endif %}
+      >
+        <summary class="category__faq--question">
+          {{ faq.question }}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#6e6e73"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="category__faq--svg"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 9l6 6l6 -6" />
+          </svg>
+        </summary>
+        <div class="category__faq--answer">
+          {% if faq.answer_rich %}
+            {{ faq.answer_rich | metafield_tag }}
+          {% else %}
+            {{ faq.answer | metafield_tag }}
+          {% endif %}
+        </div>
+      </details>
+    {% endfor %}
+  </section>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {% for faq in faqs %}
+          {
+            "@type": "Question",
+            "name": {{ faq.question | strip | json }},
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": {{ faq.answer | strip_html | strip | json }}
+            }
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    }
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Custom Print Page",
+  "tag": "section",
+  "class": "custom-print-page-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Custom Print Page"
+    }
+  ]
+}
+{% endschema %}

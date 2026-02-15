@@ -1,0 +1,756 @@
+{% comment %}
+
+{% style %}
+  /* only show on mobile */
+  @media (min-width: 834px) {
+    .custom-header-section .mobile-menu {
+      display: none;
+    }
+  }
+  html:has(.mobile-menu[open]),
+  body:has(.mobile-menu[open]) {
+    overflow: hidden;
+  }
+
+  @media (max-width: 833px) {
+    .custom-header-section .mobile-menu {
+      position: relative;
+    }
+
+    /* remove default marker */
+    .custom-header-section .mobile-menu > summary {
+      list-style: none;
+    }
+    .custom-header-section .mobile-menu > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    /* clickable toggle area */
+    .custom-header-section .mobile-menu__toggle {
+      cursor: pointer;
+      display: block;
+      width: 24px;
+      height: 24px;
+      position: relative;
+    }
+
+    /* icon switching */
+    .custom-header-section .mobile-menu__toggle .close-menu-icon {
+      display: none;
+    }
+    .custom-header-section .mobile-menu[open] .mobile-menu__toggle .open-menu-icon {
+      display: none;
+    }
+    .custom-header-section .mobile-menu[open] .mobile-menu__toggle .close-menu-icon {
+      display: block;
+    }
+
+    /* backdrop */
+    .custom-header-section .mobile-menu__backdrop {
+      display: none;
+    }
+    .custom-header-section .mobile-menu[open] .mobile-menu__backdrop {
+      display: block;
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: calc(3.4rem + 44px);
+      bottom: 0;
+      background-color: #01292c;
+      z-index: 1999;
+    }
+
+    /* the panel itself: fixed overlay; scroll INSIDE panel */
+    .custom-header-section .mobile-menu__panel {
+      display: none;
+    }
+
+    .custom-header-section .mobile-menu[open] .mobile-menu__panel {
+      display: block;
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: calc(3.4rem + 44px);
+      bottom: 0;
+
+      z-index: 2000;
+
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+
+      /* optional: prevent page “bounce” feel */
+      overscroll-behavior: contain;
+    }
+  }
+
+  .global__header {
+    background-color: #01292c;
+  }
+
+  .announcement-bar__wrapper {
+    display: flex;
+    font-size: 13px;
+    font-weight: 600;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background-color: inherit;
+    color: #fff;
+    min-height: 3.4rem;
+    max-height: 3.4rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 990px) {
+    .announcement-bar__wrapper {
+      margin: 0 auto;
+      max-width: 1140px;
+      padding-left: 8rem;
+      padding-right: 8rem;
+    }
+  }
+
+  @media screen and (min-width: 834px) {
+    .announcement-bar__wrapper {
+      justify-content: space-between;
+    }
+  }
+
+  .announcement-bar__section[data-section='hide'] {
+    display: flex;
+    gap: 13px;
+  }
+
+  .announcement-bar__section-element {
+    display: flex;
+    transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
+  }
+
+  .announcement-bar__section-element[data-element='first']:hover,
+  .announcement-bar__section-element[data-element='second']:hover,
+  .announcement-bar__section-element[data-element='third']:hover {
+    -webkit-transform: scale(1.01);
+    transform: scale(1.01);
+  }
+
+  @media screen and (max-width: 833px) {
+    .announcement-bar__section[data-section='hide'] {
+      display: none !important;
+    }
+  }
+
+  .announcement-bar__mail {
+    color: #fff;
+    text-decoration: underline;
+    display: inline-flex;
+    align-items: center;
+    padding-top: 0.325rem;
+    transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
+  }
+
+  .announcement-bar__mail:hover {
+    -webkit-transform: scale(1.01);
+    transform: scale(1.01);
+  }
+
+  .announcement-bar__call {
+    color: #fff;
+    text-decoration: underline;
+    transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
+  }
+
+  .announcement-bar__call:hover {
+    -webkit-transform: scale(1.01);
+    transform: scale(1.01);
+  }
+
+  .announcement-bar__section-svg {
+    margin-right: 3px;
+    min-width: 14px;
+    min-height: 14px;
+    position: relative;
+    top: 3px;
+  }
+
+  .global__nav {
+    position: relative;
+    z-index: 100;
+    background-color: inherit;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1140px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin: 0px auto;
+    height: calc(44px * 1);
+    align-items: center;
+  }
+
+  @media screen and (min-width: 990px) {
+    .global__nav {
+      padding-left: 8rem;
+      padding-right: 8rem;
+    }
+  }
+
+  .global__nav-submenu {
+    background-color: #ff5700;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 84px;
+    z-index: 1000;
+  }
+
+  /* Mobile submenu container (still needs JS or DOM move for pure CSS toggle) */
+  .global__nav-submenu-mobile {
+    background-color: inherit;
+    color: #fff;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    z-index: 1000;
+  }
+
+  .global__nav-submenu-content {
+    max-width: 1180px;
+    width: 100%;
+    display: flex;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    box-sizing: border-box;
+    gap: 88px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .global__nav-submenu-content {
+      padding-left: 10rem;
+      padding-right: 10rem;
+    }
+  }
+
+  .global__nav-submenu-group {
+    padding-right: 88px;
+  }
+
+  .global__nav-submenu-header {
+    font-size: 12px;
+    line-height: 1.3333733333;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 7px 11px;
+    margin-bottom: -6px;
+  }
+
+  .global__nav-submenu-link a {
+    margin-top: 9px;
+    color: #fff;
+    font-size: 24px;
+    line-height: 1.1666666667;
+    font-weight: 600;
+    letter-spacing: 0.009em;
+    padding: 7px 11px;
+    margin-bottom: -6px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .global__nav-submenu-quicklink a {
+    margin-top: 7px;
+    color: #fff;
+    padding: 7px 11px;
+    margin-bottom: -6px;
+    font-size: 12px;
+    line-height: 1.3333733333;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .global__nav-icon {
+    height: 22px;
+    width: 22px;
+  }
+
+  .cart-icon-bubble-svg {
+    height: 28px;
+    width: 28px;
+    top: auto;
+    left: auto;
+  }
+
+  .header__icon {
+    font-size: 13px;
+  }
+
+  .global__nav-list {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    cursor: default;
+    margin: 0;
+    width: auto;
+    gap: 33px;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  .global__nav-link {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
+  }
+
+  .global__nav-desktop-links {
+    display: none;
+  }
+
+  @media screen and (min-width: 834px) {
+    .global__nav-desktop-links {
+      display: block;
+    }
+  }
+
+  .global__nav-mobile-links {
+    display: block;
+    cursor: pointer;
+    position: relative;
+  }
+
+  @media screen and (min-width: 834px) {
+    .global__nav-mobile-links {
+      display: none;
+    }
+  }
+
+  /* Hide the checkbox */
+  .global__nav-mobile-links input[type='checkbox'] {
+    display: none;
+  }
+
+  /* Hide all icons by default */
+  .global__nav-mobile-links svg {
+    display: none;
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Show hamburger by default */
+  .global__nav-mobile-links .open-menu-icon {
+    display: block;
+  }
+
+  /* Toggle icons when checkbox is checked */
+  .global__nav-mobile-links input[type='checkbox']:checked + .open-menu-icon {
+    display: none;
+  }
+
+  .global__nav-mobile-links input[type='checkbox']:checked ~ .close-menu-icon {
+    display: block;
+  }
+
+  /* Full-size label to capture clicks */
+  .global__nav-mobile-links label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: block;
+    z-index: 2;
+  }
+  @media (min-width: 834px) {
+    .custom-header-section .global__nav-submenu {
+      position: fixed;
+      top: calc(3.4rem + 44px);
+      left: 0;
+      right: 0;
+      width: 100vw;
+    }
+  }
+  @media (min-width: 834px) {
+    .global__nav-submenu-blur {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(232, 232, 237, 0.1);
+      backdrop-filter: blur(20px);
+      pointer-events: none;
+      z-index: 1001;
+    }
+  }
+{% endstyle %}
+{% endcomment %}
+
+<script src="{{ 'header.js' | asset_url }}" defer="defer"></script>
+{{ 'component-search.css' | asset_url | stylesheet_tag }}
+
+<div class="global__header">
+  <div class="announcement-bar__wrapper">
+    <div class="announcement-bar__section" data-section="hide">
+      <div class="announcement-bar__section-element" data-element="first">
+        <svg
+          class="announcement-bar__section-svg"
+          width="14px"
+          height="14px"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          color="#fff"
+        >
+          <path d="M16.6799 12.3841L12.4609 17.4469C12.2211 17.7347 11.7789 17.7347 11.5391 17.4469L7.32009 12.3841C7.13467 12.1616 7.13467 11.8384 7.32009 11.6159L11.5391 6.55312C11.7789 6.26527 12.2211 6.26527 12.4609 6.55312L16.6799 11.6159C16.8653 11.8384 16.8653 12.1616 16.6799 12.3841Z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 22V20" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 4V2" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4 12H2" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M22 12H20" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        Langlebige, stabile Faltpavillons
+      </div>
+    </div>
+    <div class="announcement-bar__section">
+      <a
+        class="announcement-bar__call"
+        href="tel:+4922198658071"
+        aria-label="Telefonnummer 0221-98658071 anrufen"
+      >
+        0221-98658071
+      </a>
+      |
+      <a
+        class="announcement-bar__mail"
+        href="mailto:info@stormtent.de"
+        aria-label="E-Mail an info@stormtent.de senden"
+      >
+        info@stormtent.de
+        <svg
+          aria-hidden="true"
+          style="margin-left: 2px; min-width: 14px; min-height: 14px; position: relative; top: 1px;"
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#fff"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          xmlns:v="https://vecta.io/nano"
+        >
+          <path d="M7 17L17 7"/><path d="M7 7h10v10"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  {% assign nav = linklists.nav.links %}
+  {% assign mobile_nav = linklists['mobile-nav'].links %}
+
+  <div class="global__nav">
+    <ul class="global__nav-list">
+      <li>
+        <a
+          href="{{ routes.root_url }}"
+          class="michroma-regular"
+          style="color:#ffce00; display:inline-flex; align-items:center; gap:3px;"
+        >
+          <span style="font-size: 17px;">Stormtent</span>
+          <svg
+            style="position:relative; top:2.3px;"
+            width="17px"
+            height="17px"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            color="#000000"
+          >
+            <path d="M18.2785 7C19.7816 7 21 8.11929 21 9.5C21 10.8807 19.7816 12 18.2785 12H3" stroke="#ffce00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M17.9375 20C19.0766 20 20.5 19.5 20.5 17.5C20.5 15.5 19.0766 15 17.9375 15H3" stroke="#ffce00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10.4118 4C11.8412 4 13 5.11929 13 6.5C13 7.88071 11.8412 9 10.4118 9H3" stroke="#ffce00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </li>
+      {% for collection_link in nav %}
+        <li class="global__nav-desktop-links">
+          <a id="nav-link-{{ forloop.index }}" class="global__nav-link" href="{{ collection_link.url }}">
+            {{ collection_link.title }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+    <ul class="global__nav-list">
+      <li>
+        <details-disclosure class="header__account">
+          <details>
+            <summary
+              class="header__icon header__icon--account focus-inset modal__toggle"
+              aria-haspopup="dialog"
+              aria-label="{{ 'customer.account_fallback' | t }}"
+              role="button"
+            >
+              {% render 'icon-account' %}
+            </summary>
+            <div class="header__account-modal modal__toggle color-background-1" role="dialog" aria-modal="true">
+              {%- if customer -%}
+                <div class="header__account-account">
+                  {% if customer.name != blank %}
+                    <div class="header__account-name">
+                      {{- customer.name -}}
+                    </div>
+                  {%- endif -%}
+                  <ul class="header__account-body">
+                    <li>
+                      <a href="{{ routes.account_url }}">
+                        {{- 'customer.account_fallback' | t -}}
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{{ routes.account_addresses_url }}">
+                        {{- 'customer.addresses.book' | t -}}
+                      </a>
+                    </li>
+                  </ul>
+                  <a
+                    class="header__account-logout button button--primary focus-inset"
+                    href="{{ routes.account_logout_url }}"
+                  >
+                    <div class="button__content">
+                      <span class="button__label" data-label="{{ 'customer.log_out' | t }}">
+                        {{ 'customer.log_out' | t }}
+                      </span>
+                    </div>
+                    <span class="animated-button-circle"></span>
+                  </a>
+                </div>
+              {%- else -%}
+                <a
+                  href="{{ routes.account_login_url }}"
+                  class="button button--primary header__account-login focus-inset"
+                >
+                  <div class="button__content">
+                    <span class="button__label" data-label="{{ 'customer.log_in' | t }}">
+                      {{ 'customer.log_in' | t }}
+                    </span>
+                  </div>
+                  <span class="animated-button-circle"></span>
+                </a>
+
+                <a
+                  class="header__account-register button button--tertiary"
+                  href="{{ routes.account_register_url }}"
+                >
+                  <div class="button__content">
+                    <span class="button__label" data-label="{{- 'customer.login_page.create_account_header' | t -}}">
+                      {{- 'customer.login_page.create_account_header' | t -}}
+                    </span>
+                  </div>
+                </a>
+              {%- endif -%}
+            </div>
+          </details>
+        </details-disclosure>
+      </li>
+      <li>
+        <header-search class="header__search">
+          <a
+            href="{{ routes.search_url }}"
+            class="header__icon header__icon--search focus-inset modal__toggle"
+            aria-haspopup="dialog"
+            role="button"
+            aria-label="{{- 'general.search.search' | t -}}"
+          >
+            {% render 'icon-search' %}
+          </a>
+          <div class="header__search-overlay"></div>
+          <div
+            class="header__search-inner search color-background-1"
+            role="dialog"
+            aria-modal="true"
+            aria-label="{{- 'general.search.search' | t -}}"
+          >
+            <div class="header__search-content">
+              <div class="header__search-heading">
+                <span class="body-normal">{{- 'general.search.search' | t -}}</span>
+                <button
+                  class="header__search-close focus-inset body-normal"
+                  aria-label="{{- 'accessibility.close' | t -}}"
+                >
+                  {{- 'accessibility.close' | t -}}
+                </button>
+              </div>
+              {%- if settings.predictive_search_header_enabled -%}
+                <predictive-search class="search-modal__form" data-loading-text="{{- 'accessibility.loading' | t -}}">
+              {%- else -%}
+                <search-form class="search-modal__form">
+              {%- endif -%}
+              <form action="{{ routes.search_url }}" method="get" role="search" class="search search__form">
+                <div class="field">
+                  <input
+                    class="search__input field__input"
+                    id="Search-In-Modal"
+                    type="search"
+                    dir="ltr"
+                    name="q"
+                    value="{{ search.terms | escape }}"
+                    placeholder="{{ 'general.search.placeholder' | t }}"
+                    {%- if settings.predictive_search_header_enabled -%}
+                      role="combobox"
+                      aria-expanded="false"
+                      aria-owns="predictive-search-results-list"
+                      aria-controls="predictive-search-results-list"
+                      aria-haspopup="listbox"
+                      aria-autocomplete="list"
+                      autocorrect="off"
+                      autocomplete="off"
+                      autocapitalize="off"
+                      spellcheck="false"
+                    {%- endif -%}
+                  >
+                  <label class="visually-hidden" for="Search-In-Modal">
+                    {{- 'general.search.search' | t -}}
+                  </label>
+                  <input type="hidden" name="options[prefix]" value="last">
+                  <button
+                    class="search__button field__button focus-inset"
+                    aria-label="{{- 'general.search.search' | t -}}"
+                  >
+                    {% render 'icon-search-input' %}
+                  </button>
+                  <button
+                    class="search__button search__button--reset field__button focus-inset"
+                    aria-label="{{- 'general.search.reset_search' | t -}}"
+                    {%- if search.terms != blank -%}
+                      style="display: flex;"
+                    {%- endif -%}
+                  >
+                    {% render 'icon-close' %}
+                  </button>
+                </div>
+
+                {%- if settings.predictive_search_header_enabled -%}
+                  <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
+                    <div class="predictive-search__loading-state">
+                      {% render 'icon-loading' %}
+                    </div>
+                  </div>
+
+                  <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+                {%- endif -%}
+              </form>
+              {%- if settings.predictive_search_header_enabled -%}
+                </predictive-search>
+              {%- else -%}
+                </search-form>
+              {%- endif -%}
+              {%- if section.settings.search_menu != blank -%}
+                <div class="header__search-popular body-normal">
+                  {%- for link in section.settings.search_menu.links -%}
+                    <a
+                      href="{{ link.url }}"
+                      {% if settings.links_blank and link.type == 'http_link' %}
+                        target="_blank"
+                      {% endif %}
+                      class="header__search-popular-link"
+                      aria-label="{{- link.title -}}"
+                    >
+                      <span>{{- link.title -}}</span>
+                    </a>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        </header-search>
+      </li>
+      <li>
+        <div
+          class="header__cart{% if request.page_type == 'cart' %} header__cart--page{% endif %}"
+        >
+          <a
+            href="{{ routes.cart_url }}"
+            class=" header__icon header__icon--cart focus-inset"
+            id="cart-icon-bubble"
+            aria-label="{{- 'general.cart.view' | t -}}"
+          >
+            {% render 'cart-count-bubble' %}
+          </a>
+        </div>
+      </li>
+      <li class="global__nav-mobile-links">
+        <details class="mobile-menu">
+          <summary class="mobile-menu__toggle" aria-label="Menü öffnen">
+            <svg
+              class="open-menu-icon"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M2 6C2 5.44772 2.44772 5 3 5H21C21.5523 5 22 5.44772 22 6C22 6.55228 21.5523 7 21 7H3C2.44772 7 2 6.55228 2 6Z" fill="currentColor"/>
+              <path d="M2 12.0322C2 11.4799 2.44772 11.0322 3 11.0322H21C21.5523 11.0322 22 11.4799 22 12.0322C22 12.5845 21.5523 13.0322 21 13.0322H3C2.44772 13.0322 2 12.5845 2 12.0322Z" fill="currentColor"/>
+              <path d="M3 17.0645C2.44772 17.0645 2 17.5122 2 18.0645C2 18.6167 2.44772 19.0645 3 19.0645H21C21.5523 19.0645 22 18.6167 22 18.0645C22 17.5122 21.5523 17.0645 21 17.0645H3Z" fill="currentColor"/>
+            </svg>
+
+            <svg
+              class="close-menu-icon"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z" fill="currentColor"/>
+            </svg>
+          </summary>
+
+          <!-- optional: dim background -->
+          <div class="mobile-menu__backdrop" aria-hidden="true"></div>
+
+          <div class="global__nav-submenu-mobile mobile-menu__panel" id="mobile-submenu">
+            {% for collection_link in mobile_nav %}
+              <div class="global__nav-submenu-link p48">
+                <a href="{{ collection_link.url }}">
+                  {% if collection_link.metafields.custom.short_title %}
+                    {{ collection_link.metafields.custom.short_title }}
+                  {% else %}
+                    {{ collection_link.title }}
+                  {% endif %}
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        </details>
+      </li>
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Header",
+  "tag": "section",
+  "class": "custom-header-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Custom Header"
+    }
+  ]
+}
+{% endschema %}

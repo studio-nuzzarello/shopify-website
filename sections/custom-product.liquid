@@ -1,0 +1,3276 @@
+<style>
+  @media (max-width: 989px) {
+    .quicknav__container {
+      display: none;
+    }
+  }
+  .product-accordion--wrapper {
+    background-color: #fff;
+    padding-bottom: 5.2rem;
+  }
+  @media screen and (min-width: 990px) {
+    .product-accordion--wrapper {
+      padding-left: 8rem;
+      padding-right: 8rem;
+    }
+  }
+  .product-accordion {
+    border-top: 0;
+    padding-bottom: 2.6rem;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .product-accordion + .product-accordion {
+    border-top: 1px solid #d2d2d7; /* Linie nur zwischen den Accordions */
+  }
+  .product-accordion:first-of-type {
+    border-top: 1px solid #d2d2d7;
+  }
+  .product-accordion:last-of-type {
+    border-bottom: 1px solid #d2d2d7;
+  }
+  @media screen and (min-width: 990px) {
+    .product-accordion {
+      margin: 0 auto;
+      max-width: 980px;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  .product-accordion__title {
+    font-size: 22px;
+    line-height: 28px;
+    font-weight: 500;
+  }
+  @media screen and (min-width: 990px) {
+    .product-accordion__title {
+      font-size: 28px;
+      line-height: 34px;
+    }
+  }
+  .product-accordion__button {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 28px;
+    padding-top: 2.6rem;
+    max-width: 1102px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .product-accordion__chevron {
+    width: 28px;
+    height: 28px;
+    margin-right: 6px;
+    filter: brightness(0) opacity(0.56);
+  }
+  @media screen and (min-width: 990px) {
+    .product-accordion__chevron {
+      width: 34px;
+      height: 34px;
+    }
+  }
+  details[open] .product-accordion__chevron {
+    content: url('https://cdn.shopify.com/s/files/1/0615/9302/6783/files/chevron-up-badge.svg?v=1747152792');
+  }
+  .product-accordion__section {
+    width: 100%;
+    max-width: 1102px;
+    padding-top: 4.4rem;
+  }
+  @media screen and (min-width: 990px) {
+    .product-accordion__section {
+      display: flex;
+      flex-flow: row wrap;
+    }
+  }
+  details[open] .product-accordion__section:last-child {
+    padding-bottom: 4.4rem;
+  }
+  .product-accordion__section-title {
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 500;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    padding-bottom: 1.3rem;
+    border-bottom: 1px solid #d2d2d7;
+  }
+  @media screen and (min-width: 990px) {
+    .product-accordion__section-title {
+      font-size: 22px;
+      line-height: 28px;
+      flex-basis: 25%;
+      max-width: 25%;
+      border-bottom: 0px;
+      padding-right: 3.5rem;
+      padding-bottom: 0px;
+    }
+  }
+  .product-accordion__section-content {
+    padding-top: 2.6rem;
+    padding-bottom: 2.6rem;
+  }
+  @media screen and (min-width: 990px) {
+    .product-accordion__section-content {
+      flex-basis: 75%;
+      max-width: 75%;
+      border-bottom: 1px solid #d2d2d7;
+      padding-top: 0px;
+      padding-bottom: 4.4rem;
+    }
+  }
+  .product-accordion__section-subtitle {
+    font-size: 17px;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+  }
+  .product-accordion__section-text {
+    font-size: 17px;
+    line-height: 1.47;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    padding-bottom: 2.6rem;
+  }
+  .product-accordion__section-text > p {
+    padding-bottom: 1.3rem;
+  }
+  .product-accordion__section-text:last-child {
+    padding-bottom: 0;
+  }
+</style>
+
+{% style %}
+  @media (min-width: 990px) {
+    .product__stickybar.is-compact [data-sticky-divider='mid'] {
+      display: none;
+    }
+  }
+  .product__stickybar {
+    display: none;
+  }
+  @media (min-width: 990px) {
+    .product__stickybar {
+      display: block;
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: var(--stickybar-top, 0px);
+      z-index: 80;
+      background: #fff;
+
+      transform: translateY(-120%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.25s cubic-bezier(0, 0, 0.5, 1), opacity 0.2s ease;
+    }
+
+    .product__stickybar.is-active {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* bottom area collapses earlier */
+    .product__stickybar--area[data-position='bottom'] {
+      max-height: 120px; /* enough to fit content */
+      opacity: 1;
+      overflow: hidden;
+      transition: max-height 0.25s cubic-bezier(0, 0, 0.5, 1), opacity 0.2s ease;
+    }
+
+    .product__stickybar.is-compact .product__stickybar--area[data-position='bottom'] {
+      max-height: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  .sticky-sentinel {
+    display: block;
+    height: 1px;
+  }
+  .product__stickybar--area {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    height: 50px;
+    align-items: center;
+  }
+  .product__stickybar--subarea {
+    display: flex;
+    align-items: center;
+  }
+  .product__stickybar--title {
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.011em;
+    line-height: 1.381002381;
+  }
+  .product__stickybar--usp {
+    font-size: 14px;
+    line-height: 1.4285914286;
+    font-weight: 600;
+    letter-spacing: -0.016em;
+  }
+  .product__stickybar--element {
+    font-size: 14px;
+    line-height: 1.4285914286;
+    font-weight: 600;
+    letter-spacing: -0.016em;
+    padding-right: 20px;
+    margin-right: 20px;
+    border-right: 1px solid #d2d2d7;
+  }
+  .product__stickybar--usp:first-child {
+    padding-right: 20px;
+    margin-right: 20px;
+    border-right: 1px solid #d2d2d7;
+  }
+  .product__stickybar--price {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.021em;
+    line-height: 1.4705882353;
+  }
+  .product__stickybar--price-compare {
+    color: #b02d28;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 22px;
+    text-decoration-color: #b02d28;
+    text-decoration: line-through;
+    text-underline-offset: -0.4rem;
+    padding-left: 3px;
+  }
+  .quicknav__quickbuy {
+    padding-top: 14px;
+  }
+  .product__price--wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  @media (min-width: 990px) {
+    .product__price--wrapper {
+      margin-top: 14px;
+      padding-bottom: 10px;
+    }
+  }
+  .compare-at-price {
+    color: #b02d28;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-decoration-color: #b02d28;
+    text-decoration: line-through;
+    text-underline-offset: -0.4rem;
+  }
+  @media (min-width: 990px) {
+    .compare-at-price {
+      font-size: 17px;
+    }
+  }
+  .price-quick-row {
+    display: block;
+    padding-top: 0;
+  }
+
+  .price-quick-row .product__quickbuy {
+    display: none;
+  }
+
+  @media (max-width: 989px) {
+    .price-quick-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 6px;
+    }
+
+    .price-quick-row .product__quickbuy {
+      display: block;
+    }
+  }
+  @supports (animation-timeline: scroll()) {
+    @media (max-width: 989px) {
+      .product__header .price-quick-row .product__quickbuy {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        animation-name: quickbuyToggle;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+
+        animation-timeline: scroll(root);
+        animation-range: 0px 80px;
+      }
+
+      .product__header.no-usps .price-quick-row .product__quickbuy {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        animation: none;
+      }
+    }
+  }
+
+  @keyframes quickbuyToggle {
+    0%,
+    74.9% {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    75%,
+    100% {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+  }
+
+  .product__title--intro {
+    font-size: 12px;
+    padding-top: 10px;
+  }
+
+  .product__usp {
+    padding-left: 7px;
+  }
+
+  .product__usp:first-child {
+    padding-left: 0;
+  }
+
+  .product__usp.is-separated {
+    border-right: 1px solid #d2d2d7;
+    padding-right: 8px;
+  }
+
+  @media (max-width: 989px) {
+    .product__title--intro {
+      font-size: 12px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+  @supports (animation-timeline: scroll()) {
+    .product__title--intro {
+      transform-origin: top;
+      animation: introHide linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0px 80px; /* fade out over first 80px of scroll */
+    }
+
+    @keyframes introHide {
+      from {
+        opacity: 1;
+        max-height: 60px;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        max-height: 0;
+        transform: translateY(-4px);
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .product__teaser {
+    max-width: 980px;
+    margin: 50px auto;
+    height: 480px;
+    background: #f5f5f7;
+    margin-bottom: 0;
+  }
+  .product__teaser--image {
+    width: 980px;
+    height: auto;
+  }
+  .quicknav__border {
+    border-bottom: 1px solid #d2d2d7;
+  }
+  .metafield-rich_text_field > p {
+    padding-bottom: 1.3rem;
+  }
+  .metafield-rich_text_field ul li {
+    list-style-type: disc;
+  }
+
+  .product__hero--wrapper {
+    background-color: #fff;
+  }
+  /* DESKTOP */
+  .product__hero {
+    max-width: 1140px;
+    margin: 50px auto;
+
+    display: grid;
+    grid-template-columns: 33.3333% 58.3333%;
+    column-gap: 8.3333%;
+    grid-template-areas:
+      'header  gallery'
+      'config  gallery'
+      'buyform gallery';
+    align-items: start;
+  }
+
+  /* Scope wrapper soll auf Desktop nichts verändern */
+  .product__sticky-scope {
+    display: contents;
+  }
+
+  /* Wrapper soll auf Desktop NICHT layouten (nur für Mobile sticky) */
+  .product__sticky {
+    display: contents;
+  }
+
+  /* Header links oben (liegt in .product__sticky -> display:contents macht ihn zum Grid-Item) */
+  .product__header {
+    grid-area: header;
+    padding-left: 8rem;
+    margin-bottom: 12px;
+  }
+
+  /* Konfig links */
+  .product__section-a {
+    grid-area: config;
+    padding-left: 8rem;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Buyform links unter config */
+  .product__buyform {
+    grid-area: buyform;
+    max-width: 100%;
+  }
+  @media (min-width: 989px) {
+    .product__buyform {
+      margin-left: 8rem;
+    }
+  }
+
+  /* Galerie rechts über alle Zeilen */
+  .product__section-b {
+    grid-area: gallery;
+    padding-right: 8rem;
+    max-width: 100%;
+    margin-left: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    min-height: 0;
+  }
+
+  /* Galerie-Kinder sollen Höhe sauber füllen */
+  .product__gallery-container {
+    flex: 1;
+    position: relative;
+    height: 100%;
+    min-height: 0;
+  }
+  .product__gallery {
+    min-height: 0;
+  }
+
+  /* MOBILE */
+  @media (max-width: 989px) {
+    /* Mobile: wir wollen Sticky nur bis zum Ende vom Scope */
+    .product__hero {
+      display: block;
+      max-width: none;
+      margin: 0;
+      padding-bottom: 5.2rem;
+    }
+
+    .product__sticky-scope {
+      display: block; /* <-- macht es zur Sticky-Grenze */
+    }
+
+    .product__sticky {
+      display: flex;
+      flex-direction: column;
+
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #fff;
+    }
+
+    .product__header {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      padding-top: 18px;
+      margin-bottom: 12px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #d2d2d7;
+    }
+
+    .product__section-b {
+      position: static; /* sticky macht der Wrapper */
+      height: 33vh;
+      padding: 0;
+    }
+
+    .product__gallery-container {
+      height: 100%;
+    }
+
+    .product__section-a,
+    .product__buyform {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    .custom-select-wrapper {
+      overscroll-behavior-x: none;
+      touch-action: pan-y;
+    }
+  }
+  .product__title {
+    color: #1d1d1f;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 0.004em;
+    line-height: 1.125;
+  }
+  @media (max-width: 989px) {
+    .product__title {
+      font-size: 15px;
+      line-height: 1.2;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+  }
+  .product__price {
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    line-height: 1.470588;
+    align-items: start;
+  }
+  @media (max-width: 989px) {
+    .product__price {
+      font-size: 14px;
+      line-height: 1.3;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-top: 0;
+      padding-bottom: 0;
+    }
+  }
+  .product__configuration {
+    margin-top: 3rem;
+  }
+  .product__option-name {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    line-height: 1.470588;
+    padding-bottom: 1.3rem;
+  }
+  .product__configuration-walls {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 20px;
+  }
+  .product__configuration-form {
+    position: relative;
+    margin-bottom: 0.8235294118rem;
+  }
+  .custom-select-wrapper {
+    position: relative;
+  }
+  .js-native-select {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .custom-select {
+    position: relative;
+  }
+  .custom-select__selected {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    box-sizing: border-box;
+    border-color: #86868b;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 12px;
+    padding: 1rem;
+    background: #fff;
+    cursor: pointer;
+    line-height: 1.4;
+    white-space: normal;
+  }
+  .custom-select__price {
+    padding-top: 0.3rem !important;
+  }
+  .custom-select__selected:has(.custom-select__price:not(:empty)),
+  .custom-select__selected:has(.custom-select__shipping:not(:empty)) {
+    border-width: 2px;
+    border-color: rgb(0, 113, 227);
+  }
+  .custom-select__selected:has(.custom-select__price:not(:empty)),
+  .custom-select__selected:has(.custom-select__shipping:not(:empty)) {
+    .custom-select__value {
+      padding-bottom: 0.625rem;
+    }
+  }
+  .custom-select__text {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .custom-select__position {
+    font-size: 12px;
+    font-weight: 400;
+    inset-inline-start: 1rem;
+    letter-spacing: -0.01em;
+    line-height: 1.3333733333;
+    color: #6e6e73;
+    padding-bottom: 1.3rem;
+  }
+  .custom-select__value {
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.022em;
+    line-height: 1.2353641176;
+  }
+  .select-label--small {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.3333733333;
+    padding-top: 0.625rem;
+  }
+  .custom-select__dropdown {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #86868b;
+    border-radius: 12px;
+    margin-top: 4px;
+    z-index: 19;
+
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    overflow: hidden;
+  }
+  .custom-select__dropdown.open {
+    display: grid;
+    left: 0;
+    right: auto;
+    width: max-content;
+    max-width: 260px;
+    top: 0px;
+    transform: translateY(calc(var(--position-height, 24px) + 4px));
+  }
+  .product__configuration-walls > .product__configuration-form:nth-child(even) .custom-select__dropdown.open {
+    left: auto;
+    right: 0;
+  }
+  .custom-select__dropdown.open:not(:has(.custom-select__group-column + .custom-select__group-column)) {
+    grid-template-columns: 1fr;
+    width: auto;
+  }
+  .custom-select__group {
+    padding: 0.5rem 1rem;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.3333733333;
+    color: #6e6e73;
+  }
+  .custom-select__option {
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+  }
+  .custom-select__option:hover {
+    background: #f5f5f5;
+  }
+  .custom-select__shipping {
+    display: flex;
+  }
+  .option-value {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -0.022em;
+    line-height: 1.2353641176;
+  }
+  .option-shipping {
+    display: flex;
+  }
+  .option-price {
+    padding-top: 0.3rem;
+  }
+  .option-shipping:empty,
+  .option-price:empty,
+  .custom-select__price:empty,
+  .custom-select__shipping:empty {
+    display: none;
+  }
+  /* Allow grid items to shrink (critical in 2-col grid) */
+  .product__configuration-walls > .product__configuration-form {
+    min-width: 0;
+  }
+  /* The custom select itself must also be allowed to shrink */
+  .product__configuration-form .custom-select,
+  .product__configuration-form .custom-select__selected,
+  .product__configuration-form .custom-select__text {
+    min-width: 0;
+  }
+  /* Injected content must wrap instead of forcing width */
+  .custom-select__shipping,
+  .option-shipping,
+  .custom-select__value {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .custom-select__text {
+    min-width: 0;
+  }
+  .custom-select__value {
+    white-space: normal;
+    overflow-wrap: anywhere; /* breaks very long words */
+    word-break: break-word;
+  }
+
+  .product__option {
+    margin-top: 3rem;
+  }
+  .product__option-options {
+    margin-inline-end: -0.4117647059rem;
+    margin-inline-start: -0.4117647059rem;
+    width: auto;
+  }
+  .product__option-value {
+    display: flex;
+    position: relative;
+    flex-basis: 50%;
+    max-width: 50%;
+    padding-inline-end: 0.7rem;
+    padding-inline-start: 0.7rem;
+    margin-top: 0.8235294118rem;
+  }
+  .product__option-input {
+    height: 100%;
+    width: calc(100% - 14px);
+    opacity: 0;
+    position: absolute;
+  }
+  .product__option-input:checked + .product__option-label {
+    border-width: 2px;
+    border-color: rgb(0, 113, 227);
+  }
+  .product__option-label {
+    border-color: #86868b;
+    align-items: center;
+    border-radius: 12px;
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font-size: 17px;
+    font-weight: 600;
+    height: auto;
+    justify-content: center;
+    letter-spacing: -0.022em;
+    line-height: 1.2353641176;
+    min-height: 4.8823529412rem;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+  }
+  .label-main {
+    display: block;
+  }
+  .label-small {
+    display: block;
+    margin-top: 0.235294rem;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.333373;
+    position: relative;
+  }
+  .colornav__item-border {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+  }
+  .colornav__item-whitespace {
+    width: 40px;
+    height: 40px;
+    border: 2px solid transparent;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  .colornav__item-swatch {
+    width: 36px;
+    height: 36px;
+  }
+  .product__buyform {
+    border-top: 1px solid #d2d2d7;
+    margin-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #d2d2d7;
+  }
+  .shipping-info {
+    display: flex;
+    max-width: 25rem;
+    padding-top: 2rem;
+    font-size: 14px;
+    line-height: 1.4285914286;
+    font-weight: 400;
+    letter-spacing: -0.016em;
+  }
+  @media (max-width: 768px) {
+    .shipping-info {
+      flex: 1 1 calc(50% - 5px);
+    }
+  }
+  .shipping-date {
+    font-size: 14px;
+    color: #1d1d1f;
+    font-weight: 600 !important;
+    padding-top: 0.325rem;
+    padding-bottom: 0.325rem;
+    transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
+  }
+  .shipping-date:hover {
+    -webkit-transform: scale(1.01);
+    transform: scale(1.01);
+  }
+  .shopify-product-form {
+    margin-top: 20px;
+  }
+  .hero-row {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+  }
+  .hero-wrap {
+    display: flex;
+    flex-flow: wrap;
+  }
+  .flex-basis-0 {
+    flex-basis: 0;
+  }
+  .product__gallery-container {
+    flex: 1;
+    position: relative;
+    height: 100%;
+  }
+  .product__gallery {
+    position: sticky;
+    top: 20px;
+  }
+  /* transition on :hover only so it doesn’t fire when opening a #permalink */
+  .product__gallery:hover {
+    scroll-behavior: auto;
+    /* `auto` for no transition on click/tab */
+  }
+  .product__gallery-scroll {
+    display: flex;
+    gap: 4vw;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .product__gallery-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  /* Show arrows when hovering the scroll area */
+  .product__gallery:hover .product__gallery-arrow,
+  .product__gallery-scroll:hover ~ .product__gallery-arrow {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .product__media-wrapper--hero {
+    scroll-snap-align: start;
+    flex: 0 0 auto; /* ensures wrapper doesn’t shrink */
+    position: relative;
+    display: inline-block;
+  }
+  .product__hero:has(.custom-select__price:not(:empty)) .product__media-wrapper--hero .base-overlay {
+    display: none;
+  }
+  .product__media--hero {
+    width: 572px;
+    max-height: 401px;
+    height: auto;
+    object-fit: contain;
+  }
+  @media (max-width: 989px) {
+    .product__media--hero {
+      max-height: 28vh;
+      width: 100vw;
+      width: 100dvw;
+    }
+  }
+  .base-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 572px;
+    height: auto;
+    object-fit: contain;
+    pointer-events: none;
+  }
+  @media (max-width: 989px) {
+    .base-overlay {
+      max-height: 28vh;
+      width: 100vw;
+      width: 100dvw;
+    }
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 572px;
+    height: auto;
+    object-fit: contain;
+    pointer-events: none;
+  }
+  @media (max-width: 989px) {
+    .overlay {
+      max-height: 28vh;
+      width: 100vw;
+      width: 100dvw;
+    }
+  }
+  .product__gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+
+    background: #d2d2d7a3;
+    color: #000;
+    font-size: 20px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .product__gallery-arrow:hover {
+    transform: translateY(-50%) scale(1.05);
+  }
+  .product__gallery-arrow--left {
+    left: 12px;
+  }
+  .product__gallery-arrow--right {
+    right: 12px;
+  }
+  .product__gallery-dots {
+    position: sticky;
+    top: 427px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding-top: 2.6rem;
+  }
+  @media (max-width: 989px) {
+    .product__gallery-dots {
+      top: 35vh;
+      padding-top: 1.3rem;
+    }
+  }
+  .product__gallery-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: #bbb;
+    cursor: pointer;
+    padding: 0;
+  }
+  .product__gallery-dot.active {
+    background: #000;
+  }
+  .hidden {
+    display: none;
+  }
+  @media (min-width: 990px) {
+    /* baseline: at least clear your site header (set this to your real header height) */
+    .product__hero {
+      --header-offset: 80px; /* adjust */
+      --bar-offset: 0px; /* default: stickybar not active */
+    }
+
+    /* your existing sticky elements, but with the variable added */
+    .product__gallery {
+      position: sticky;
+      top: calc(20px + var(--header-offset) + var(--bar-offset));
+    }
+
+    .product__gallery-dots {
+      position: sticky;
+      top: calc(427px + var(--header-offset) + var(--bar-offset));
+    }
+
+    /* when stickybar shows: push gallery + dots down by stickybar height */
+    .product__stickybar.is-active ~ .product__hero {
+      --bar-offset: 10px; /* approx full stickybar height (tweak) */
+    }
+
+    /* when compact: smaller push-down */
+    .product__stickybar.is-active.is-compact ~ .product__hero {
+      --bar-offset: 10px; /* approx compact stickybar height (tweak) */
+    }
+  }
+{% endstyle %}
+
+<script src="{{ 'custom-product.js' | asset_url }}" defer></script>
+
+{% assign product_form_id = 'product_form_' | append: product.id %}
+{% assign images = product.images %}
+{% unless product.has_only_default_variant %}
+{% assign images = product.selected_or_first_available_variant.metafields.custom.images.value %}
+{% endunless %}
+{% assign wall_layers = product.selected_or_first_available_variant.metafields.custom.walls.value %}
+{%- assign positions = wall_layers | map: 'position' | uniq -%}
+{% assign material = product.selected_or_first_available_variant.metafields.custom.material.value %}
+{% assign fabric = product.selected_or_first_available_variant.metafields.custom.fabric.value %}
+{% unless product.selected_or_first_available_variant.available == false %}
+  {% assign show_dynamic_checkout = true %}
+  {% if wall_layers != blank %}
+    {% if wall_layers.size > 0 %}
+      {% assign show_dynamic_checkout = false %}
+    {% endif %}
+  {% endif %}
+{% endunless %}
+{% assign usps = product.metafields.custom.usps.value %}
+<div class="product__hero--wrapper">
+  <div class="quicknav__container" style="background-color: #fff;">
+    <div class="quicknav">
+      {% if product.metafields.custom.links %}
+        <div class="product__tabnav" data-product-switcher>
+          <ul class="product__tabnav--items">
+            <span class="product__tabnav--label">{{ product.metafields.custom.label }}</span>
+            {% for linked_product in product.metafields.custom.links.value %}
+              <li class="product__tabnav--item{% if linked_product.id == product.id %} is-active{% endif %}">
+                <button
+                  type="button"
+                  class="product__tabnav--btn"
+                  data-product-url="{{ linked_product.url }}"
+                  aria-pressed="{% if linked_product.id == product.id %}true{% else %}false{% endif %}"
+                >
+                  {{ linked_product.metafields.custom.size | escape }}
+                </button>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+      {% else %}
+        <div class="quicknav__category">
+          {{ product.metafields.custom.label }}
+        </div>
+      {% endif %}
+
+      <div>
+        <div class="quicknav__quickbuy">
+          <button
+            type="submit"
+            name="add"
+            form="{{ product_form_id }}"
+            style="
+              max-height: 26px;
+              font-size: 14px;
+              padding: 1.3rem 2.6rem;
+              min-height: 0;
+            "
+            class="product-form__submit button button--{%- if show_dynamic_checkout -%}transparent{% else %}primary{%- endif -%}"
+            {% if product.selected_or_first_available_variant.available == false %}
+              disabled
+            {% endif %}
+          >
+            {%- if product.selected_or_first_available_variant.available -%}
+              <div class="button__content">
+                <span class="button__label" data-label="{{ 'products.product.add_to_cart' | t }}">
+                  {{ 'products.product.add_to_cart' | t }}
+                </span>
+              </div>
+
+              <div class="animated-button-circle"></div>
+
+              <div class="loading-overlay__spinner hidden">
+                {%- render 'icon-loading' -%}
+              </div>
+            {%- else -%}
+              <span>
+                {{ 'products.product.sold_out' | t }}
+              </span>
+            {%- endif -%}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="quicknav__border"></div>
+  </div>
+
+  <style>
+    .product__tabnav--label {
+      font-size: 21px;
+      font-weight: 600;
+      letter-spacing: 0.011em;
+      line-height: 1.1428571429;
+    }
+    .product__tabnav {
+      margin-top: 8px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: center;
+    }
+    .product__tabnav--items {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 14px;
+      line-height: 1.2857742857;
+      font-weight: 400;
+      letter-spacing: -0.016em;
+    }
+    .product__tabnav--item {
+      min-width: 60px;
+      width: auto;
+      border-radius: 980px;
+      margin: 4px 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: rgb(232 232 237/70%);
+      border: 1px solid rgba(0, 0, 0, 0.16);
+    }
+    .product__tabnav--item:hover {
+      background-color: rgb(232, 232, 237);
+    }
+    .product__tabnav--item.is-active {
+      background-color: rgb(29, 29, 31);
+      color: #fff;
+    }
+    .product__tabnav--btn {
+      display: block;
+      width: 100%;
+      padding: 3px 15px;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      text-align: center;
+    }
+  </style>
+
+  <div class="product__stickybar" data-sticky-bar aria-hidden="true">
+    <div class="product__stickybar--area" data-position="top">
+      <div
+        class="product__stickybar--title"
+      >
+        {{ product.title }}
+      </div>
+
+      <div class="product__stickybar--price">
+        <span class="product__stickybar--price-current">
+          {{ product.selected_or_first_available_variant.price | money }}
+        </span>
+
+        {% unless product.selected_or_first_available_variant.compare_at_price == 0 %}
+          <span class="product__stickybar--price-compare">
+            {{ product.selected_or_first_available_variant.compare_at_price | money }}
+          </span>
+        {% endunless %}
+      </div>
+    </div>
+    <div class="quicknav__border"></div>
+    <div class="product__stickybar--area" data-position="bottom">
+      <div class="product__stickybar--subarea">
+        {% if product.metafields.custom.sticky_bar_usp %}
+          {% for usp in product.metafields.custom.sticky_bar_usp.value %}
+            <div class="product__stickybar--usp">{{ usp }}</div>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <div class="product__stickybar--subarea">
+        <div class="product__stickybar--element">Kostenloser Versand</div>
+        <button
+          type="submit"
+          name="add"
+          form="{{ product_form_id }}"
+          style="
+            max-height: 26px;
+            font-size: 14px;
+            padding: 1.3rem 2.6rem;
+            min-height: 0;
+          "
+          class="product-form__submit button button--{%- if show_dynamic_checkout -%}transparent{% else %}primary{%- endif -%}"
+          {% if product.selected_or_first_available_variant.available == false %}
+            disabled
+          {% endif %}
+        >
+          {%- if product.selected_or_first_available_variant.available -%}
+            <div class="button__content">
+              <span class="button__label" data-label="{{ 'products.product.add_to_cart' | t }}">
+                {{ 'products.product.add_to_cart' | t }}
+              </span>
+            </div>
+
+            <div class="animated-button-circle"></div>
+
+            <div class="loading-overlay__spinner hidden">
+              {%- render 'icon-loading' -%}
+            </div>
+          {%- else -%}
+            <span>
+              {{ 'products.product.sold_out' | t }}
+            </span>
+          {%- endif -%}
+        </button>
+      </div>
+    </div>
+    <div class="quicknav__border" data-sticky-divider="mid"></div>
+  </div>
+
+  <div class="product__hero">
+    <div class="product__sticky-scope">
+      <div class="product__sticky">
+        <div class="product__header {% if usps == blank or usps.size == 0 %} no-usps{% endif %}">
+          <span class="sticky-sentinel" data-sticky-start aria-hidden="true"></span>
+          <h1 class="product__title">{{ product.title }}</h1>
+          {% if usps != blank and usps.size > 0 %}
+            <p class="product__title--intro">
+              {% for usp in usps %}
+                <span class="product__usp{% unless forloop.last %} is-separated{% endunless %}">
+                  {{ usp }}
+                </span>
+              {% endfor %}
+            </p>
+          {% endif %}
+          <div class="price-quick-row">
+            <div class="product__price--wrapper">
+              <div
+                class="product__price"
+                data-variant-price="{{ product.selected_or_first_available_variant.price }}"
+              >
+                {{ product.selected_or_first_available_variant.price | money }}
+              </div>
+              {% unless product.selected_or_first_available_variant.compare_at_price == 0 %}
+                <div class="compare-at-price">
+                  {{- product.selected_or_first_available_variant.compare_at_price | money -}}
+                </div>
+              {% endunless %}
+            </div>
+            <div class="product__quickbuy">
+              <button
+                type="submit"
+                name="add"
+                form="{{ product_form_id }}"
+                style="
+                  max-height: 23px;
+                  font-size: 13px;
+                  padding: .3rem 1rem;
+                  min-height: 0;
+                "
+                class="product-form__submit button button--{%- if show_dynamic_checkout -%}transparent{% else %}primary{%- endif -%}"
+                {% if product.selected_or_first_available_variant.available == false %}
+                  disabled
+                {% endif %}
+              >
+                {%- if product.selected_or_first_available_variant.available -%}
+                  <div class="button__content">
+                    <span class="button__label" data-label="{{ 'products.product.add_to_cart' | t }}">
+                      {{ 'products.product.add_to_cart' | t }}
+                    </span>
+                  </div>
+
+                  <div class="animated-button-circle"></div>
+
+                  <div class="loading-overlay__spinner hidden">
+                    {%- render 'icon-loading' -%}
+                  </div>
+                {%- else -%}
+                  <span>
+                    {{ 'products.product.sold_out' | t }}
+                  </span>
+                {%- endif -%}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="product__section-b">
+          <div class="product__gallery-container">
+            <div class="product__gallery" role="region" aria-roledescription="carousel" aria-label="Produktbilder">
+              <div class="product__gallery-scroll" tabindex="0">
+                {% unless product.has_only_default_variant %}
+                  <div
+                    class="product__media-wrapper--hero"
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label="Slide 1"
+                  >
+                    {% assign alt = product.selected_or_first_available_variant.featured_image.alt
+                      | default: product.title
+                      | append: ' – '
+                      | append: product.selected_or_first_available_variant.title
+                      | append: ' – '
+                      | append: '1'
+                    %}
+                    {{
+                      product.selected_or_first_available_variant.featured_image
+                      | image_url: width: 1144
+                      | image_tag:
+                        class: 'product__media--hero',
+                        width: 1144,
+                        preload: true,
+                        fetchpriority: 'high',
+                        loading: 'eager',
+                        alt: alt
+                    }}
+
+                    {% for overlay in product.metafields.custom.overlay.value %}
+                      {% assign alt = overlay.alt | default: 'Seitenwand Overlay' %}
+                      {{
+                        overlay
+                        | image_url: width: 1144
+                        | image_tag:
+                          class: 'base-overlay',
+                          width: 1144,
+                          fetchpriority: 'high',
+                          loading: 'eager',
+                          alt: alt,
+                          aria-hidden: 'true'
+                      }}
+                    {% endfor %}
+                    {% for layer in wall_layers %}
+                      {% assign alt = layer.alt_text | default: 'Seitenwand Overlay' %}
+                      {% capture wall_reference %}{{ layer.position | handle }}-{{ layer.variant.value.id }}{% endcapture %}
+                      {% capture z_style %}z-index: {{ layer.z_index }};{% endcapture %}
+                      {{
+                        layer.image
+                        | image_url: width: 1144
+                        | image_tag:
+                          class: 'overlay hidden',
+                          style: z_style,
+                          width: 1144,
+                          loading: 'lazy',
+                          fetchpriority: 'low',
+                          alt: alt,
+                          aria-hidden: 'true',
+                          data-wall-reference: wall_reference
+                      }}
+                    {% endfor %}
+                  </div>
+                {% endunless %}
+                {% for image in images %}
+                  {% assign alt = image.alt
+                    | default: product.title
+                    | append: ' – '
+                    | append: product.selected_or_first_available_variant.title
+                  %}
+                  <div
+                    class="product__media-wrapper--hero"
+                    aria-roledescription="slide"
+                    aria-label=" Slide {{ forloop.index | plus: 1 }}"
+                  >
+                    {{
+                      image
+                      | image_url: width: 1144
+                      | image_tag: class: 'product__media--hero', loading: 'lazy', fetchpriority: 'low', alt: alt
+                    }}
+                  </div>
+                {% endfor %}
+              </div>
+              <button class="product__gallery-arrow product__gallery-arrow--left" aria-label="Vorheriges Bild anzeigen">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+                  <path d="M21.559,12.062 L15.618,17.984 L21.5221,23.944 C22.105,24.533 22.1021,25.482 21.5131,26.065 C21.2211,26.355 20.8391,26.4999987 20.4571,26.4999987 C20.0711,26.4999987 19.6851,26.352 19.3921,26.056 L12.4351,19.034 C11.8531,18.446 11.8551,17.4999987 12.4411,16.916 L19.4411,9.938 C20.0261,9.353 20.9781,9.354 21.5621,9.941 C22.1471,10.528 22.1451,11.478 21.5591,12.062 L21.559,12.062 Z"></path>
+                </svg>
+              </button>
+              <button class="product__gallery-arrow product__gallery-arrow--right" aria-label="Nächstes Bild anzeigen">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+                  <path d="M23.5587,16.916 C24.1447,17.4999987 24.1467,18.446 23.5647,19.034 L16.6077,26.056 C16.3147,26.352 15.9287,26.4999987 15.5427,26.4999987 C15.1607,26.4999987 14.7787,26.355 14.4867,26.065 C13.8977,25.482 13.8947,24.533 14.4777,23.944 L20.3818,17.984 L14.4408,12.062 C13.8548,11.478 13.8528,10.5279 14.4378,9.941 C15.0218,9.354 15.9738,9.353 16.5588,9.938 L23.5588,16.916 L23.5587,16.916 Z"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="product__gallery-dots">
+              <button
+                class="product__gallery-dot active"
+                type="button"
+                data-slide="0"
+                aria-label="Bild 1 anzeigen"
+              ></button>
+              {% if product.has_only_default_variant %}
+                {% for image in images.value %}
+                  <button
+                    class="product__gallery-dot"
+                    type="button"
+                    data-slide="{{ forloop.index0 | plus: 1 }}"
+                    aria-label="Bild {{ forloop.index0 | plus: 2 }} anzeigen"
+                  ></button>
+                {% endfor %}
+              {% else %}
+                {% for image in images %}
+                  <button
+                    class="product__gallery-dot"
+                    type="button"
+                    data-slide="{{ forloop.index0 | plus: 1 }}"
+                    aria-label="Bild {{ forloop.index0 | plus: 2 }} anzeigen"
+                  ></button>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product__section-a">
+        {% if product.selected_or_first_available_variant.metafields.custom.walls.value %}
+          <div class="product__configuration">
+            <div class="product__option-name">Seitenwände</div>
+            <div class="product__configuration-walls">
+              {% for position in positions %}
+                <div class="product__configuration-form custom-select-wrapper">
+                  <!-- Native select -->
+                  <select
+                    class="product__configuration-select js-native-select"
+                    name="walls"
+                    aria-label="Seitenwand auswählen: {{ position }}"
+                  >
+                    {% assign layers_for_position = wall_layers | where: 'position', position %}
+
+                    {% assign standard_layers = layers_for_position | where: 'group', 'Standard' %}
+                    {% assign printed_layers = layers_for_position | where: 'group', 'Bedruckt' %}
+
+                    {% if standard_layers.size > 0 %}
+                      <optgroup label="Standard">
+                        <option value="">Ohne</option>
+                        {% for layer in standard_layers %}
+                          <option
+                            data-variant-id="{{ layer.variant.value.id }}"
+                            data-variant-price="{{ layer.variant.value.price }}"
+                            data-persistence-code="{{ layer.persistence_code }}"
+                            value="{{ layer.position | handle }}-{{ layer.variant.value.id }}"
+                          >
+                            {{ layer.title }} – {{ layer.variant.value.price | money }}
+                          </option>
+                        {% endfor %}
+                      </optgroup>
+                    {% endif %}
+
+                    {% if printed_layers.size > 0 %}
+                      <optgroup label="Bedruckt">
+                        <option value="">Ohne</option>
+                        {% for layer in printed_layers %}
+                          <option
+                            data-variant-id="{{ layer.variant.value.id }}"
+                            data-variant-price="{{ layer.variant.value.price }}"
+                            data-persistence-code="{{ layer.persistence_code }}"
+                            value="{{ layer.position | handle }}-{{ layer.variant.value.id }}"
+                          >
+                            {{ layer.title }} – {{ layer.variant.value.price | money }}
+                          </option>
+                        {% endfor %}
+                      </optgroup>
+                    {% endif %}
+                  </select>
+
+                  <!-- Custom UI -->
+                  <div class="custom-select js-custom-select">
+                    <div
+                      class="custom-select__selected"
+                      aria-haspopup="listbox"
+                      aria-expanded="false"
+                      aria-controls="walls-dropdown-{{ forloop.index }}"
+                    >
+                      <div class="custom-select__text">
+                        <div class="custom-select__position">{{ position }}</div>
+                        <div class="custom-select__value">Ohne</div>
+                        <div class="custom-select__price select-label--small"></div>
+                        <div class="custom-select__shipping select-label--small"></div>
+                      </div>
+                      <div class="custom-select__chevron">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#6e6e73"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 9l6 6l6 -6" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="custom-select__dropdown" id="walls-dropdown-{{ forloop.index }}" role="listbox">
+                      {% if standard_layers.size > 0 %}
+                        <div class="custom-select__group-column">
+                          <div class="custom-select__group">Standard</div>
+                          <div class="custom-select__option" style="height: auto;">
+                            <div class="option-value">Ohne</div>
+                            <div class="option-price"></div>
+                            <div class="option-shipping"></div>
+                          </div>
+                          {% for layer in standard_layers %}
+                            <div
+                              class="custom-select__option"
+                              data-value="{{ layer.position | handle }}-{{ layer.variant.value.id }}"
+                              data-persistence-code="{{ layer.persistence_code }}"
+                            >
+                              <div class="option-value">
+                                {{ layer.title }}
+                              </div>
+                              <div class="select-label--small option-price">
+                                {{- layer.variant.value.price | money -}}
+                              </div>
+                              <div class="select-label--small option-shipping">
+                                {% if layer.variant.value.inventory_quantity >= 6 %}
+                                  <svg
+                                    aria-hidden="true"
+                                    style="margin-right: 3px; min-width: 12px; min-height: 12px; position: relative; top: 2px;"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="12"
+                                    height="12"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="#707070"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    xmlns:v="https://vecta.io/nano"
+                                  >
+                                    <path d="M16.5 9.4l-9-5.19"></path><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"></path>
+                                  </svg>
+                                  <span>
+                                    <span style="color: #007900;">Auf Lager</span>
+                                  </span>
+                                {% elsif layer.variant.value.inventory_quantity > 0
+                                  and layer.variant.value.inventory_quantity <= 4
+                                %}
+                                  <svg
+                                    aria-hidden="true"
+                                    style="margin-right: 3px; min-width: 12px; min-height: 12px; position: relative; top: 2px;"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="12"
+                                    height="12"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="#707070"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    xmlns:v="https://vecta.io/nano"
+                                  >
+                                    <path d="M16.5 9.4l-9-5.19"></path><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"></path>
+                                  </svg>
+                                  <span
+                                    ><span style="color: #E67E22;"
+                                      >Knapper Bestand <br>
+                                      ({{ layer.variant.value.inventory_quantity }} Stück)</span
+                                    ></span
+                                  >
+                                {% elsif layer.variant.value.inventory_policy == 'continue' %}
+                                  <svg
+                                    aria-hidden="true"
+                                    style="margin-right: 3px; min-width: 12px; min-height: 12px; position: relative; top: 2px;"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="12"
+                                    height="12"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="#707070"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    xmlns:v="https://vecta.io/nano"
+                                  >
+                                    <path d="M16.5 9.4l-9-5.19"></path><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"></path>
+                                  </svg>
+                                  <span style="color: #ff8800;">Vorbestellbar</span>
+                                {% else %}
+                                  <svg
+                                    aria-hidden="true"
+                                    style="margin-right: 3px; min-width: 12px; min-height: 12px; position: relative; top: 2px;"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="12"
+                                    height="12"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="#707070"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    xmlns:v="https://vecta.io/nano"
+                                  >
+                                    <path d="M16.5 9.4l-9-5.19"></path><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"></path>
+                                  </svg>
+                                  <span style="color: #FF0000;">Nicht auf Lager</span>
+                                {% endif %}
+                              </div>
+                            </div>
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+
+                      {% if printed_layers.size > 0 %}
+                        <div class="custom-select__group-column">
+                          <div class="custom-select__group">Bedruckt</div>
+                          <div class="custom-select__option" style="height: auto;">
+                            <div class="option-value">Ohne</div>
+                            <div class="option-price"></div>
+                            <div class="option-shipping"></div>
+                          </div>
+                          {% for layer in printed_layers %}
+                            <div
+                              class="custom-select__option"
+                              data-value="{{ layer.position | handle }}-{{ layer.variant.value.id }}"
+                              data-persistence-code="{{ layer.persistence_code }}"
+                            >
+                              <div class="option-value">
+                                {{ layer.title }}
+                              </div>
+                              <div class="select-label--small option-price">
+                                {{- layer.variant.value.price | money -}}
+                              </div>
+                              <div class="select-label--small option-shipping">
+                                {% if layer.variant.value.inventory_quantity >= 6 %}
+                                  <svg
+                                    aria-hidden="true"
+                                    style="margin-right: 3px; min-width: 12px; min-height: 12px; position: relative; top: 2px;"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="12"
+                                    height="12"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="#707070"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    xmlns:v="https://vecta.io/nano"
+                                  >
+                                    <path d="M16.5 9.4l-9-5.19"></path><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"></path>
+                                  </svg>
+                                  <span>
+                                    <span style="color: #007900;">Auf Lager</span>
+                                  </span>
+                                {% elsif layer.variant.value.inventory_quantity > 0
+                                  and layer.variant.value.inventory_quantity <= 4
+                                %}
+                                  <svg
+                                    aria-hidden="true"
+                                    style="margin-right: 3px; min-width: 12px; min-height: 12px; position: relative; top: 2px;"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="12"
+                                    height="12"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="#707070"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    xmlns:v="https://vecta.io/nano"
+                                  >
+                                    <path d="M16.5 9.4l-9-5.19"></path><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"></path>
+                                  </svg>
+                                  <span
+                                    ><span style="color: #E67E22;"
+                                      >Knapper Bestand <br>
+                                      ({{ layer.variant.value.inventory_quantity }} Stück)</span
+                                    ></span
+                                  >
+                                {% elsif layer.variant.value.inventory_policy == 'continue' %}
+                                  <svg
+                                    aria-hidden="true"
+                                    style="margin-right: 3px; min-width: 12px; min-height: 12px; position: relative; top: 2px;"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="12"
+                                    height="12"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="#707070"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    xmlns:v="https://vecta.io/nano"
+                                  >
+                                    <path d="M16.5 9.4l-9-5.19"></path><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"></path>
+                                  </svg>
+                                  <span style="color: #ff8800;">Vorbestellbar</span>
+                                {% else %}
+                                  <svg
+                                    aria-hidden="true"
+                                    style="margin-right: 3px; min-width: 12px; min-height: 12px; position: relative; top: 2px;"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="12"
+                                    height="12"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="#707070"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    xmlns:v="https://vecta.io/nano"
+                                  >
+                                    <path d="M16.5 9.4l-9-5.19"></path><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"></path>
+                                  </svg>
+                                  <span style="color: #FF0000;">Nicht auf Lager</span>
+                                {% endif %}
+                              </div>
+                            </div>
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% unless product.has_only_default_variant %}
+          <div class="optionValueSelectors" data-section-id="{{ section.id }}">
+            {% for option in product.options_with_values %}
+              <div class="product__option">
+                <fieldset>
+                  <legend>
+                    {% if option.name == 'Farbe' %}
+                      <h2 class="product__option-name">
+                        {{ option.name }} - {{ product.selected_or_first_available_variant.options[forloop.index0] }}
+                      </h2>
+                    {% else %}
+                      <span class="product__option-name">{{ option.name }}</span>
+                    {% endif %}
+                  </legend>
+
+                  <div class="product__option-options {% if option.name == 'Farbe' %}hero-row{% else %}hero-wrap{% endif %}">
+                    {% for option_value in option.values %}
+                      {%- capture input_id -%}
+                {{ section.id }}-{{ option.position }}-{{ forloop.index0 -}}
+              {%- endcapture -%}
+
+                      <div class="product__option-value {% if option.name == 'Farbe' %}flex-basis-0{% endif %}">
+                        <input
+                          type="radio"
+                          class="product__option-input"
+                          id="{{ input_id }}"
+                          name="{{ option.name }}-{{ option.position }}"
+                          value="{{ option_value | escape }}"
+                          {% if option_value.selected %}
+                            checked
+                          {% endif %}
+                          {% comment %}
+                            {% unless option_value.available %}
+                              disabled aria-disabled="true"
+                            {% endunless %}
+                          {% endcomment %}
+                          data-option-value-id="{{ option_value.id }}"
+                        >
+
+                        {% if option.name == 'Farbe' %}
+                          <label
+                            class="color-swatch"
+                            for="{{ input_id }}"
+                            title="{{ option_value }}"
+                            aria-label="{{ option.name }}: {{ option_value }}"
+                          >
+                            <div
+                              class="colornav__item-border"
+                              style="border: 2px solid {% if option_value.selected %}#0072e3{% else %}#e6e6e6{% endif %};"
+                            >
+                              <div class="colornav__item-whitespace">
+                                <div
+                                  class="colornav__item-swatch"
+                                  style="background: {{ option_value.swatch.color }};"
+                                ></div>
+                              </div>
+                            </div>
+                          </label>
+                        {% else %}
+                          {% assign words = option_value | split: ' ' %}
+                          <label class="product__option-label" for="{{ input_id }}">
+                            <span class="label-main">
+                              {{- words[0] }}
+                              {{ words[1] -}}
+                            </span>
+                            {% if words.size > 2 %}
+                              <span class="label-small">{{ words | slice: 2, words.size | join: ' ' }}</span>
+                            {% endif %}
+                          </label>
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                </fieldset>
+              </div>
+            {% endfor %}
+          </div>
+        {% endunless %}
+        <span class="sticky-sentinel" data-sticky-compact aria-hidden="true"></span>
+      </div>
+    </div>
+    <div class="product__buyform">
+      {% render 'shipping-info', product: product %}
+      {% form 'product', product %}
+        {% if product.selected_or_first_available_variant.metafields.custom.walls %}
+          <input type="hidden" name="items[0][id]" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="items[0][quantity]" class="form-qty" data-base="1" value="1">
+        {% else %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {% endif %}
+        <div class="product-form__buttons">
+          <div class="product-form__buttons-row" style="flex-wrap: nowrap;">
+            <div class="product-form__input product-form__quantity no-js-hidden">
+              {%- assign cart_qty = cart | item_count_for_variant: product.selected_or_first_available_variant.id -%}
+              <quantity-input class="quantity">
+                <button class="quantity__button no-js-hidden focus-inset" name="minus" type="button">
+                  <span class="visually-hidden">
+                    {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+                  </span>
+                  {% render 'icon-minus' %}
+                </button>
+                <input
+                  class="quantity__input focus-inset"
+                  type="number"
+                  name="quantity"
+                  id="Quantity-{{ section.id }}"
+                  data-cart-quantity="{{ cart_qty }}"
+                  data-min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+                  min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+                  {% if product.selected_or_first_available_variant.inventory_quantity %}
+                    data-max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
+                    max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
+                  {% endif %}
+                  step="{{ product.selected_or_first_available_variant.quantity_rule.increment }}"
+                  value="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+                  form="{{ product_form_id }}"
+                >
+                <label class="visually-hidden" for="Quantity-{{ section.id }}">
+                  {{ 'products.product.quantity.label' | t }}
+                </label>
+                <button class="quantity__button no-js-hidden focus-inset" name="plus" type="button">
+                  <span class="visually-hidden">
+                    {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
+                  </span>
+                  {% render 'icon-plus' %}
+                </button>
+              </quantity-input>
+              <div class="quantity__rules caption">
+                {%- if product.selected_or_first_available_variant.quantity_rule.increment > 1 -%}
+                  <span class="divider">
+                    {{-
+                      'products.product.quantity.multiples_of'
+                      | t: quantity: product.selected_or_first_available_variant.quantity_rule.increment
+                    -}}
+                  </span>
+                {%- endif -%}
+                {%- if product.selected_or_first_available_variant.quantity_rule.min > 1 -%}
+                  <span class="divider">
+                    {{-
+                      'products.product.quantity.minimum_of'
+                      | t: quantity: product.selected_or_first_available_variant.quantity_rule.min
+                    -}}
+                  </span>
+                {%- endif -%}
+                {%- if product.selected_or_first_available_variant.quantity_rule.max != null -%}
+                  <span class="divider">
+                    {{-
+                      'products.product.quantity.maximum_of'
+                      | t: quantity: product.selected_or_first_available_variant.quantity_rule.max
+                    -}}
+                  </span>
+                {%- endif -%}
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              name="add"
+              class="product-form__submit button button--{%- if show_dynamic_checkout -%}transparent{% else %}primary{%- endif -%}"
+              {% if product.selected_or_first_available_variant.available == false %}
+                disabled
+              {% endif %}
+            >
+              {%- if product.selected_or_first_available_variant.available -%}
+                <div class="button__content">
+                  <span class="button__label" data-label="{{ 'products.product.add_to_cart' | t }}">
+                    {{ 'products.product.add_to_cart' | t }}
+                  </span>
+                </div>
+
+                <div class="animated-button-circle"></div>
+
+                <div class="loading-overlay__spinner hidden">
+                  {%- render 'icon-loading' -%}
+                </div>
+              {%- else -%}
+                <span>
+                  {{ 'products.product.sold_out' | t }}
+                </span>
+              {%- endif -%}
+            </button>
+          </div>
+          {%- if show_dynamic_checkout -%}
+            <div class="product-form__checkout no-js-hidden">
+              {{ form | payment_button }}
+            </div>
+          {%- endif -%}
+        </div>
+      {% endform %}
+    </div>
+  </div>
+
+  <span class="sticky-sentinel" data-sticky-end aria-hidden="true"></span>
+  <div class="product-accordion--wrapper">
+    <details class="product-accordion" open>
+      <summary class="product-accordion__button" aria-controls="acc-prodinfo">
+        <h2 id="acc-prodinfo-title" class="product-accordion__title">Produktinformationen</h2>
+        <img
+          class="product-accordion__chevron"
+          src="https://cdn.shopify.com/s/files/1/0615/9302/6783/files/chevron-down-badge.svg?v=1747152730"
+          width="28"
+          height="28"
+          alt="Chevron unten"
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+        >
+      </summary>
+
+      <div class="product-accordion__section" id="acc-prodinfo" role="region" aria-labelledby="acc-prodinfo-title">
+        <h3 class="product-accordion__section-title">Überblick</h3>
+        <div class="product-accordion__section-content">
+          <div class="product-accordion__section-text">
+            {{ product.description }}
+          </div>
+        </div>
+      </div>
+      <div class="product-accordion__section">
+        <h3 class="product-accordion__section-title">Features</h3>
+        <div class="product-accordion__section-content">
+          <div class="product-accordion__section-text">{{ product.metafields.custom.features | metafield_tag }}</div>
+        </div>
+      </div>
+      <div class="product-accordion__section">
+        <h3 class="product-accordion__section-title">Lieferumfang</h3>
+        <div class="product-accordion__section-content">
+          <div class="product-accordion__section-text">
+            {{ product.metafields.custom.included_items | metafield_tag }}
+          </div>
+        </div>
+      </div>
+      <div class="product-accordion__section">
+        <h3 class="product-accordion__section-title">Herstellerinformationen</h3>
+        <div class="product-accordion__section-content">
+          <div class="product-accordion__section-text">
+            {{ product.metafields.custom.gpsr | metafield_tag }}
+          </div>
+          {% if product.selected_or_first_available_variant.sku %}
+            <div class="product-accordion__section-text">
+              <strong>Produktidentifikation</strong> 
+              <br>SKU: {{ product.selected_or_first_available_variant.sku }}
+            </div>
+        {% endif %}
+        </div>
+      </div>
+    </details>
+    {% if material or fabric %}
+      <details class="product-accordion">
+        <summary class="product-accordion__button" style="border:none;">
+          <h2 class="product-accordion__title">Technische Daten</h2>
+          <img
+            class="product-accordion__chevron"
+            src="https://cdn.shopify.com/s/files/1/0615/9302/6783/files/chevron-down-badge.svg?v=1747152730"
+            width="28"
+            height="28"
+            alt="Chevron unten"
+            aria-hidden="true"
+            loading="lazy"
+            decoding="async"
+          >
+        </summary>
+
+        {% if material %}
+          {%- comment -%} Material Section {%- endcomment -%}
+          <div class="product-accordion__section">
+            <h3 class="product-accordion__section-title">Material</h3>
+            <div class="product-accordion__section-content">
+              <h4 class="product-accordion__section-subtitle">Rahmen-Serie</h4>
+              <div class="product-accordion__section-text">
+                {{ material.label }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Basismaterial</h4>
+              <div class="product-accordion__section-text">
+                {{ material.base_material }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Form</h4>
+              <div class="product-accordion__section-text">
+                {{ material.form }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Verbindermaterial</h4>
+              <div class="product-accordion__section-text">
+                {{ material.joints_material }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Gelenkematerial</h4>
+              <div class="product-accordion__section-text">
+                {{ material.connectors_material }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Höhenverstellbarkeit</h4>
+              <div class="product-accordion__section-text">
+                {{ material.height_adjustment }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Klettverschluss</h4>
+              <div class="product-accordion__section-text">
+                {{ material.velcro }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Sicherungsbolzen</h4>
+              <div class="product-accordion__section-text">
+                {{ material.safety_pin }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Materialstärke</h4>
+              <div class="product-accordion__section-text">
+                {{ material.strength | metafield_text }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Diagonale</h4>
+              <div class="product-accordion__section-text">
+                {{ material.diagonal_length | metafield_text }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Minimale Durchgangshöhe</h4>
+              <div class="product-accordion__section-text">
+                {{ material.clearance_height_min | metafield_text }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Maximale Durchgangshöhe</h4>
+              <div class="product-accordion__section-text">
+                {{ material.clearance_height_max | metafield_text }}
+              </div>
+
+              {% assign scissor_frame = material.scissor_frame.value %}
+              {% assign values = '' %}
+
+              {% for dimension in scissor_frame %}
+                {% assign values = values | append: dimension.value | append: ' ' | append: dimension.unit %}
+                {% unless forloop.last %}
+                  {% assign values = values | append: ' x ' %}
+                {% endunless %}
+              {% endfor %}
+
+              <h4 class="product-accordion__section-subtitle">Scherengestänge</h4>
+              <div class="product-accordion__section-text">
+                {{ values }}
+              </div>
+              {% assign ridge_height = material.ridge_height.value %}
+              {% assign values = '' %}
+
+              {% for dimension in ridge_height %}
+                {% assign values = values | append: dimension.value | append: ' ' | append: dimension.unit %}
+                {% unless forloop.last %}
+                  {% assign values = values | append: ' - ' %}
+                {% endunless %}
+              {% endfor %}
+
+              <h4 class="product-accordion__section-subtitle">Höhe Dachfirst</h4>
+              <div class="product-accordion__section-text">
+                {{ values }}
+              </div>
+
+              {% assign values = '' %}
+              {% for dimension in product.metafields.custom.packed_dimension.value %}
+                {% assign values = values | append: dimension.value | append: ' ' | append: dimension.unit %}
+                {% unless forloop.last %}
+                  {% assign values = values | append: ' x ' %}
+                {% endunless %}
+              {% endfor %}
+
+              <h4 class="product-accordion__section-subtitle">Packmaß</h4>
+              <div class="product-accordion__section-text">
+                {{ values }}
+              </div>
+
+              <h4 class="product-accordion__section-subtitle">Gewicht</h4>
+              <div class="product-accordion__section-text">
+                {{ product.metafields.custom.weight.value }}
+                {{ product.metafields.custom.weight.unit }}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+        {% if fabric %}
+          {%- comment -%} Fabric Section {%- endcomment -%}
+          <div class="product-accordion__section">
+            <h3 class="product-accordion__section-title">Stoff</h3>
+            <div class="product-accordion__section-content">
+              <h4 class="product-accordion__section-subtitle">Basismaterial</h4>
+              <div class="product-accordion__section-text">
+                {{ fabric.material }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Innenbeschichtung</h4>
+              <div class="product-accordion__section-text">
+                {{ fabric.internal_coating }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Farbe der Innenbeschichtung</h4>
+              <div class="product-accordion__section-text">
+                {{ fabric.internal_color }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">UV-Schutzklasse</h4>
+              <div class="product-accordion__section-text">
+                {{ fabric.uv_protection_rating }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Beständigkeit gegen Ausbleichen</h4>
+              <div class="product-accordion__section-text">
+                {{ fabric.fade_resistance }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Lichtechtheitsstufe</h4>
+              <div class="product-accordion__section-text">
+                {{ fabric.lightfastness_rating }}
+              </div>
+              <h4 class="product-accordion__section-subtitle">B1 Zertifiziert</h4>
+              <div class="product-accordion__section-text">
+                {% if fabric.b1_zertifiziert == true %}
+                  Ja
+                {% else %}
+                  Nein
+                {% endif %}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Wasserdichtigkeit (100%)</h4>
+              <div class="product-accordion__section-text">
+                {% if fabric.waterproof == true %}
+                  Ja
+                {% else %}
+                  Nein
+                {% endif %}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Schmutzabweisend</h4>
+              <div class="product-accordion__section-text">
+                {% if fabric.dirt_repellent == true %}
+                  Ja
+                {% else %}
+                  Nein
+                {% endif %}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Bandversiegelte Nähte</h4>
+              <div class="product-accordion__section-text">
+                {% if fabric.taped_seams == true %}
+                  Ja
+                {% else %}
+                  Nein
+                {% endif %}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Ösen vorhanden</h4>
+              <div class="product-accordion__section-text">
+                {% if fabric.corner_eyelets == true %}
+                  Ja
+                {% else %}
+                  Nein
+                {% endif %}
+              </div>
+              <h4 class="product-accordion__section-subtitle">Materialverstärkung der Kontaktpunkte</h4>
+              <div class="product-accordion__section-text">
+                {% if fabric.reinforced_contact_points == true %}
+                  Ja
+                {% else %}
+                  Nein
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </details>
+    {% endif %}
+  </div>
+</div>
+
+{%- assign canonical_url = shop.url | append: product.url -%}
+{%- assign ship_id = canonical_url | append: '#shipping_policy' -%}
+{%- assign return_id = canonical_url | append: '#return_policy' -%}
+{%- assign group_id = canonical_url | append: '#productgroup' -%}
+{%- assign product_id = canonical_url | append: '#product' -%}
+
+{%- assign variant_count = product.variants | size -%}
+{%- assign use_group = false -%}
+{%- if variant_count > 1 -%}
+  {%- assign use_group = true -%}
+{%- endif -%}
+
+{%- capture varies_by_raw -%}{%- endcapture -%}
+
+{%- for option in product.options_with_values -%}
+  {%- assign option_name = option.name | downcase -%}
+
+  {%- if option_name == 'title' or option_name == 'titel' -%}
+    {%- continue -%}
+  {%- endif -%}
+
+  {%- assign prop = option.name -%}
+  {%- if option_name contains 'farbe' or option_name contains 'color' -%}
+    {%- assign prop = 'https://schema.org/color' -%}
+  {%- elsif option_name contains 'size' or option_name contains 'kapazität' -%}
+    {%- assign prop = 'https://schema.org/size' -%}
+  {%- elsif option_name contains 'stoff' -%}
+    {%- assign prop = 'https://schema.org/material' -%}
+  {%- elsif option_name contains 'muster' or option_name contains 'pattern' -%}
+    {%- assign prop = 'https://schema.org/pattern' -%}
+  {%- else -%}
+    {%- assign prop = 'https://schema.org/additionalProperty' -%}
+  {%- endif -%}
+
+  {%- capture varies_by_raw -%}{{ varies_by_raw }}||{{ prop }}{%- endcapture -%}
+{%- endfor -%}
+
+{%- assign varies_by_arr = varies_by_raw | remove_first: '||' | split: '||' | uniq -%}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+
+      {%- if use_group -%}
+      {
+        "@type": "ProductGroup",
+        "@id": {{ group_id | json }},
+        "name": {{ product.title | json }},
+        "description": {{ product.description | strip_html | strip_newlines | json }},
+        "url": {{ canonical_url | json }},
+        {%- if product.featured_image -%}
+        "image": [{{ product.featured_image | image_url: width: 1200 | prepend: 'https:' | json }}],
+        {%- endif -%}
+        "brand": { "@type": "Brand", "name": {{ product.vendor | json }} },
+        {%- if product.metafields.custom.size -%}
+        "size": {{ product.metafields.custom.size | json }},
+        {% endif %}
+        {%- if usps != blank and usps.size > 0 -%}
+          "positiveNotes": [
+            {%- for usp in usps -%}
+              {{ usp | strip_html | strip | json }}{% unless forloop.last %},{% endunless %}
+            {%- endfor -%}
+          ],
+        {%- endif -%}
+
+        {%- if fabric -%}
+          "additionalProperty": [
+            {
+              "@type": "PropertyValue",
+              "name": "UV-Schutzklasse",
+              "value": "UV 50+"
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "Lichtechtheitsstufe",
+              "value": "6"
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "100% Wasserdichtigkeit",
+              "value": "Ja"
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "Innenbeschichtung",
+              "value": "PVC"
+            }
+          ],
+        {%- endif-%}
+
+        {%- if product.metafields.custom.main_category -%}
+        "category": {{ shop.url | append: product.metafields.custom.main_category.value.url | json }},
+        {% endif %}
+        "productGroupID": {{ product.handle | json }},
+
+        "variesBy": [
+          {%- assign first = true -%}
+          {%- for property in varies_by_arr -%}
+            {%- if property == blank -%}{%- continue -%}{%- endif -%}
+            {%- unless first -%},{%- endunless -%}
+            {{ property | json }}
+            {%- assign first = false -%}
+          {%- endfor -%}
+        ],
+
+        "hasVariant": [
+          {%- for variant in product.variants -%}
+          {
+            "@type": "Product",
+            "@id": {{ canonical_url | append: '#variant-' | append: variant.id | json }},
+            "name": {{ product.title | append: ' – ' | append: variant.title | json }},
+            {%- if variant.sku != blank -%}
+            "sku": {{ variant.sku | json }},
+            {%- endif -%}
+            "isVariantOf": { "@id": {{ group_id | json }} },
+
+            {%- assign bc = variant.barcode | strip -%}
+            {%- if bc != blank -%}
+              {%- assign bc_len = bc | size -%}
+              {%- if bc_len == 8 -%}
+            "gtin8": {{ bc | json }},
+              {%- elsif bc_len == 12 -%}
+            "gtin12": {{ bc | json }},
+              {%- elsif bc_len == 13 -%}
+            "gtin13": {{ bc | json }},
+              {%- elsif bc_len == 14 -%}
+            "gtin14": {{ bc | json }},
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if variant.featured_image -%}
+            "image": [{{ variant.featured_image | image_url: width: 1200 | prepend: 'https:' | json }}],
+            {%- elsif product.featured_image -%}
+            "image": [{{ product.featured_image | image_url: width: 1200 | prepend: 'https:' | json }}],
+            {%- endif -%}
+
+            {%- if material -%}
+              {%- if material.clearance_height_max.value -%}
+                "height": {
+                  "@type": "QuantitativeValue",
+                  "value": {{ material.clearance_height_max.value.value | json }},
+                  "unitText": {{ material.clearance_height_max.value.unit | json }}
+                },
+              {% endif %}
+              {%- if material.clearance_height_min.value -%}
+                "hasMeasurement": [
+                  {%- if material.clearance_height_min.value -%}
+                    { "@type": "QuantitativeValue", "name": "Minimale Durchgangshöhe", "value": {{ material.clearance_height_min.value.value | json }}, "unitText": {{ material.clearance_height_min.value.unit | json }} }
+                  {% endif %}
+                ],
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if product.metafields.custom.weight.value -%}
+              "weight": {
+                "@type": "QuantitativeValue",
+                "value": {{ product.metafields.custom.weight.value.value | json }},
+                "unitText": {{ product.metafields.custom.weight.value.unit | json }}
+              },
+            {% endif %}
+
+            {%- assign variant_color = nil -%}
+            {%- assign variant_size = nil -%}
+            {%- assign variant_material = nil -%}
+            {%- for option in product.options_with_values -%}
+              {%- assign name = option.name | downcase -%}
+              {%- assign val = variant.options[forloop.index0] -%}
+              {%- if name contains 'farbe' or name contains 'color' -%}
+                {%- assign variant_color = val -%}
+              {%- elsif name contains 'size' or name contains 'kapazität' -%}
+                {%- assign variant_size = val -%}
+              {%- elsif name contains 'stoff' -%}
+                {%- assign variant_material = val -%}
+              {%- endif -%}
+            {%- endfor -%}
+
+            {%- if variant_color -%}
+            "color": {{ variant_color | json }},
+            {%- endif -%}
+            {%- if variant_size -%}
+            "size": {{ variant_size | json }},
+            {%- endif -%}
+            {%- if variant_material -%}
+            "material": {{ variant_material | json }},
+            {%- endif -%}
+
+            {%- capture additional_property_items -%}
+              {%- assign is_first_additional_property = true -%}
+
+              {%- if variant.metafields.custom.fabric.value.b1_zertifiziert -%}
+                {%- if variant.metafields.custom.fabric.value.b1_zertifiziert.value == true -%}
+                  {%- assign b1_text = 'Ja' -%}
+                {%- endif -%}
+
+                {%- unless is_first_additional_property -%},{%- endunless -%}
+                {
+                  "@type": "PropertyValue",
+                  "name": "B1 Zertifiziert",
+                  "value": {{ b1_text | json }}
+                }
+                {%- assign is_first_additional_property = false -%}
+              {%- endif -%}
+
+              {%- for option in product.options_with_values -%}
+                {%- assign option_name_lowercase = option.name | downcase -%}
+
+                {%- if option_name_lowercase contains 'farbe' or option_name_lowercase contains 'color' -%}{%- continue -%}{%- endif -%}
+                {%- if option_name_lowercase contains 'größe'
+                  or option_name_lowercase contains 'groesse'
+                  or option_name_lowercase contains 'size'
+                  or option_name_lowercase contains 'kapazität'
+                -%}{%- continue -%}{%- endif -%}
+                {%- if option_name_lowercase contains 'stoff' -%}{%- continue -%}{%- endif -%}
+
+                {%- unless is_first_additional_property -%},{%- endunless -%}
+                {
+                  "@type": "PropertyValue",
+                  "name": {{ option.name | json }},
+                  "value": {{ variant.options[forloop.index0] | json }}
+                }
+                {%- assign is_first_additional_property = false -%}
+              {%- endfor -%}
+            {%- endcapture -%}
+
+            {%- assign additional_property_items = additional_property_items | strip -%}
+            {%- if additional_property_items != blank -%}
+            "additionalProperty": [
+              {{ additional_property_items }}
+            ],
+            {%- endif -%}
+
+
+            "offers": {
+              "@type": "Offer",
+              "url": {{ canonical_url | append: '?variant=' | append: variant.id | json }},
+              "priceCurrency": {{ cart.currency.iso_code | json }},
+              "price": {{ variant.price | divided_by: 100.0 | round: 2 | json }},
+              "itemCondition": "https://schema.org/NewCondition",
+              "availability": "{% if variant.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+              "seller": { "@type": "Organization", "name": {{ shop.name | json }}, "url": {{ shop.url | json }} },
+              "shippingDetails": { "@id": {{ ship_id | json }} },
+              "hasMerchantReturnPolicy": { "@id": {{ return_id | json }} }
+            }
+          }{% unless forloop.last %},{% endunless %}
+          {%- endfor -%}
+        ]
+      },
+      {%- else -%}
+      {%- assign variant = product.selected_or_first_available_variant -%}
+      {
+        "@type": "Product",
+        "@id": {{ product_id | json }},
+        "name": {{ product.title | json }},
+        "description": {{ product.description | strip_html | strip_newlines | json }},
+        "url": {{ canonical_url | json }},
+        {%- if variant.sku != blank -%}
+        "sku": {{ variant.sku | json }},
+        {%- endif -%}
+
+        {%- assign bc = variant.barcode | strip -%}
+        {%- if bc != blank -%}
+          {%- assign bc_len = bc | size -%}
+          {%- if bc_len == 8 -%}
+        "gtin8": {{ bc | json }},
+          {%- elsif bc_len == 12 -%}
+        "gtin12": {{ bc | json }},
+          {%- elsif bc_len == 13 -%}
+        "gtin13": {{ bc | json }},
+          {%- elsif bc_len == 14 -%}
+        "gtin14": {{ bc | json }},
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- if variant.featured_image -%}
+        "image": [{{ variant.featured_image | image_url: width: 1200 | prepend: 'https:' | json }}],
+        {%- elsif product.featured_image -%}
+        "image": [{{ product.featured_image | image_url: width: 1200 | prepend: 'https:' | json }}],
+        {%- endif -%}
+
+        "brand": { "@type": "Brand", "name": {{ product.vendor | json }} },
+
+        "offers": {
+          "@type": "Offer",
+          "url": {{ canonical_url | append: '?variant=' | append: variant.id | json }},
+          "priceCurrency": {{ cart.currency.iso_code | json }},
+          "price": {{ variant.price | divided_by: 100.0 | round: 2 | json }},
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "{% if variant.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+          "seller": { "@type": "Organization", "name": {{ shop.name | json }}, "url": {{ shop.url | json }} },
+          "shippingDetails": { "@id": {{ ship_id | json }} },
+          "hasMerchantReturnPolicy": { "@id": {{ return_id | json }} }
+        }
+      },
+      {%- endif -%}
+
+      {
+        "@type": "OfferShippingDetails",
+        "@id": {{ ship_id | json }},
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": 0,
+          "currency": {{ cart.currency.iso_code | json }}
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": {{ localization.country.iso_code | json }}
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 1,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 2,
+            "maxValue": 5,
+            "unitCode": "DAY"
+          }
+        }
+      },
+
+      {
+        "@type": "MerchantReturnPolicy",
+        "@id": {{ return_id | json }},
+        "applicableCountry": {{ localization.country.iso_code | json }},
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 14,
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnFees": "https://schema.org/FreeReturn"
+      }
+
+    ]
+  }
+</script>
+
+{% if product.metafields.custom.faqs %}
+  {% assign faqs = product.metafields.custom.faqs.value %}
+
+  <section class="category__faq">
+    <h2 class="category__faq--title">FAQ</h2>
+
+    {% for faq in faqs %}
+      <details
+        class="category__faq--item"
+        {% if forloop.first %}
+          open
+        {% endif %}
+      >
+        <summary class="category__faq--question">
+          {{ faq.question }}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#6e6e73"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="category__faq--svg"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 9l6 6l6 -6" />
+          </svg>
+        </summary>
+        <div class="category__faq--answer">
+          {% if faq.answer_rich %}
+            {{ faq.answer_rich | metafield_tag }}
+          {% else %}
+            {{ faq.answer | metafield_tag }}
+          {% endif %}
+        </div>
+      </details>
+    {% endfor %}
+  </section>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {% for faq in faqs %}
+          {
+            "@type": "Question",
+            "name": {{ faq.question | strip | json }},
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": {{ faq.answer | strip_html | strip | json }}
+            }
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    }
+  </script>
+{% endif %}
+
+{% comment %}
+{% javascript %}
+  document.addEventListener('change', function (event) {
+    const input = event.target;
+
+    if (!input.matches('.product__option-input')) return;
+
+    onVariantChange(event);
+  });
+
+  function onVariantChange(event) {
+    // Assumes the option value picker is wrapped in a section with a class optionValueSelectors with a section-id data attribute
+    const optionValueSelectors = event.target.closest('.optionValueSelectors');
+    const sectionId = optionValueSelectors.dataset.sectionId;
+
+    // Get the selected option value IDs and format as query param
+    const selectedOptionValues = Array.from(optionValueSelectors.querySelectorAll('input[type="radio"]:checked')).map(
+      ({ dataset }) => dataset.optionValueId
+    );
+
+    const params = selectedOptionValues.length > 0 ? `&option_values=${selectedOptionValues.join(',')}` : '';
+
+    // Fetch the product section with the new option value selection, and replace the option value picker with the new availability state
+    fetch(`${window.location.href}?section_id=${sectionId}${params}`)
+      .then((response) => response.text())
+      .then((responseText) => {
+        const html = new DOMParser().parseFromString(responseText, 'text/html');
+
+        const currentSection = document.querySelector(`#shopify-section-${sectionId}`);
+        const newSection = html.querySelector(`#shopify-section-${sectionId}`);
+
+        currentSection.innerHTML = newSection.innerHTML;
+        document.dispatchEvent(new CustomEvent('product:section:updated'));
+        document.querySelector(`#${event.target.id}`).focus();
+      });
+  }
+
+  (function () {
+    function initProductGallery() {
+      const STORAGE_KEY = 'productGalleryIndex';
+
+      const gallery = document.querySelector('.product__gallery-scroll');
+      if (!gallery) return;
+
+      // prevent double init
+      if (gallery.dataset.initialized) return;
+      gallery.dataset.initialized = 'true';
+
+      const slides = gallery.querySelectorAll('.product__media-wrapper--hero');
+      const dots = document.querySelectorAll('.product__gallery-dot');
+      const prevBtn = document.querySelector('.product__gallery-arrow--left');
+      const nextBtn = document.querySelector('.product__gallery-arrow--right');
+
+      let scrollTimeout;
+
+      function saveIndex(index) {
+        sessionStorage.setItem(STORAGE_KEY, index);
+      }
+
+      function updateArrows(index) {
+        if (prevBtn) {
+          prevBtn.style.display = index === 0 ? 'none' : '';
+        }
+
+        if (nextBtn) {
+          nextBtn.style.display = index === slides.length - 1 ? 'none' : '';
+        }
+      }
+
+      function updateDots(index) {
+        dots.forEach((d) => d.classList.remove('active'));
+        if (dots[index]) dots[index].classList.add('active');
+      }
+
+      function getClosestIndex() {
+        let closest = 0;
+        let min = Infinity;
+
+        slides.forEach((slide, i) => {
+          const dist = Math.abs(slide.offsetLeft - gallery.scrollLeft);
+          if (dist < min) {
+            min = dist;
+            closest = i;
+          }
+        });
+
+        return closest;
+      }
+
+      // snap on release
+      gallery.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          const index = getClosestIndex();
+          gallery.scrollTo({
+            left: slides[index].offsetLeft,
+            behavior: 'smooth',
+          });
+          updateDots(index);
+          updateArrows(index);
+          saveIndex(index);
+        }, 120);
+      });
+
+      // dots
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const index = Number(dot.dataset.slide);
+          gallery.scrollTo({
+            left: slides[index].offsetLeft,
+            behavior: 'smooth',
+          });
+          updateDots(index);
+          updateArrows(index);
+          saveIndex(index);
+        });
+      });
+
+      // arrows
+      if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+          const index = getClosestIndex() - 1;
+          if (index >= 0) {
+            gallery.scrollTo({
+              left: slides[index].offsetLeft,
+              behavior: 'smooth',
+            });
+            updateDots(index);
+            updateArrows(index);
+            saveIndex(index);
+          }
+        });
+
+        nextBtn.addEventListener('click', () => {
+          const index = getClosestIndex() + 1;
+          if (index < slides.length) {
+            gallery.scrollTo({
+              left: slides[index].offsetLeft,
+              behavior: 'smooth',
+            });
+            updateDots(index);
+            updateArrows(index);
+            saveIndex(index);
+          }
+        });
+      }
+      const savedIndex = Number(sessionStorage.getItem(STORAGE_KEY)) || 0;
+
+      requestAnimationFrame(() => {
+        gallery.scrollTo({
+          left: slides[savedIndex]?.offsetLeft || 0,
+          behavior: 'auto',
+        });
+
+        updateDots(savedIndex);
+        updateArrows(savedIndex);
+      });
+    }
+
+    // init on first load
+    document.addEventListener('DOMContentLoaded', initProductGallery);
+
+    // 🔥 re-init after AJAX section swap
+    document.addEventListener('product:section:updated', () => {
+      // reset flag in case HTML was replaced
+      const gallery = document.querySelector('.product__gallery-scroll');
+      if (gallery) delete gallery.dataset.initialized;
+
+      initProductGallery();
+    });
+  })();
+
+  (function () {
+    // Map to store persistence per wrapper (keyed by wrapper ID)
+    const wrapperPersistence = new Map();
+
+    /**
+     * Sync custom UI to match native select
+     */
+    function syncCustomSelectFromNative(wrapper) {
+      const select = wrapper.querySelector('.js-native-select');
+      const custom = wrapper.querySelector('.custom-select');
+      if (!select || !custom) return;
+
+      const selectedOption = select.options[select.selectedIndex];
+      if (!selectedOption) return;
+
+      const value = selectedOption.value;
+
+      const customOption = custom.querySelector(`.custom-select__option[data-value="${CSS.escape(value)}"]`);
+      if (!customOption) return;
+
+      const selected = custom.querySelector('.custom-select__selected');
+      const valueSpan = selected.querySelector('.custom-select__value');
+      const priceSpan = selected.querySelector('.custom-select__price');
+      const shippingSpan = selected.querySelector('.custom-select__shipping');
+
+      const optionValue = customOption.querySelector('.option-value');
+      const optionPrice = customOption.querySelector('.option-price');
+      const optionShipping = customOption.querySelector('.option-shipping');
+
+      if (optionValue) valueSpan.textContent = optionValue.textContent;
+      if (optionPrice) priceSpan.textContent = optionPrice.textContent;
+      if (optionShipping) shippingSpan.innerHTML = optionShipping.innerHTML;
+
+      // mark selected visually
+      custom.querySelectorAll('.custom-select__option').forEach((opt) => {
+        opt.classList.toggle('is-selected', opt === customOption);
+      });
+    }
+
+    /**
+     * Restore native select based on stored persistence
+     */
+    function restoreByPersistenceCode(wrapper) {
+      const wrapperId = wrapper.id;
+      if (!wrapperId) return;
+
+      const code = wrapperPersistence.get(wrapperId);
+      if (!code) return;
+
+      const select = wrapper.querySelector('.js-native-select');
+      if (!select) return;
+
+      const option = select.querySelector(`option[data-persistence-code="${code}"]`);
+      if (!option) return;
+
+      select.value = option.value;
+    }
+
+    /**
+     * Initialize all custom selects
+     */
+    function initCustomSelects() {
+      const wrappers = document.querySelectorAll('.custom-select-wrapper');
+
+      wrappers.forEach((wrapper, index) => {
+        // Ensure wrapper has a unique ID
+        if (!wrapper.id) {
+          wrapper.id = 'custom-select-' + index;
+        }
+
+        if (wrapper.dataset.initialized) return;
+        wrapper.dataset.initialized = 'true';
+
+        const select = wrapper.querySelector('.js-native-select');
+        const custom = wrapper.querySelector('.custom-select');
+        const selected = custom.querySelector('.custom-select__selected');
+        const dropdown = custom.querySelector('.custom-select__dropdown');
+
+        const valueSpan = selected.querySelector('.custom-select__value');
+        const priceSpan = selected.querySelector('.custom-select__price');
+        const shippingSpan = selected.querySelector('.custom-select__shipping');
+
+        // Toggle dropdown
+        selected.addEventListener('click', (e) => {
+          e.stopPropagation();
+          document.querySelectorAll('.custom-select__dropdown.open').forEach((d) => d.classList.remove('open'));
+          dropdown.classList.toggle('open');
+        });
+
+        // Option click
+        custom.querySelectorAll('.custom-select__option').forEach((option) => {
+          option.addEventListener('click', (e) => {
+            e.stopPropagation();
+
+            // store selection in Map by wrapper ID
+            wrapperPersistence.set(wrapper.id, option.dataset.persistenceCode);
+
+            // update native select
+            select.value = option.dataset.value;
+
+            // update custom UI
+            const optionValue = option.querySelector('.option-value');
+            const optionPrice = option.querySelector('.option-price');
+            const optionShipping = option.querySelector('.option-shipping');
+
+            if (optionValue) valueSpan.textContent = optionValue.textContent;
+            if (optionPrice) priceSpan.textContent = optionPrice.textContent;
+            if (optionShipping) shippingSpan.innerHTML = optionShipping.innerHTML;
+
+            dropdown.classList.remove('open');
+
+            select.dispatchEvent(new Event('change', { bubbles: true }));
+          });
+        });
+
+        // Restore selection & sync UI
+        restoreByPersistenceCode(wrapper);
+        syncCustomSelectFromNative(wrapper);
+      });
+    }
+
+    // Close dropdowns on outside click
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.custom-select__dropdown.open').forEach((d) => d.classList.remove('open'));
+    });
+
+    // Init on page load
+    document.addEventListener('DOMContentLoaded', initCustomSelects);
+
+    // Re-init after Shopify AJAX section reload
+    document.addEventListener('product:section:updated', () => {
+      document.querySelectorAll('.custom-select-wrapper').forEach((wrapper) => {
+        delete wrapper.dataset.initialized; // allow re-init
+      });
+      initCustomSelects();
+    });
+  })();
+
+  function updateAllOverlays() {
+    const selects = document.querySelectorAll('.js-native-select');
+    const overlays = document.querySelectorAll('.overlay');
+
+    // Get all currently selected values
+    const selectedRefs = Array.from(selects)
+      .map((sel) => sel.value)
+      .filter((val) => val); // remove empty values
+
+    overlays.forEach((img) => {
+      // Show if this overlay is selected in any select
+      img.classList.toggle('hidden', !selectedRefs.includes(img.dataset.wallReference));
+    });
+  }
+
+  // Attach to all selects
+  document.querySelectorAll('.js-native-select').forEach((select) => {
+    select.addEventListener('change', updateAllOverlays);
+  });
+
+  // Initial run
+  updateAllOverlays();
+  document.addEventListener('product:section:updated', (event) => {
+    const section = event.target;
+    section.querySelectorAll('.js-native-select').forEach((select) => {
+      select.removeEventListener('change', updateAllOverlays);
+      select.addEventListener('change', updateAllOverlays);
+    });
+    updateAllOverlays();
+  });
+
+  /// Make QuantityState global to persist across AJAX
+  window.QuantityState = window.QuantityState || { value: 1 };
+
+  // --- Save quantity before AJAX reload ---
+  document.addEventListener('change', (e) => {
+    if (e.target.matches('.quantity__input')) {
+      window.QuantityState.value = parseInt(e.target.value, 10) || 1;
+    }
+  });
+
+  // --- Initialize product form ---
+  function initProductForm() {
+    const form = document.querySelector('form[action^="/cart"]');
+    if (!form) return;
+
+    // --- 1. Restore tent quantity ---
+    const qtyInput = document.querySelector('.quantity__input');
+    if (qtyInput) {
+      qtyInput.value = window.QuantityState.value;
+
+      // Bind multiplier
+      qtyInput.oninput = null;
+      qtyInput.onchange = null;
+      qtyInput.addEventListener('input', syncAllFormQtys);
+      qtyInput.addEventListener('change', syncAllFormQtys);
+    }
+
+    // --- 2. Create/update configured products ---
+    updateConfiguredProducts();
+
+    // --- 3. Sync all quantities ---
+    syncAllFormQtys();
+
+    updateDisplayedPrice();
+  }
+
+  // --- Sync all form-qty inputs ---
+  function syncAllFormQtys() {
+    const qtyInput = document.querySelector('.quantity__input');
+    if (!qtyInput) return;
+
+    window.QuantityState.value = parseInt(qtyInput.value, 10) || 1;
+
+    document.querySelectorAll('.form-qty').forEach((input) => {
+      const base = parseInt(input.dataset.base, 10) || 1;
+      input.value = base * window.QuantityState.value;
+    });
+  }
+
+  // --- Update configured products dynamically ---
+  function updateConfiguredProducts() {
+    const form = document.querySelector('form[action^="/cart"]');
+    if (!form) return;
+
+    // Remove old configured inputs
+    form.querySelectorAll('.configured-item').forEach((el) => el.remove());
+
+    const selects = document.querySelectorAll('.product__configuration-select');
+    const variantCount = {};
+
+    selects.forEach((select) => {
+      const option = select.selectedOptions[0];
+      if (!option) return;
+      const variantId = option.dataset.variantId;
+      if (!variantId) return;
+      variantCount[variantId] = (variantCount[variantId] || 0) + 1;
+    });
+
+    // 👉 ANKER: vor items[0][id] einfügen
+    const anchor = form.querySelector('input[name="items[0][id]"]');
+    if (!anchor) return;
+
+    let index = 1; // 0 = base tent
+
+    for (const [variantId, count] of Object.entries(variantCount)) {
+      const inputId = document.createElement('input');
+      inputId.type = 'hidden';
+      inputId.name = `items[${index}][id]`;
+      inputId.value = variantId;
+      inputId.classList.add('configured-item');
+
+      const inputQty = document.createElement('input');
+      inputQty.type = 'hidden';
+      inputQty.name = `items[${index}][quantity]`;
+      inputQty.value = count;
+      inputQty.dataset.base = count;
+      inputQty.classList.add('form-qty', 'configured-item');
+
+      const inputParent = document.createElement('input');
+      inputParent.type = 'hidden';
+      inputParent.name = `items[${index}][parent_id]`;
+      inputParent.value = anchor.value;
+      inputParent.classList.add('configured-item');
+
+      anchor.insertAdjacentElement('beforebegin', inputId);
+      anchor.insertAdjacentElement('beforebegin', inputQty);
+      anchor.insertAdjacentElement('beforebegin', inputParent);
+
+      index++;
+    }
+  }
+
+  // --- Event listeners ---
+  document.addEventListener('DOMContentLoaded', initProductForm);
+  document.addEventListener('product:section:updated', initProductForm);
+  document.addEventListener('change', (e) => {
+    if (e.target.matches('.product__configuration-select')) {
+      initProductForm();
+    }
+  });
+
+  function updateDisplayedPrice() {
+    const priceEl = document.querySelector('.product__price[data-variant-price]');
+    const stickyPrice = document.querySelector('.product__stickybar--price-current');
+    if (!priceEl) return;
+
+    // Base tent price in cents
+    let total = parseInt(priceEl.dataset.variantPrice, 10) || 0;
+
+    // Add prices of selected configuration options (ignore quantity)
+    document.querySelectorAll('.product__configuration-select').forEach((select) => {
+      const option = select.selectedOptions[0];
+      if (!option) return;
+      const priceCents = parseInt(option.dataset.variantPrice, 10) || 0;
+      total += priceCents;
+    });
+
+    // Format with Shopify locale/currency
+    priceEl.textContent = formatCurrency(total / 100);
+    stickyPrice.textContent = formatCurrency(total / 100);
+  }
+
+  function formatCurrency(value) {
+    const currency = Shopify.currency.active; // "EUR"
+
+    // Format the number part using your locale for decimal/separator
+    const locale = Shopify.locale || 'de-DE';
+    const numberFormatted = new Intl.NumberFormat(locale, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(value);
+
+    // Prepend currency symbol
+    return currency === 'EUR' ? '€' + numberFormatted : numberFormatted + ' ' + currency;
+  }
+
+  (function () {
+    const mq = window.matchMedia('(min-width: 990px)');
+    let raf = 0;
+
+    function getStickyTopOffset() {
+      const siteHeader = document.querySelector('.header-wrapper, .shopify-section-header, header');
+      if (!siteHeader) return 0;
+
+      const pos = getComputedStyle(siteHeader).position;
+      const isStickyOrFixed = pos === 'sticky' || pos === 'fixed';
+      return isStickyOrFixed ? Math.round(siteHeader.getBoundingClientRect().height) : 0;
+    }
+
+    function update() {
+      raf = 0;
+      if (!mq.matches) return;
+
+      const bar = document.querySelector('[data-sticky-bar]');
+      const startEl = document.querySelector('[data-sticky-start]');
+      const compactEl = document.querySelector('[data-sticky-compact]');
+      const endEl = document.querySelector('[data-sticky-end]');
+      if (!bar || !startEl || !compactEl || !endEl) return;
+
+      const offset = getStickyTopOffset();
+      bar.style.setProperty('--stickybar-top', offset + 'px');
+
+      // ACTIVE: passed top line logic (reliable with direct rect reads)
+      const startPassed = startEl.getBoundingClientRect().top < offset;
+      const endPassed = endEl.getBoundingClientRect().top < offset;
+      const active = startPassed && !endPassed;
+
+      bar.classList.toggle('is-active', active);
+      bar.setAttribute('aria-hidden', active ? 'false' : 'true');
+
+      // COMPACT: use viewport-bottom trigger with hysteresis
+      if (!active) {
+        bar.classList.remove('is-compact');
+        return;
+      }
+
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const top = compactEl.getBoundingClientRect().top;
+
+      // hysteresis: prevents flicker when hovering around the line
+      const ENTER = vh - 8; // compact turns ON when sentinel is within 8px of bottom
+      const LEAVE = vh + 16; // compact turns OFF only after it moves away
+
+      const isCompact = bar.classList.contains('is-compact');
+
+      if (!isCompact && top <= ENTER) bar.classList.add('is-compact');
+      else if (isCompact && top > LEAVE) bar.classList.remove('is-compact');
+    }
+
+    function requestUpdate() {
+      if (raf) return;
+      raf = requestAnimationFrame(update);
+    }
+
+    function init() {
+      // run once to set correct initial state (loads mid-scroll / anchor)
+      requestUpdate();
+
+      // scroll is needed for compact reliability
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', requestUpdate);
+
+      document.addEventListener('product:section:updated', requestUpdate);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+
+    // handle breakpoint changes
+    if (mq.addEventListener) mq.addEventListener('change', requestUpdate);
+    else mq.addListener(requestUpdate);
+  })();
+  (function () {
+    let activeFetchController = null;
+
+    function getSectionIdFromEl(el) {
+      const wrapper = el.closest('[id^="shopify-section-"]');
+      if (!wrapper) return null;
+      return wrapper.id.replace('shopify-section-', '');
+    }
+
+    async function swapProductSection(productUrl, triggerEl, { pushState = true } = {}) {
+      const sectionId = getSectionIdFromEl(triggerEl);
+      if (!sectionId) return;
+
+      // abort previous request (prevents race conditions on fast clicks)
+      if (activeFetchController) activeFetchController.abort();
+      activeFetchController = new AbortController();
+
+      // build URL: /products/xxx?section_id=SECTIONID (keep existing query if any)
+      const url = new URL(productUrl, window.location.origin);
+      url.searchParams.set('section_id', sectionId);
+
+      const res = await fetch(url.toString(), {
+        credentials: 'same-origin',
+        signal: activeFetchController.signal,
+      });
+
+      if (!res.ok) throw new Error(`Product switch failed: ${res.status}`);
+      const htmlText = await res.text();
+
+      const doc = new DOMParser().parseFromString(htmlText, 'text/html');
+
+      const currentSection = document.querySelector(`#shopify-section-${CSS.escape(sectionId)}`);
+      const newSection = doc.querySelector(`#shopify-section-${CSS.escape(sectionId)}`);
+
+      if (!currentSection || !newSection) return;
+
+      // Replace section content
+      currentSection.innerHTML = newSection.innerHTML;
+
+      // Update URL + title (so your existing variant fetch uses correct product URL)
+      if (pushState) {
+        history.pushState({ productUrl }, '', productUrl);
+      }
+      const newTitle = doc.querySelector('title')?.textContent;
+      if (newTitle) document.title = newTitle;
+
+      // Mark active tab in the *new* DOM
+      const pathname = new URL(productUrl, window.location.origin).pathname;
+      document.querySelectorAll('.product__tabnav--item').forEach((li) => li.classList.remove('is-active'));
+      document.querySelectorAll('.product__tabnav--btn').forEach((btn) => {
+        try {
+          const btnPath = new URL(btn.dataset.productUrl, window.location.origin).pathname;
+          if (btnPath === pathname) btn.closest('.product__tabnav--item')?.classList.add('is-active');
+        } catch (e) {}
+      });
+
+      // Re-init everything you already wired to this event
+      document.dispatchEvent(new CustomEvent('product:section:updated'));
+    }
+
+    // Click handler (event delegation survives section swaps)
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-product-switcher] [data-product-url]');
+      if (!btn) return;
+
+      e.preventDefault();
+      const productUrl = btn.dataset.productUrl;
+      if (!productUrl) return;
+
+      swapProductSection(productUrl, btn).catch(console.error);
+    });
+
+    // Back/forward support
+    window.addEventListener('popstate', () => {
+      swapProductSection(window.location.href, document.body, { pushState: false }).catch(() => {
+        // fallback hard reload if something goes wrong
+        window.location.reload();
+      });
+    });
+  })();
+{% endjavascript %}
+{% endcomment %}
+{% schema %}
+{
+  "name": "Product Hero",
+  "tag": "section",
+  "class": "product-hero-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Product Hero"
+    }
+  ]
+}
+{% endschema %}

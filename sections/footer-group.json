@@ -1,1 +1,54 @@
-{"type":"footer","name":"t:sections.footer.settings.footer-group.label","sections":{"custom_footer_zzDUBF":{"type":"custom-footer","name":"Custom Footer","settings":{}},"footer":{"type":"footer","disabled":true,"custom_css":[".footer {background-color: #f5f5f7;}","@media (min-width: 990px) {.footer-main-text {max-width: 990px; font-size: 14px; line-height: 19px; text-align: justify; }}"],"settings":{"color_scheme":"background-4","animate_on_scroll":true,"show_logo":true,"logo":"shopify:\/\/shop_images\/bailena-social-sharing-seo-1200x332px.webp","logo_width":180,"main_text":"Willkommen bei Bailena – Wir sind Experte für bedruckte Werbemittel und statten Firmen und Behörden mit individuellen Werbeartikeln aus. Bailena steht für Service, Nachhaltigkeit und langfristige Partnerschaften. Bei Bailena finden Sie eine große Auswahl an Werbeartikeln, die Sie nach Ihren Vorstellungen bedrucken lassen können – ob Kugelschreiber, Taschen, Flaschen, Pavillons oder andere Werbemittel. Natürlich sind alle Produkte auch ohne Druck erhältlich. Unser Ziel ist es, dass Ihr Projekt ein voller Erfolg wird! Unser Team arbeitet mit dem Ziel maßgeschneiderte Lösungen für unsere Kunden im Bereich Werbung und Events anzubieten.","head_alignment":"left","blocks_alignment":"left","show_socials":false,"enable_country_selector":false,"enable_language_selector":false,"payment_enable":false,"enable_copyright":true,"enable_copyright_date":true,"show_policy":true,"enable_follow_on_shop":true,"padding_top":"s","padding_bottom":"s","margin_top":"no-indent","margin_bottom":"no-indent"}}},"order":["custom_footer_zzDUBF","footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "t:sections.footer.settings.footer-group.label",
+  "sections": {
+    "custom_footer_zzDUBF": {
+      "type": "custom-footer",
+      "disabled": true,
+      "name": "Custom Footer",
+      "settings": {}
+    },
+    "footer": {
+      "type": "footer",
+      "disabled": true,
+      "custom_css": [
+        ".footer {background-color: #f5f5f7;}",
+        "@media (min-width: 990px) {.footer-main-text {max-width: 990px; font-size: 14px; line-height: 19px; text-align: justify; }}"
+      ],
+      "settings": {
+        "color_scheme": "background-4",
+        "animate_on_scroll": true,
+        "show_logo": true,
+        "logo_width": 180,
+        "main_text": "Willkommen bei Bailena – Wir sind Experte für bedruckte Werbemittel und statten Firmen und Behörden mit individuellen Werbeartikeln aus. Bailena steht für Service, Nachhaltigkeit und langfristige Partnerschaften. Bei Bailena finden Sie eine große Auswahl an Werbeartikeln, die Sie nach Ihren Vorstellungen bedrucken lassen können – ob Kugelschreiber, Taschen, Flaschen, Pavillons oder andere Werbemittel. Natürlich sind alle Produkte auch ohne Druck erhältlich. Unser Ziel ist es, dass Ihr Projekt ein voller Erfolg wird! Unser Team arbeitet mit dem Ziel maßgeschneiderte Lösungen für unsere Kunden im Bereich Werbung und Events anzubieten.",
+        "head_alignment": "left",
+        "blocks_alignment": "left",
+        "show_socials": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": false,
+        "enable_copyright": true,
+        "enable_copyright_date": true,
+        "show_policy": true,
+        "enable_follow_on_shop": true,
+        "padding_top": "s",
+        "padding_bottom": "s",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    }
+  },
+  "order": [
+    "custom_footer_zzDUBF",
+    "footer"
+  ]
+}

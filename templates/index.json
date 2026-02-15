@@ -1,1 +1,22 @@
-{"sections":{"custom_landing_page_AHzDpR":{"type":"custom-landing-page","name":"Landing Page","settings":{}}},"order":["custom_landing_page_AHzDpR"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_landing_page_AHzDpR": {
+      "type": "custom-landing-page",
+      "disabled": true,
+      "name": "Landing Page",
+      "settings": {}
+    }
+  },
+  "order": [
+    "custom_landing_page_AHzDpR"
+  ]
+}
